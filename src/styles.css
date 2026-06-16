@@ -1,1 +1,262 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+
+/* ========================================================= */
+/* RESET Y BASE                                              */
+/* ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ========================================================= */
+/* VARIABLES CSS                                             */
+/* ========================================================= */
+
+:root {
+  --color-fondo: #e8e7da;
+  --color-texto: #5A3D2C;
+  --color-principal: #fee4be;
+  --color-secundario: #ec8e00;
+  --color-boton: #c3725b;
+  --color-blanco: #ffffffea;
+  --color-lila: #cbabc1;
+  --color-resaltado: #2c8121;
+  --radio-normal: 20px;
+
+  --espaciado-pequeno: 10px;
+  --espaciado-medio: 20px;
+  --espaciado-grande: 40px;
+
+  --sombra-suave: 0 4px 14px rgba(0, 0, 0, 0.12);
+  --sombra-fuerte: 0 8px 24px rgba(0, 0, 0, 0.22);
+
+  --fuente-principal: sans-serif;
+}
+
+/* ========================================================= */
+/* ESTRUCTURA BASE                                           */
+/* ========================================================= */
+
+body {
+  margin: 0;
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  padding-top: 70px;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  flex: 1;
+}
+
+section {
+  display: block;
+  margin: auto;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* ========================================================= */
+/* CONTENEDOR GLOBAL                                         */
+/* ========================================================= */
+
+.container {
+  padding: 0px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container a {
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+/* ========================================================= */
+/* BOTONES GLOBALES                                          */
+/* ========================================================= */
+
+.main-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: var(--color-boton);
+  color: var(--color-fondo);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.main-btn:hover {
+  transform: translateY(-4px);
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+}
+
+.btn-primary {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 99px;
+  font-weight: bold;
+  background-color: var(--color-lila);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+}
+
+/* ========================================================= */
+/* BADGE CATEGORIA                 */
+/* ========================================================= */
+
+.categoria {
+  display: inline-block;
+  background-color: var(--color-lila);
+  color: var(--color-texto);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: var(--espaciado-pequeno);
+  width: fit-content;
+}
+
+/* ========================================================= */
+/* CARDS                         */
+/* ========================================================= */
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+
+
+/* ========================================================= */
+/* TOAST / NOTIFICACIONES GLOBALES                           */
+/* ========================================================= */
+
+.toast-custom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-in;
+  z-index: 9999;
+  max-width: 300px;
+}
+
+.toast-custom-success {
+  background: #4CAF50 !important;
+}
+
+.toast-custom-error {
+  background: #f44336 !important;
+}
+
+.toast-custom-info {
+  background: #2196F3 !important;
+}
+
+/* ========================================================= */
+/* ANIMACIONES GLOBALES                                      */
+/* ========================================================= */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes aparecerDesdeAbajo {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animar {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ========================================================= */
+/* MEDIA QUERIES GLOBALES                                    */
+/* ========================================================= */
+
+/* TABLET (768px - 991px) */
+@media (max-width: 991px) {
+  .footer img {
+    width: 15%;
+  }
+}
+
+/* CELULAR (menos de 768px) */
+@media (max-width: 767px) {
+  body {
+    padding-top: 50px;
+  }
+
+  main {
+    margin-top: 20px;
+    gap: 30px;
+  }
+
+  section {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+}
+
+

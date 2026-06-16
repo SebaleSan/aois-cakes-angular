@@ -1,0 +1,17 @@
+.footer {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+}
+
+.footer a {
+  color: var(--color-texto);
+}
+
+.footer a:hover {
+  color: var(--color-secundario);
+}
+
+.footer-logo {
+  height: 50px;
+  width: auto;
+}

@@ -1,0 +1,8 @@
+.header {
+  min-height: 60vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(70,50,40,0.8)),
+    url('/assets/img/tortas/tortabackground.jpeg');
+  background-size: cover;
+  background-position: center;
+  color: var(--color-blanco);
+}

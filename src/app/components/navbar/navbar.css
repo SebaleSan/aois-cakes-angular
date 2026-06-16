@@ -1,0 +1,9 @@
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+.custom-navbar {
+  background-color: var(--color-principal);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
