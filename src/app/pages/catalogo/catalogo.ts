@@ -1,9 +1,19 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { PRODUCTOS, Producto } from '../../data/productos';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './catalogo.html',
-  styleUrl: './catalogo.css',
+  styleUrl: './catalogo.css'
 })
-export class Catalogo {}
+export class Catalogo {
+  productos: Producto[] = PRODUCTOS;
+
+  formatearPrecio(precio: number): string {
+    return '$' + precio.toLocaleString('es-CL');
+  }
+}

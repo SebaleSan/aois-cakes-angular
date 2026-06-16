@@ -1,0 +1,146 @@
+export interface Producto {
+  id: number;
+  nombre: string;
+  categoria: string;
+  precio: number;
+  imagen: string;
+  descripcion: string;
+  disponible: boolean;
+  destacado: boolean;
+}
+
+export const CATEGORIAS: string[] = [
+  'Todas',
+  'Tortas',
+  'Catering',
+  'Galletas',
+  'Tradicional'
+];
+
+export const PRODUCTOS: Producto[] = [
+  {
+    id: 1,
+    nombre: 'Brownie',
+    categoria: 'Tradicional',
+    precio: 2500,
+    imagen: 'assets/img/tradicional/brownie.jpg',
+    descripcion: 'Brownie con centro fudge, cobertura de nueces tostadas.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 2,
+    nombre: 'Lemon Pie',
+    categoria: 'Tradicional',
+    precio: 14600,
+    imagen: 'assets/img/tradicional/lemonPie.jpg',
+    descripcion: 'Base crumble, crema de limón y cobertura de merengue italiano.',
+    disponible: true,
+    destacado: true,
+  },
+  {
+    id: 3,
+    nombre: 'Empolvados',
+    categoria: 'Tradicional',
+    precio: 1000,
+    imagen: 'assets/img/tradicional/empolvados-copia.jpg',
+    descripcion: 'Tradicional empolvado chileno relleno con manjar clásico.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 4,
+    nombre: 'Torta Osos',
+    categoria: 'Tortas',
+    precio: 55000,
+    imagen: 'assets/img/tortas/tortaoso.jpg',
+    descripcion: 'Torta para 10 personas, diseño vintage en crema de mantequilla, bizcocho de chocolate con crema de cookie&cream, trozos de oreo y manjar.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 5,
+    nombre: 'Torta de Bodas',
+    categoria: 'Tortas',
+    precio: 120000,
+    imagen: 'assets/img/tortas/tortabodas.jpg',
+    descripcion: 'Bizcocho de amapola con crema pastelera vainilla, mermelada frambuesa y crema tipo cheesecake. Dos pisos para 40 personas.',
+    disponible: true,
+    destacado: true,
+  },
+
+  {
+    id: 6,
+    nombre: 'Torta Minecraft',
+    categoria: 'Tortas',
+    precio: 68000,
+    imagen: 'assets/img/tortas/unnamed.jpg',
+    descripcion: 'Torta para 15 personas de bizcocho de zanahoria con crema bon o bon, cubierta en crema de mantequilla sabor vainilla.',
+    disponible: true,
+    destacado: false,
+  
+
+  }
+,
+{
+    id: 7,
+    nombre: 'Galletas New York Oreo',
+    categoria: 'Cookies',
+    precio: 2900,
+    imagen: 'assets/img/galletas/1000045912.jpg',
+    descripcion: 'Galletas New York de 100grms con trozos de galleta Oreo.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 8,
+    nombre: 'Galletas Variadas',
+    categoria: 'Cookies',
+    precio: 16000,
+    imagen: 'assets/img/galletas/1000248584.jpg',
+    descripcion: 'Pack de 25 galletas gourmet surtidas para ocasión especial.',
+    disponible: false,
+    destacado: true,
+  },
+  {
+    id: 9,
+    nombre: 'Galletas Personalizadas',
+    categoria: 'Cookies',
+    precio: 3000,
+    imagen: 'assets/img/galletas/1000250908.jpg',
+    descripcion: 'Galletas decoradas con diseño temático personalizado.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 10,
+    nombre: 'Mini Lemon',
+    categoria: 'Catering',
+    precio: 10000,
+    imagen: 'assets/img/catering/1000017786.jpg',
+    descripcion: 'Mini Lemon pie relleno de crema de limón con cobertura de merengue.',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    id: 11,
+    nombre: 'Dulces Chilenos',
+    categoria: 'Catering',
+    precio: 14600,
+    imagen: 'assets/img/catering/1000164318.jpg',
+    descripcion: 'Variedad de dulces chilenos típicos y de temporada.',
+    disponible: true,
+    destacado: true,
+  },
+  {
+    id: 12,
+    nombre: 'Mini Tartaleta de Frutas',
+    categoria: 'Catering',
+    precio: 18670,
+    imagen: 'assets/img/catering/1000051665.jpg',
+    descripcion: 'Mini tartaleta crujiente con frutas frescas y crema pastelera suave.',
+    disponible: true,
+    destacado: false,
+  }
+
+];

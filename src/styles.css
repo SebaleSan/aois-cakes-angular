@@ -48,7 +48,6 @@ body {
   background-color: var(--color-fondo);
   color: var(--color-texto);
   line-height: 1.6;
-  padding-top: 70px;
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
@@ -244,9 +243,7 @@ section {
 
 /* CELULAR (menos de 768px) */
 @media (max-width: 767px) {
-  body {
-    padding-top: 50px;
-  }
+  
 
   main {
     margin-top: 20px;
