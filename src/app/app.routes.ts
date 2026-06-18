@@ -14,5 +14,6 @@ export const routes: Routes = [
   { path: 'login', component: Login, title: 'Aois Cakes - Login' },
   { path: 'panel', component: Carro, title: 'Aois Cakes - Panel' },
   { path: 'admin', component: Admin, title: 'Aois Cakes - Admin' },
+  { path: 'carro', component: Carro, title: 'Aois Cakes - Carro' },
   { path: '**', redirectTo: '' }
 ];

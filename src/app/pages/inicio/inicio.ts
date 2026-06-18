@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicio',
   standalone: true,
@@ -8,4 +8,11 @@ import { RouterLink } from '@angular/router';
   templateUrl: './inicio.html',
   styleUrl: './inicio.css'
 })
-export class Inicio {}
+export class Inicio {
+  constructor(private router: Router) {}
+
+  seleccionarCategoria(categoria: string): void {
+    this.router.navigate(['/catalogo'], {
+      queryParams: { categoria } });
+  }
+}

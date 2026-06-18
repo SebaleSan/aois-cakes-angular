@@ -8,3 +8,19 @@
   background-position: center;
   color: var(--color-blanco);
 }
+
+
+
+
+.card.catalog {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+
+.card.catalog:hover {
+  opacity: 0.95; 
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

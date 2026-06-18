@@ -3,12 +3,13 @@
   <section class="text-center mb-5">
     <h1>Catálogo</h1>
     <p class="lead text-muted">Descubre nuestras especialidades</p>
+    <p>{{categoriaSeleccionada}}</p>
   </section>
 
-  <section class="row g-4" *ngIf="productos.length > 0; else sinProductos">
+  <section class="row g-4" *ngIf="productosFiltrados.length > 0; else sinProductos" >
 
-    <article class="col-12 col-md-6 col-lg-3" *ngFor="let producto of productos">
-      <a [routerLink]="['/detalle', producto.id]" class="text-decoration-none">
+    <article class="col-12 col-md-6 col-lg-3" *ngFor="let producto of productosFiltrados">
+      <a [routerLink]="['/detalles', producto.id]" class="text-decoration-none">
         <div class="card catalog h-100 rounded-4 overflow-hidden">
           <img
             [src]="producto.imagen"

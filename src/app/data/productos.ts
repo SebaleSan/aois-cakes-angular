@@ -8,7 +8,6 @@ export interface Producto {
   disponible: boolean;
   destacado: boolean;
 }
-
 export const CATEGORIAS: string[] = [
   'Todas',
   'Tortas',
@@ -99,7 +98,7 @@ export const PRODUCTOS: Producto[] = [
     precio: 16000,
     imagen: 'assets/img/galletas/1000248584.jpg',
     descripcion: 'Pack de 25 galletas gourmet surtidas para ocasión especial.',
-    disponible: false,
+    disponible: true,
     destacado: true,
   },
   {
@@ -142,5 +141,9 @@ export const PRODUCTOS: Producto[] = [
     disponible: true,
     destacado: false,
   }
+
+
+  
+
 
 ];
