@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
+import { FormsModule} from '@angular/forms';
 import { CATEGORIAS, PRODUCTOS, Producto } from '../../data/productos';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css'
 })
@@ -22,6 +23,7 @@ export class Catalogo implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.categoriaSeleccionada = params['categoria'] || 'Todas';
+      this.busqueda = params['busqueda'] || '';
       this.mostrarSoloDisponibles = params['disponible'] === 'true';
     });
   }

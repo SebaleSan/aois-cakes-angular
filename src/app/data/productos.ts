@@ -12,7 +12,7 @@ export const CATEGORIAS: string[] = [
   'Todas',
   'Tortas',
   'Catering',
-  'Galletas',
+  'Cookies',
   'Tradicional'
 ];
 
