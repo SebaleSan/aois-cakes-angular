@@ -36,6 +36,10 @@ export class Buscador {
         categoria: this.categoriaSeleccionada
       }
     });
-    this.cerrar();
+    
   }
+
+
+
+  
 }
