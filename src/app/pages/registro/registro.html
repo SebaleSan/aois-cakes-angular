@@ -1,1 +1,111 @@
-<p>registro works!</p>
+<main class="page-animation registro-bg py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+
+        <div class="registro-card">
+
+          <div class="text-center mb-4">
+            <img src="assets/img/logoAois.png" alt="Aoi's Cakes" class="registro-logo mb-3">
+            <h1 class="registro-titulo">Crear cuenta</h1>
+            <p class="text-muted">Únete a nuestra comunidad de amantes de la pastelería</p>
+          </div>
+
+          <div class="alert rounded-3"
+            *ngIf="mensaje"
+            [class.alert-success]="tipoMensaje === 'success'"
+            [class.alert-danger]="tipoMensaje === 'danger'">
+            {{ mensaje }}
+          </div>
+
+          <form [formGroup]="form" (ngSubmit)="registrar()">
+
+            <div class="mb-3">
+              <label for="nombre" class="form-label registro-label">Nombre completo</label>
+              <input id="nombre" type="text" class="form-control registro-input"
+                placeholder="Ej: Ana Torres"
+                formControlName="nombre"
+                [class.is-invalid]="nombre?.invalid && nombre?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="nombre?.errors?.['required']">El nombre es obligatorio.</span>
+                <span *ngIf="nombre?.errors?.['minlength']">Mínimo 3 caracteres.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="usuario" class="form-label registro-label">Nombre de usuario</label>
+              <input id="usuario" type="text" class="form-control registro-input"
+                placeholder="Ej: ana123"
+                formControlName="usuario"
+                [class.is-invalid]="usuario?.invalid && usuario?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="usuario?.errors?.['required']">El usuario es obligatorio.</span>
+                <span *ngIf="usuario?.errors?.['minlength']">Mínimo 3 caracteres.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="correo" class="form-label registro-label">Correo electrónico</label>
+              <input id="correo" type="email" class="form-control registro-input"
+                placeholder="correo@ejemplo.cl"
+                formControlName="correo"
+                [class.is-invalid]="correo?.invalid && correo?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="correo?.errors?.['required']">El correo es obligatorio.</span>
+                <span *ngIf="correo?.errors?.['email']">Ingresa un correo válido.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="direccion" class="form-label registro-label">
+                Dirección <span class="text-muted fw-normal">(opcional)</span>
+              </label>
+              <input id="direccion" type="text" class="form-control registro-input"
+                placeholder="Ej: Av. Principal 123"
+                formControlName="direccion">
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label registro-label">Contraseña</label>
+              <input id="password" type="password" class="form-control registro-input"
+                placeholder="Mínimo 6 caracteres"
+                formControlName="password"
+                [class.is-invalid]="password?.invalid && password?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</span>
+                <span *ngIf="password?.errors?.['minlength']">Mínimo 6 caracteres.</span>
+                <span *ngIf="password?.errors?.['pattern']">Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.</span>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="confirmarPassword" class="form-label registro-label">Confirmar contraseña</label>
+              <input id="confirmarPassword" type="password" class="form-control registro-input"
+                placeholder="Repite tu contraseña"
+                formControlName="confirmarPassword"
+                [class.is-invalid]="(confirmarPassword?.invalid && confirmarPassword?.touched) || (form.errors?.['noCoinciden'] && confirmarPassword?.touched)">
+              <div class="invalid-feedback">
+                <span *ngIf="confirmarPassword?.errors?.['required']">Confirma tu contraseña.</span>
+                <span *ngIf="form.errors?.['noCoinciden'] && !confirmarPassword?.errors?.['required']">Las contraseñas no coinciden.</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn registro-btn-primary">Crear cuenta</button>
+              <button type="button" class="btn registro-btn-secondary" (click)="form.reset()">Limpiar</button>
+            </div>
+
+          </form>
+
+          <hr class="registro-divider">
+
+          <p class="text-center mb-0">
+            ¿Ya tienes cuenta?
+            <a routerLink="/login" class="registro-link">Inicia sesión</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

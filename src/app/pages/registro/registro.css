@@ -1,0 +1,91 @@
+
+
+.registro-card {
+  background-color: var(--color-blanco);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: var(--sombra-fuerte);
+}
+
+.registro-logo {
+  height: 70px;
+  width: auto;
+}
+
+.registro-titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.registro-label {
+  font-weight: 600;
+  color: var(--color-texto);
+  margin-bottom: 6px;
+}
+
+.registro-input {
+  border: 2px solid var(--color-principal);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background-color: #fffaf5;
+  color: var(--color-texto);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registro-input:focus {
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 3px rgba(236, 142, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.registro-input.is-invalid {
+  border-color: #dc3545;
+}
+
+.registro-btn-primary {
+  background-color: var(--color-boton);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.registro-btn-primary:hover {
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+}
+
+.registro-btn-secondary {
+  background-color: transparent;
+  color: var(--color-texto);
+  border: 2px solid var(--color-principal);
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.registro-btn-secondary:hover {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+}
+
+.registro-divider {
+  border-color: var(--color-principal);
+  margin: 24px 0;
+}
+
+.registro-link {
+  color: var(--color-boton);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.registro-link:hover {
+  color: var(--color-secundario);
+  text-decoration: underline;
+}
