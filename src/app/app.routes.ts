@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { Inicio } from './pages/inicio/inicio';
 import { Catalogo } from './pages/catalogo/catalogo';
@@ -6,6 +7,7 @@ import { Registro } from './pages/registro/registro';
 import { Login } from './pages/login/login';
 import { Carro } from './pages/carro/carro';
 import { Admin } from './pages/admin/admin';
+import { Detalle } from './pages/detalle/detalle';
 
 export const routes: Routes = [
   { path: '', component: Inicio, title: 'Aois Cakes - Inicio' },
@@ -15,5 +17,6 @@ export const routes: Routes = [
   { path: 'panel', component: Carro, title: 'Aois Cakes - Panel' },
   { path: 'admin', component: Admin, title: 'Aois Cakes - Admin' },
   { path: 'carro', component: Carro, title: 'Aois Cakes - Carro' },
+  { path: 'detalle/:id', component: Detalle, title: 'Aois Cakes - Detalle' },
   { path: '**', redirectTo: '' }
 ];
