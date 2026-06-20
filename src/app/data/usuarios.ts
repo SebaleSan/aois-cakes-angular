@@ -23,7 +23,7 @@ export const USUARIOS: Usuario[] = [
   {
     id: 2,
     nombre: 'Administrador Aois Cakes',
-    usuario: 'cliente1',
+    usuario: 'admin',
     correo: 'admin@aoiscakes.cl',
     direccion: '',
     password: 'Admin123',
