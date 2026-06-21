@@ -1,1 +1,100 @@
-<p>admin works!</p>
+<main class="page-animation container py-5">
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1>Panel Administrador</h1>
+      <p class="text-muted">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>
+    </div>
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="row g-4 mb-5">
+    <div class="col-12 col-md-4">
+      <div class="card rounded-4 shadow-sm text-center p-4">
+        <p class="text-muted mb-1">Usuarios registrados</p>
+        <h2 class="fw-bold fs-1">{{ totalUsuarios }}</h2>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card rounded-4 shadow-sm text-center p-4">
+        <p class="text-muted mb-1">Productos</p>
+        <h2 class="fw-bold fs-1">{{ totalProductos }}</h2>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card rounded-4 shadow-sm text-center p-4">
+        <p class="text-muted mb-1">Disponibles</p>
+        <h2 class="fw-bold fs-1">{{ productosDisponibles }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA USUARIOS -->
+  <div class="card rounded-4 shadow-sm mb-5">
+    <div class="card-body">
+      <h2 class="h4 mb-4">Usuarios registrados</h2>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Usuario</th>
+              <th>Correo</th>
+              <th>Dirección</th>
+              <th>Rol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuarios">
+              <td>{{ usuario.nombre }}</td>
+              <td>{{ usuario.usuario }}</td>
+              <td>{{ usuario.correo }}</td>
+              <td>{{ usuario.direccion || '—' }}</td>
+              <td>
+                <span class="badge"
+                  [class.text-bg-dark]="usuario.rol === 'admin'"
+                  [class.text-bg-info]="usuario.rol === 'cliente'">
+                  {{ usuario.rol }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA PRODUCTOS -->
+  <div class="card rounded-4 shadow-sm">
+    <div class="card-body">
+      <h2 class="h4 mb-4">Productos del catálogo</h2>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos">
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.categoria }}</td>
+              <td>${{ producto.precio.toLocaleString('es-CL') }}</td>
+              <td>
+                <span class="badge"
+                  [class.text-bg-success]="producto.disponible"
+                  [class.text-bg-secondary]="!producto.disponible">
+                  {{ producto.disponible ? 'Disponible' : 'No disponible' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
