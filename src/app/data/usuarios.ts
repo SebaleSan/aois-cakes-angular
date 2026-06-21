@@ -7,6 +7,7 @@ export interface Usuario {
   correo: string;
   direccion: string;
   password: string;
+  fechaNacimiento: string;
   rol: RolUsuario;
 }
 
@@ -18,6 +19,7 @@ export const USUARIOS: Usuario[] = [
     correo: 'cliente@aoiscakes.cl',
     direccion: '',
     password: 'Cliente123',
+    fechaNacimiento: '1990-05-15',
     rol: 'cliente'
   },
   {
@@ -27,6 +29,7 @@ export const USUARIOS: Usuario[] = [
     correo: 'admin@aoiscakes.cl',
     direccion: '',
     password: 'Admin123',
+    fechaNacimiento: '1985-07-20',
     rol: 'admin'
   }
 ];
