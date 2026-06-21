@@ -51,7 +51,7 @@ export class Login {
       if (usuario?.rol === 'admin') {
         this.router.navigate(['/admin']);
       } else {
-        this.router.navigate(['/panel']);
+        this.router.navigate(['/inicio']);
       }
     }
   }
