@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid top-bar-content">
-
     <a class="navbar-brand" routerLink="/">
       <img src="assets/img/logoAois.png" alt="Logo de Aoi's Cakes" class="logo" />
     </a>
@@ -8,20 +7,62 @@
     <div class="collapse navbar-collapse nav-top" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="cerrarMenu()"
+            >Inicio</a
+          >
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" routerLink="/catalogo" routerLinkActive="active">Menú</a>
+          <a
+            class="nav-link"
+            routerLink="/catalogo"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+            >Menú</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/registro" routerLinkActive="active">Registrarse</a>
+
+        <li class="nav-item" *ngIf="!logueado">
+          <a
+            class="nav-link"
+            routerLink="/registro"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+            >Registrarse</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Log in</a>
+
+        <li class="nav-item" *ngIf="!logueado">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="cerrarMenu()"
+            >Log in</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/carro" routerLinkActive="active">Carro</a>
+
+        <li class="nav-item" *ngIf="logueado">
+          <a class="nav-link" routerLink="/carro" routerLinkActive="active" (click)="cerrarMenu()"
+            >Carro</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="logueado">
+          <a class="nav-link" routerLink="/panel" routerLinkActive="active" (click)="cerrarMenu()"
+            >Mi perfil</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="esAdmin">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active" (click)="cerrarMenu()"
+            >Admin</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="logueado">
+          <button class="btn nav-link" (click)="cerrarSesion(); cerrarMenu()">Cerrar sesión</button>
         </li>
       </ul>
     </div>
@@ -36,10 +77,10 @@
         data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
-
   </div>
 </nav>
