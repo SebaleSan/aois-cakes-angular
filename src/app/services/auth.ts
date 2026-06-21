@@ -34,7 +34,7 @@ export class AuthService {
     return [...this.usuarios];
   }
 
-  registrar(nombre: string, usuario: string, correo: string, direccion: string, password: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
+  registrar(nombre: string, usuario: string, correo: string, direccion: string, password: string, fechaNacimiento: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
     const nombreLimpio = nombre.trim();
     const usuarioLimpio = usuario.trim();
     const correoLimpio = correo.trim().toLowerCase();
@@ -61,6 +61,7 @@ export class AuthService {
       correo: correoLimpio,
       direccion: direccion.trim(),
       password: passwordLimpia,
+      fechaNacimiento,
       rol
     };
 
@@ -124,4 +125,37 @@ export class AuthService {
     sessionStorage.setItem(CLAVE_SESION, JSON.stringify(usuario));
     this.usuarioActualSubject.next(usuario);
   }
+
+  actualizarPerfil(nombre: string, usuario: string, correo: string, direccion: string): { ok: boolean; mensaje: string } {
+  const usuarioActual = this.usuarioActual;
+  if (!usuarioActual) {
+    return { ok: false, mensaje: 'No hay sesión activa.' };
+  }
+
+  const correoLimpio = correo.trim().toLowerCase();
+  const existeCorreo = this.usuarios.some(
+    u => u.correo.toLowerCase() === correoLimpio && u.id !== usuarioActual.id
+  );
+
+  if (existeCorreo) {
+    return { ok: false, mensaje: 'Ese correo ya está en uso por otra cuenta.' };
+  }
+
+  const usuarioActualizado = {
+    ...usuarioActual,
+    nombre: nombre.trim(),
+    usuario: usuario.trim(),
+    correo: correoLimpio,
+    direccion: direccion.trim()
+  };
+
+  this.usuarios = this.usuarios.map(u =>
+    u.id === usuarioActual.id ? usuarioActualizado : u
+  );
+
+  this.guardarUsuarios();
+  this.guardarSesion(usuarioActualizado);
+
+  return { ok: true, mensaje: 'Perfil actualizado correctamente.' };
+}
 }

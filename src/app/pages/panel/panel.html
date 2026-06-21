@@ -1,0 +1,87 @@
+<main class="page-animation container py-5">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      <div class="registro-card mb-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h1 class="registro-titulo mb-1">Mi perfil</h1>
+            <p class="text-muted mb-0">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>
+          </div>
+          <span class="badge text-bg-info fs-6">{{ authService.usuarioActual?.rol }}</span>
+        </div>
+
+        <div class="alert rounded-3" *ngIf="mensaje"
+          [class.alert-success]="tipoMensaje === 'success'"
+          [class.alert-danger]="tipoMensaje === 'danger'">
+          {{ mensaje }}
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="guardar()">
+
+          <div class="mb-3">
+            <label class="form-label registro-label">Nombre completo</label>
+            <input type="text" class="form-control registro-input"
+              formControlName="nombre"
+              [class.is-invalid]="nombre?.invalid && nombre?.touched">
+            <div class="invalid-feedback">
+              <span *ngIf="nombre?.errors?.['required']">El nombre es obligatorio.</span>
+              <span *ngIf="nombre?.errors?.['minlength']">Mínimo 3 caracteres.</span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label registro-label">Nombre de usuario</label>
+            <input type="text" class="form-control registro-input"
+              formControlName="usuario"
+              [class.is-invalid]="usuario?.invalid && usuario?.touched">
+            <div class="invalid-feedback">
+              <span *ngIf="usuario?.errors?.['required']">El usuario es obligatorio.</span>
+              <span *ngIf="usuario?.errors?.['minlength']">Mínimo 3 caracteres.</span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label registro-label">Correo electrónico</label>
+            <input type="email" class="form-control registro-input"
+              formControlName="correo"
+              [class.is-invalid]="correo?.invalid && correo?.touched">
+            <div class="invalid-feedback">
+              <span *ngIf="correo?.errors?.['required']">El correo es obligatorio.</span>
+              <span *ngIf="correo?.errors?.['email']">Ingresa un correo válido.</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label registro-label">Dirección</label>
+            <input type="text" class="form-control registro-input"
+              formControlName="direccion"
+              placeholder="Opcional">
+          </div>
+
+          <div class="d-flex gap-2" *ngIf="editando">
+            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar cambios</button>
+            <button type="button" class="btn registro-btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+          </div>
+
+        </form>
+
+        <div class="d-grid mt-3" *ngIf="!editando">
+          <button type="button" class="btn registro-btn-primary" (click)="activarEdicion()">
+            Editar perfil
+          </button>
+        </div>
+
+      </div>
+
+      <div class="d-flex gap-2">
+        <a routerLink="/carro" class="btn registro-btn-secondary flex-grow-1">Ver mi carro</a>
+        <button type="button" class="btn btn-outline-danger" (click)="cerrarSesion()">Cerrar sesión</button>
+      </div>
+
+    </div>
+  </div>
+
+</main>
