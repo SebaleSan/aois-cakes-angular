@@ -1,0 +1,33 @@
+.catalog {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.catalog:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.catalog-content {
+  padding: 1rem;
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+}
+
+.categoria {
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+}
+
+.card-title {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
