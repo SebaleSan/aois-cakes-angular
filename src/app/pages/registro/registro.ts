@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { RolUsuario } from '../../data/usuarios';
-
-
 
 function passwordsIguales(form: AbstractControl): ValidationErrors | null {
   const password = form.get('password')?.value;
@@ -25,23 +23,27 @@ export class Registro {
   mensaje: string = '';
   tipoMensaje: 'success' | 'danger' | '' = '';
 
-  form = new FormGroup({
-    nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    usuario: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    correo: new FormControl('', [Validators.required, Validators.email]),
-    direccion: new FormControl(''),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).*$/)
-    ]),
-    confirmarPassword: new FormControl('', [Validators.required])
-  }, { validators: passwordsIguales });
+  form: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      usuario: ['', [Validators.required, Validators.minLength(3)]],
+      correo: ['', [Validators.required, Validators.email]],
+      direccion: [''],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(18),
+        Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).*$/)
+      ]],
+      confirmarPassword: ['', Validators.required]
+    }, { validators: passwordsIguales });
+  }
 
   get nombre() { return this.form.get('nombre'); }
   get usuario() { return this.form.get('usuario'); }
