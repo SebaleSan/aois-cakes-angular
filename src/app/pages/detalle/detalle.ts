@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PRODUCTOS, Producto } from '../../data/productos';
+import { CarroService } from '../../services/carro';
 
 @Component({
   selector: 'app-detalle',
@@ -13,8 +14,12 @@ import { PRODUCTOS, Producto } from '../../data/productos';
 export class Detalle implements OnInit {
   producto?: Producto;
   productosRelacionados: Producto[] = [];
+  mostrarToast: boolean = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    public carroService: CarroService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -33,6 +38,14 @@ export class Detalle implements OnInit {
     } else {
       this.productosRelacionados = [];
     }
+  }
+
+  agregarAlCarro(producto: Producto): void {
+    this.carroService.agregar(producto);
+    this.mostrarToast = true;
+    setTimeout(() => {
+      this.mostrarToast = false;
+    }, 3000);
   }
 
   formatearPrecio(precio: number): string {

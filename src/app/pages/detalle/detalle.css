@@ -1,0 +1,14 @@
+.toast-confirmacion {
+  position: right;
+  gap: 20px;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--color-resaltado);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: var(--sombra-fuerte);
+  animation: slideIn 0.3s ease;
+  z-index: 9999;
+}

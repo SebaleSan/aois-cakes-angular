@@ -1,20 +1,16 @@
 <main class="animar container py-5">
-<div>
-  <a routerLink="/catalogo" class="btn btn-outline-dark mb-4">
-    ← Volver
-  </a>
+  <div>
+    <a routerLink="/catalogo" class="btn btn-outline-dark mb-4"> ← Volver </a>
   </div>
 
   <section *ngIf="producto; else noEncontrado">
-
     <div class="row g-5 align-items-center">
-
       <div class="col-12 col-lg-6">
         <img
           [src]="producto.imagen"
           [alt]="producto.nombre"
           class="img-fluid rounded-4 w-100"
-          style="max-height: 450px; object-fit: cover;"
+          style="max-height: 450px; object-fit: cover"
         />
       </div>
 
@@ -30,19 +26,25 @@
         <span
           class="badge mb-4"
           [class.text-bg-success]="producto.disponible"
-          [class.text-bg-secondary]="!producto.disponible">
+          [class.text-bg-secondary]="!producto.disponible"
+        >
           {{ producto.disponible ? 'Disponible' : 'No disponible' }}
         </span>
 
         <div class="d-grid">
           <button
             class="btn main-btn btn-lg"
-            [disabled]="!producto.disponible">
+            [disabled]="!producto.disponible"
+            (click)="agregarAlCarro(producto)"
+          >
             Agregar al carro
           </button>
+          <div class="toast-confirmacion" *ngIf="mostrarToast">
+            <i class="fas fa-check-circle me-2"></i>
+            ¡Producto agregado al carro!
+          </div>
         </div>
       </div>
-
     </div>
 
     <section class="mt-5" *ngIf="productosRelacionados.length > 0">
@@ -56,7 +58,7 @@
                 [src]="relacionado.imagen"
                 [alt]="relacionado.nombre"
                 class="card-img-top"
-                style="height: 180px; object-fit: cover;"
+                style="height: 180px; object-fit: cover"
               />
               <div class="card-body catalog-content">
                 <span class="categoria">{{ relacionado.categoria }}</span>
@@ -69,16 +71,12 @@
         </article>
       </div>
     </section>
-
   </section>
 
   <ng-template #noEncontrado>
-    <div class="alert alert-warning text-center">
-      Producto no encontrado.
-    </div>
+    <div class="alert alert-warning text-center">Producto no encontrado.</div>
     <div class="text-center">
       <a routerLink="/catalogo" class="btn main-btn">Volver</a>
     </div>
   </ng-template>
-
 </main>
