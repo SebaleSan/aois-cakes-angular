@@ -1,1 +1,83 @@
-<p>carro works!</p>
+<main class="page-animation container py-5">
+
+  <h1 class="mb-4">Mi carro</h1>
+
+  <div *ngIf="items.length > 0; else carroVacio">
+
+    <div class="row g-4">
+
+      <div class="col-12 col-lg-8">
+        <div class="card rounded-4 shadow-sm">
+          <div class="card-body">
+
+            <div *ngFor="let item of items" class="carro-item d-flex align-items-center gap-3 py-3">
+
+              <img [src]="item.producto.imagen" [alt]="item.producto.nombre"
+                class="rounded-3" style="width: 80px; height: 80px; object-fit: cover;">
+
+              <div class="flex-grow-1">
+                <h5 class="mb-1">{{ item.producto.nombre }}</h5>
+                <p class="text-muted mb-0 small">{{ item.producto.categoria }}</p>
+              </div>
+
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-dark"
+                  (click)="carroService.reducir(item.producto.id)">−</button>
+                <span class="fw-bold">{{ item.cantidad }}</span>
+                <button class="btn btn-sm btn-outline-dark"
+                  (click)="carroService.agregar(item.producto)">+</button>
+              </div>
+
+              <p class="fw-bold mb-0">
+                {{ carroService.formatearPrecio(item.producto.precio * item.cantidad) }}
+              </p>
+
+              <button class="btn btn-sm btn-outline-danger"
+                (click)="carroService.eliminar(item.producto.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="card rounded-4 shadow-sm">
+          <div class="card-body">
+            <h4 class="mb-4">Resumen</h4>
+
+            <div class="d-flex justify-content-between mb-2">
+              <span>Productos</span>
+              <span>{{ carroService.totalItems }}</span>
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+              <span>Total</span>
+              <span>{{ carroService.formatearPrecio(carroService.totalPrecio) }}</span>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button class="btn main-btn">Finalizar pedido</button>
+              <button class="btn btn-outline-danger" (click)="carroService.vaciar()">Vaciar carro</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <ng-template #carroVacio>
+    <div class="text-center py-5">
+      <p class="lead text-muted">Tu carro está vacío.</p>
+      <a routerLink="/catalogo" class="btn main-btn">Ver catálogo</a>
+    </div>
+  </ng-template>
+
+</main>
