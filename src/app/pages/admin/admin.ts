@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+
 import { AuthService } from '../../services/auth';
 import { Usuario } from '../../data/usuarios';
 import { PRODUCTOS, Producto } from '../../data/productos';
@@ -8,7 +8,7 @@ import { PRODUCTOS, Producto } from '../../data/productos';
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './admin.html',
   styleUrl: './admin.css'
 })
