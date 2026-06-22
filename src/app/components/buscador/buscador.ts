@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PRODUCTOS, CATEGORIAS, Producto } from '../../data/productos';
+import { CATEGORIAS } from '../../data/productos';
 
 @Component({
   selector: 'app-buscador',
@@ -12,9 +12,11 @@ import { PRODUCTOS, CATEGORIAS, Producto } from '../../data/productos';
   styleUrl: './buscador.css'
 })
 export class Buscador {
-  panelAbierto: boolean = false;
-  busqueda: string = '';
-  categoriaSeleccionada: string = 'Todas';
+  panelAbierto = false;
+
+  busqueda = '';
+  categoriaSeleccionada = 'Todas';
+
   categorias: string[] = CATEGORIAS;
 
   constructor(private router: Router) {}
@@ -25,21 +27,22 @@ export class Buscador {
 
   cerrar(): void {
     this.panelAbierto = false;
-    this.busqueda = '';
-    this.categoriaSeleccionada = 'Todas';
   }
 
   buscar(): void {
-    this.router.navigate(['/catalogo'], {
-      queryParams: {
-        busqueda: this.busqueda,
-        categoria: this.categoriaSeleccionada
-      }
+    const params: any = {
+      categoria: this.categoriaSeleccionada
+    };
+
+    const texto = this.busqueda.trim();
+    if (texto.length > 0) {
+      params.busqueda = texto;
+    }
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/catalogo'], { queryParams: params });
     });
-    
+
+    this.panelAbierto = false;
   }
-
-
-
-  
 }

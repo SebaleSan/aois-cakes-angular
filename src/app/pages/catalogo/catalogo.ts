@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CATEGORIAS, PRODUCTOS, Producto } from '../../data/productos';
 
 @Component({
@@ -14,6 +14,7 @@ import { CATEGORIAS, PRODUCTOS, Producto } from '../../data/productos';
 export class Catalogo implements OnInit {
   productos: Producto[] = PRODUCTOS;
   categorias: string[] = CATEGORIAS;
+
   categoriaSeleccionada: string = 'Todas';
   mostrarSoloDisponibles: boolean = false;
   busqueda: string = '';
@@ -23,8 +24,8 @@ export class Catalogo implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.categoriaSeleccionada = params['categoria'] || 'Todas';
-      this.busqueda = params['busqueda'] || '';
       this.mostrarSoloDisponibles = params['disponible'] === 'true';
+      this.busqueda = params['busqueda'] || '';
     });
   }
 
