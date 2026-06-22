@@ -34,7 +34,7 @@ export class AuthService {
     return [...this.usuarios];
   }
 
-  registrar(nombre: string, usuario: string, correo: string, direccion: string, password: string, fechaNacimiento: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
+  registrar(nombre: string, usuario: string, correo: string, fechaNacimiento: string, direccion: string, password: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
     const nombreLimpio = nombre.trim();
     const usuarioLimpio = usuario.trim();
     const correoLimpio = correo.trim().toLowerCase();
