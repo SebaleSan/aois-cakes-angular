@@ -1,5 +1,28 @@
 # AoisCakesAngular
 
+Aplicación web desarrollada con Angular para la gestión y visualización de un catálogo de productos de una pastelería.
+
+## Características
+
+- Catálogo de productos.
+- Búsqueda de productos.
+- Filtrado por categorías.
+- Visualización del detalle de productos.
+- Inicio de sesión simulado.
+- Recuperación de contraseña simulada utilizando LocalStorage.
+- Diseño responsive con Bootstrap.
+
+## Tecnologías utilizadas
+
+- Angular 22
+- TypeScript
+- Bootstrap 5
+- HTML5
+- CSS3
+- LocalStorage
+- Vitest (pruebas unitarias)
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.1.
 
 ## Development server
