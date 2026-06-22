@@ -6,12 +6,8 @@
   <section *ngIf="producto; else noEncontrado">
     <div class="row g-5 align-items-center">
       <div class="col-12 col-lg-6">
-        <img
-          [src]="producto.imagen"
-          [alt]="producto.nombre"
-          class="img-fluid rounded-4 w-100"
-          style="max-height: 450px; object-fit: cover"
-        />
+        <img [src]="producto.imagen" [alt]="producto.nombre" class="img-fluid rounded-4 w-100"
+          style="max-height: 450px; object-fit: cover" />
       </div>
 
       <div class="col-12 col-lg-6">
@@ -23,22 +19,22 @@
 
         <p class="fw-bold fs-3">{{ formatearPrecio(producto.precio) }}</p>
 
-        <span
-          class="badge mb-4"
-          [class.text-bg-success]="producto.disponible"
-          [class.text-bg-secondary]="!producto.disponible"
-        >
+        <span class="badge mb-4" [class.text-bg-success]="producto.disponible"
+          [class.text-bg-secondary]="!producto.disponible">
           {{ producto.disponible ? 'Disponible' : 'No disponible' }}
         </span>
 
         <div class="d-grid">
-          <button
-            class="btn main-btn btn-lg"
-            [disabled]="!producto.disponible"
-            (click)="agregarAlCarro(producto)"
-          >
+          <button *ngIf="authService.logueado" class="btn main-btn btn-lg" [disabled]="!producto.disponible"
+            (click)="agregarAlCarro(producto)">
             Agregar al carro
           </button>
+
+          <div *ngIf="!authService.logueado">
+            <a routerLink="/login" class="btn main-btn btn-lg">
+              Inicia sesión para agregar al carro
+            </a>
+          </div>
           <div class="toast-confirmacion" *ngIf="mostrarToast">
             <i class="fas fa-check-circle me-2"></i>
             ¡Producto agregado al carro!
@@ -54,12 +50,8 @@
         <article class="col-12 col-md-4" *ngFor="let relacionado of productosRelacionados">
           <a [routerLink]="['/detalle', relacionado.id]" class="text-decoration-none">
             <div class="card catalog h-100 rounded-4 overflow-hidden">
-              <img
-                [src]="relacionado.imagen"
-                [alt]="relacionado.nombre"
-                class="card-img-top"
-                style="height: 180px; object-fit: cover"
-              />
+              <img [src]="relacionado.imagen" [alt]="relacionado.nombre" class="card-img-top"
+                style="height: 180px; object-fit: cover" />
               <div class="card-body catalog-content">
                 <span class="categoria">{{ relacionado.categoria }}</span>
                 <h3 class="card-title">{{ relacionado.nombre }}</h3>

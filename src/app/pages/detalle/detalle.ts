@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PRODUCTOS, Producto } from '../../data/productos';
 import { CarroService } from '../../services/carro';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-detalle',
@@ -18,7 +19,8 @@ export class Detalle implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public carroService: CarroService
+    public carroService: CarroService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class Detalle implements OnInit {
   }
 
   agregarAlCarro(producto: Producto): void {
+    if (!this.authService.logueado) return;
     this.carroService.agregar(producto);
     this.mostrarToast = true;
     setTimeout(() => {
