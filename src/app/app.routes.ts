@@ -9,6 +9,8 @@ import { Admin } from './pages/admin/admin';
 import { Detalle } from './pages/detalle/detalle';
 import { Panel } from './pages/panel/panel';
 import { adminGuard } from './guards/admin-guard';
+import { Recuperar } from './pages/recuperar/recuperar';
+
 
 
 export const routes: Routes = [
@@ -20,5 +22,6 @@ export const routes: Routes = [
   { path: 'carro', component: Carro, title: 'Aois Cakes - Carro' },
   { path: 'detalle/:id', component: Detalle, title: 'Aois Cakes - Detalle' },
   { path: 'admin', component: Admin, title: 'Aois Cakes - Admin', canActivate: [adminGuard] },
+  {path: 'recuperar', component: Recuperar, title: 'Aois Cakes - Recuperar password' },
   { path: '**', redirectTo: '' }
 ];

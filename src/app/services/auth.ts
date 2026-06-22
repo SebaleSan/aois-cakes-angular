@@ -158,4 +158,55 @@ export class AuthService {
 
   return { ok: true, mensaje: 'Perfil actualizado correctamente.' };
 }
+
+recuperarPassword(correo: string): { ok: boolean; mensaje: string } {
+  const correoLimpio = correo.trim().toLowerCase();
+
+  const usuario = this.usuarios.find(
+    u => u.correo.toLowerCase() === correoLimpio
+  );
+
+  if (!usuario) {
+    return { ok: false, mensaje: 'No existe una cuenta registrada con ese correo.' };
+  }
+
+  
+  const passwordTemporal = 'Temp' + Math.random().toString(36).slice(-4).toUpperCase() + '1!';
+
+  this.usuarios = this.usuarios.map(u =>
+    u.id === usuario.id ? { ...u, password: passwordTemporal } : u
+  );
+
+  this.guardarUsuarios();
+
+ 
+  return {
+    ok: true,
+    mensaje: `Contraseña temporal generada: ${passwordTemporal} — Inicia sesión y cámbiala desde tu perfil.`
+  };
+}
+
+cambiarPassword(passwordActual: string, passwordNueva: string): { ok: boolean; mensaje: string } {
+  const usuario = this.usuarioActual;
+  if (!usuario) {
+    return { ok: false, mensaje: 'No hay sesión activa.' };
+  }
+
+  if (usuario.password !== passwordActual.trim()) {
+    return { ok: false, mensaje: 'La contraseña actual es incorrecta.' };
+  }
+
+  const usuarioActualizado = { ...usuario, password: passwordNueva.trim() };
+  this.usuarios = this.usuarios.map(u =>
+    u.id === usuario.id ? usuarioActualizado : u
+  );
+
+  this.guardarUsuarios();
+  this.guardarSesion(usuarioActualizado);
+
+  return { ok: true, mensaje: 'Contraseña actualizada correctamente.' };
+}
+
+
+
 }
