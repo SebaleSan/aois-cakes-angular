@@ -1,8 +1,8 @@
 <main class="page-animation container py-5">
-
   <div class="row justify-content-center">
     <div class="col-12 col-lg-8">
 
+      <!-- PERFIL -->
       <div class="registro-card mb-4">
 
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -76,6 +76,72 @@
 
       </div>
 
+      <!-- CAMBIO DE CONTRASEÑA -->
+      <div class="registro-card mb-4">
+
+        <h2 class="registro-titulo mb-1">Contraseña</h2>
+        <p class="text-muted mb-4">Cambia tu contraseña de acceso.</p>
+
+        <div class="alert rounded-3" *ngIf="mensajePassword"
+          [class.alert-success]="tipoMensajePassword === 'success'"
+          [class.alert-danger]="tipoMensajePassword === 'danger'">
+          {{ mensajePassword }}
+        </div>
+
+        <form [formGroup]="formPassword" (ngSubmit)="guardarPassword()" *ngIf="editandoPassword">
+
+          <div class="mb-3">
+            <label class="form-label registro-label">Contraseña actual</label>
+            <input type="password" class="form-control registro-input"
+              formControlName="passwordActual"
+              placeholder="Ingresa tu contraseña actual"
+              [class.is-invalid]="passwordActual?.invalid && passwordActual?.touched">
+            <div class="invalid-feedback">
+              <span *ngIf="passwordActual?.errors?.['required']">La contraseña actual es obligatoria.</span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label registro-label">Nueva contraseña</label>
+            <input type="password" class="form-control registro-input"
+              formControlName="passwordNueva"
+              placeholder="Mínimo 6 caracteres"
+              [class.is-invalid]="passwordNueva?.invalid && passwordNueva?.touched">
+            <div class="invalid-feedback">
+              <span *ngIf="passwordNueva?.errors?.['required']">La nueva contraseña es obligatoria.</span>
+              <span *ngIf="passwordNueva?.errors?.['minlength']">Mínimo 6 caracteres.</span>
+              <span *ngIf="passwordNueva?.errors?.['pattern']">Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label registro-label">Confirmar nueva contraseña</label>
+            <input type="password" class="form-control registro-input"
+              formControlName="confirmarPassword"
+              placeholder="Repite la nueva contraseña"
+              [class.is-invalid]="(confirmarPassword?.invalid && confirmarPassword?.touched) || (formPassword.errors?.['noCoinciden'] && confirmarPassword?.touched)">
+            <div class="invalid-feedback">
+              <span *ngIf="confirmarPassword?.errors?.['required']">Confirma tu nueva contraseña.</span>
+              <span *ngIf="formPassword.errors?.['noCoinciden'] && !confirmarPassword?.errors?.['required']">Las contraseñas no coinciden.</span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar contraseña</button>
+            <button type="button" class="btn registro-btn-secondary" (click)="cancelarCambioPassword()">Cancelar</button>
+          </div>
+
+        </form>
+
+        <div class="d-grid" *ngIf="!editandoPassword">
+          <button type="button" class="btn registro-btn-secondary" (click)="activarCambioPassword()">
+            Cambiar contraseña
+          </button>
+        </div>
+
+      </div>
+
+      
       <div class="d-flex gap-2">
         <a routerLink="/carro" class="btn registro-btn-secondary flex-grow-1">Ver mi carro</a>
         <button type="button" class="btn btn-outline-danger" (click)="cerrarSesion()">Cerrar sesión</button>
@@ -83,5 +149,4 @@
 
     </div>
   </div>
-
 </main>
