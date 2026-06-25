@@ -60,6 +60,7 @@ export class Registro {
       password: ['', [
         Validators.required,
         Validators.minLength(6),
+        Validators.maxLength(18),
         Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).*$/)
       ]],
       confirmarPassword: ['', Validators.required]
