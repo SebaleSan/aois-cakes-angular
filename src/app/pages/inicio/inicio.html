@@ -95,6 +95,52 @@
     </div>
   </section>
 
+  <section id="destacados" class="destacados-section">
+    <div class="container">
+      <h2>Destacados</h2>
+      <p class="destacados-subtitle">Una selección especial de nuestra vitrina.</p>
+
+      <div class="destacados-carousel" role="region" aria-label="Productos destacados">
+        <button
+          type="button"
+          class="destacados-arrow"
+          aria-label="Producto destacado anterior"
+          [disabled]="destacados.length <= 1"
+          (click)="anterior()"
+        >
+          &#10094;
+        </button>
+
+        <div class="destacados-track">
+          @for (producto of destacadosVisibles; track producto.id) {
+            <a
+              class="destacado-card"
+              [routerLink]="['/detalle', producto.id]"
+              [attr.aria-label]="'Ver detalle de ' + producto.nombre"
+            >
+              <img
+                [src]="producto.imagen"
+                [alt]="producto.nombre"
+                class="destacado-img"
+              />
+              <span class="destacado-precio">{{ formatearPrecio(producto.precio) }}</span>
+            </a>
+          }
+        </div>
+
+        <button
+          type="button"
+          class="destacados-arrow"
+          aria-label="Siguiente producto destacado"
+          [disabled]="destacados.length <= 1"
+          (click)="siguiente()"
+        >
+          &#10095;
+        </button>
+      </div>
+    </div>
+  </section>
+
 
   <section id="contact">
     <div class="container">

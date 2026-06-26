@@ -226,7 +226,7 @@ section {
   }
 }
 
-.animar {
+.page-animation {
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
 }

@@ -24,3 +24,110 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+.destacados-section {
+  padding: 3rem 0;
+}
+
+.destacados-subtitle {
+  color: #5b5b5b;
+  margin-bottom: 1.25rem;
+}
+
+.destacados-carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.destacados-track {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.destacado-card {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  background: #f4f0eb;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.destacado-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.destacado-precio {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.28));
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.destacado-card:hover .destacado-img,
+.destacado-card:focus-visible .destacado-img {
+  transform: scale(1.03);
+}
+
+.destacado-card:hover .destacado-precio,
+.destacado-card:focus-visible .destacado-precio {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.destacados-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: #9c6644;
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.destacados-arrow:hover:not(:disabled),
+.destacados-arrow:focus-visible:not(:disabled) {
+  background: #7a4a2f;
+  transform: translateY(-2px);
+}
+
+.destacados-arrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+  .destacados-track {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .destacado-precio {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .destacados-arrow {
+    display: none;
+  }
+}
