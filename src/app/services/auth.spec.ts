@@ -77,4 +77,12 @@ describe('AuthService', () => {
     expect(resultado.mensaje).toBe('La contraseña actual es incorrecta.');
   });
 
+  it('deberia retornar false si el correo no existe al intentar recuperar contraseña', () => {
+    const resultado = service.recuperarPassword('noexiste@aoiscakes.cl');
+
+    expect(resultado.ok).toBe(false);
+    expect(resultado.mensaje).toBe('No existe una cuenta registrada con ese correo.');
+  });
+
+
 });
