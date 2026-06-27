@@ -1,0 +1,1610 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aois-cakes-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aois-cakes-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Panel</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/panel/panel.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-panel</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./panel.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./panel.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#editando" >editando</a>
+                            </li>
+                            <li>
+                                <a href="#editandoPassword" >editandoPassword</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <a href="#formPassword" >formPassword</a>
+                            </li>
+                            <li>
+                                <a href="#mensaje" >mensaje</a>
+                            </li>
+                            <li>
+                                <a href="#mensajePassword" >mensajePassword</a>
+                            </li>
+                            <li>
+                                <a href="#tipoMensaje" >tipoMensaje</a>
+                            </li>
+                            <li>
+                                <a href="#tipoMensajePassword" >tipoMensajePassword</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activarCambioPassword" >activarCambioPassword</a>
+                            </li>
+                            <li>
+                                <a href="#activarEdicion" >activarEdicion</a>
+                            </li>
+                            <li>
+                                <a href="#cancelarCambioPassword" >cancelarCambioPassword</a>
+                            </li>
+                            <li>
+                                <a href="#cancelarEdicion" >cancelarEdicion</a>
+                            </li>
+                            <li>
+                                <a href="#cargarDatos" >cargarDatos</a>
+                            </li>
+                            <li>
+                                <a href="#cerrarSesion" >cerrarSesion</a>
+                            </li>
+                            <li>
+                                <a href="#guardar" >guardar</a>
+                            </li>
+                            <li>
+                                <a href="#guardarPassword" >guardarPassword</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#nombre" >nombre</a>
+                                </li>
+                                <li>
+                                    <a href="#usuario" >usuario</a>
+                                </li>
+                                <li>
+                                    <a href="#correo" >correo</a>
+                                </li>
+                                <li>
+                                    <a href="#direccion" >direccion</a>
+                                </li>
+                                <li>
+                                    <a href="#passwordActual" >passwordActual</a>
+                                </li>
+                                <li>
+                                    <a href="#passwordNueva" >passwordNueva</a>
+                                </li>
+                                <li>
+                                    <a href="#confirmarPassword" >confirmarPassword</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/panel/panel.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activarCambioPassword"></a>
+                    <span class="name">
+                        <span ><b>activarCambioPassword</b></span>
+                        <a href="#activarCambioPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>activarCambioPassword()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activarEdicion"></a>
+                    <span class="name">
+                        <span ><b>activarEdicion</b></span>
+                        <a href="#activarEdicion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>activarEdicion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelarCambioPassword"></a>
+                    <span class="name">
+                        <span ><b>cancelarCambioPassword</b></span>
+                        <a href="#cancelarCambioPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelarCambioPassword()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelarEdicion"></a>
+                    <span class="name">
+                        <span ><b>cancelarEdicion</b></span>
+                        <a href="#cancelarEdicion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelarEdicion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarDatos"></a>
+                    <span class="name">
+                        <span ><b>cargarDatos</b></span>
+                        <a href="#cargarDatos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarDatos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cerrarSesion"></a>
+                    <span class="name">
+                        <span ><b>cerrarSesion</b></span>
+                        <a href="#cerrarSesion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cerrarSesion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <span ><b>guardar</b></span>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarPassword"></a>
+                    <span class="name">
+                        <span ><b>guardarPassword</b></span>
+                        <a href="#guardarPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardarPassword()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/pages/panel/panel.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/panel/panel.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editando"></a>
+                    <span class="name">
+                        <span ><b>editando</b></span>
+                        <a href="#editando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/panel/panel.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editandoPassword"></a>
+                    <span class="name">
+                        <span ><b>editandoPassword</b></span>
+                        <a href="#editandoPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/panel/panel.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/panel/panel.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formPassword"></a>
+                    <span class="name">
+                        <span ><b>formPassword</b></span>
+                        <a href="#formPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/panel/panel.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mensaje"></a>
+                    <span class="name">
+                        <span ><b>mensaje</b></span>
+                        <a href="#mensaje"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/panel/panel.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mensajePassword"></a>
+                    <span class="name">
+                        <span ><b>mensajePassword</b></span>
+                        <a href="#mensajePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/panel/panel.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoMensaje"></a>
+                    <span class="name">
+                        <span ><b>tipoMensaje</b></span>
+                        <a href="#tipoMensaje"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;success&quot; | &quot;danger&quot; | string</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/panel/panel.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoMensajePassword"></a>
+                    <span class="name">
+                        <span ><b>tipoMensajePassword</b></span>
+                        <a href="#tipoMensajePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;success&quot; | &quot;danger&quot; | string</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/panel/panel.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nombre"></a>
+                        <span class="name"><b>nombre</b><a href="#nombre"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>nombre()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/pages/panel/panel.ts:73</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="usuario"></a>
+                        <span class="name"><b>usuario</b><a href="#usuario"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>usuario()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/panel/panel.ts:74</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="correo"></a>
+                        <span class="name"><b>correo</b><a href="#correo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>correo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/panel/panel.ts:75</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="direccion"></a>
+                        <span class="name"><b>direccion</b><a href="#direccion"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>direccion()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/panel/panel.ts:76</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passwordActual"></a>
+                        <span class="name"><b>passwordActual</b><a href="#passwordActual"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>passwordActual()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/panel/panel.ts:77</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passwordNueva"></a>
+                        <span class="name"><b>passwordNueva</b><a href="#passwordNueva"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>passwordNueva()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/panel/panel.ts:78</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="confirmarPassword"></a>
+                        <span class="name"><b>confirmarPassword</b><a href="#confirmarPassword"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>confirmarPassword()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/panel/panel.ts:79</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from &#x27;@angular/forms&#x27;;
+import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;../../services/auth&#x27;;
+
+function passwordsIguales(form: AbstractControl): ValidationErrors | null {
+  const nueva &#x3D; form.get(&#x27;passwordNueva&#x27;)?.value;
+  const confirmar &#x3D; form.get(&#x27;confirmarPassword&#x27;)?.value;
+  return nueva &#x3D;&#x3D;&#x3D; confirmar ? null : { noCoinciden: true };
+}
+
+@Component({
+  selector: &#x27;app-panel&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  templateUrl: &#x27;./panel.html&#x27;,
+  styleUrl: &#x27;./panel.css&#x27;
+})
+export class Panel implements OnInit {
+
+  mensaje: string &#x3D; &#x27;&#x27;;
+  tipoMensaje: &#x27;success&#x27; | &#x27;danger&#x27; | &#x27;&#x27; &#x3D; &#x27;&#x27;;
+  mensajePassword: string &#x3D; &#x27;&#x27;;
+  tipoMensajePassword: &#x27;success&#x27; | &#x27;danger&#x27; | &#x27;&#x27; &#x3D; &#x27;&#x27;;
+  editando: boolean &#x3D; false;
+  editandoPassword: boolean &#x3D; false;
+  form: FormGroup;
+  formPassword: FormGroup;
+
+  constructor(
+    public authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.form &#x3D; this.fb.group({
+      nombre: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      usuario: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      correo: [&#x27;&#x27;, [Validators.required, Validators.email]],
+      direccion: [&#x27;&#x27;]
+    });
+
+    this.formPassword &#x3D; this.fb.group({
+      passwordActual: [&#x27;&#x27;, Validators.required],
+      passwordNueva: [&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern(/^(?&#x3D;.*[A-Z])(?&#x3D;.*\d)(?&#x3D;.*[^a-zA-Z\d]).*$/)
+      ]],
+      confirmarPassword: [&#x27;&#x27;, Validators.required]
+    }, { validators: passwordsIguales });
+  }
+
+  ngOnInit(): void {
+    if (!this.authService.logueado) {
+      this.router.navigate([&#x27;/login&#x27;]);
+      return;
+    }
+    this.cargarDatos();
+    this.form.disable();
+  }
+
+  cargarDatos(): void {
+    const usuario &#x3D; this.authService.usuarioActual;
+    this.form.patchValue({
+      nombre: usuario?.nombre,
+      usuario: usuario?.usuario,
+      correo: usuario?.correo,
+      direccion: usuario?.direccion
+    });
+  }
+
+  get nombre() { return this.form.get(&#x27;nombre&#x27;); }
+  get usuario() { return this.form.get(&#x27;usuario&#x27;); }
+  get correo() { return this.form.get(&#x27;correo&#x27;); }
+  get direccion() { return this.form.get(&#x27;direccion&#x27;); }
+  get passwordActual() { return this.formPassword.get(&#x27;passwordActual&#x27;); }
+  get passwordNueva() { return this.formPassword.get(&#x27;passwordNueva&#x27;); }
+  get confirmarPassword() { return this.formPassword.get(&#x27;confirmarPassword&#x27;); }
+
+  activarEdicion(): void {
+    this.editando &#x3D; true;
+    this.form.enable();
+  }
+
+  cancelarEdicion(): void {
+    this.editando &#x3D; false;
+    this.form.disable();
+    this.cargarDatos();
+    this.mensaje &#x3D; &#x27;&#x27;;
+  }
+
+  guardar(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const resultado &#x3D; this.authService.actualizarPerfil(
+      this.nombre?.value ?? &#x27;&#x27;,
+      this.usuario?.value ?? &#x27;&#x27;,
+      this.correo?.value ?? &#x27;&#x27;,
+      this.direccion?.value ?? &#x27;&#x27;
+    );
+
+    this.mensaje &#x3D; resultado.mensaje;
+    this.tipoMensaje &#x3D; resultado.ok ? &#x27;success&#x27; : &#x27;danger&#x27;;
+
+    if (resultado.ok) {
+      this.editando &#x3D; false;
+      this.form.disable();
+    }
+  }
+
+  activarCambioPassword(): void {
+    this.editandoPassword &#x3D; true;
+    this.mensajePassword &#x3D; &#x27;&#x27;;
+    this.formPassword.reset();
+  }
+
+  cancelarCambioPassword(): void {
+    this.editandoPassword &#x3D; false;
+    this.formPassword.reset();
+    this.mensajePassword &#x3D; &#x27;&#x27;;
+  }
+
+  guardarPassword(): void {
+    if (this.formPassword.invalid) {
+      this.formPassword.markAllAsTouched();
+      return;
+    }
+
+    const resultado &#x3D; this.authService.cambiarPassword(
+      this.passwordActual?.value ?? &#x27;&#x27;,
+      this.passwordNueva?.value ?? &#x27;&#x27;
+    );
+
+    this.mensajePassword &#x3D; resultado.mensaje;
+    this.tipoMensajePassword &#x3D; resultado.ok ? &#x27;success&#x27; : &#x27;danger&#x27;;
+
+    if (resultado.ok) {
+      this.editandoPassword &#x3D; false;
+      this.formPassword.reset();
+    }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
+    this.router.navigate([&#x27;/login&#x27;]);
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;page-animation container py-5&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
+
+      &lt;!-- PERFIL --&gt;
+      &lt;div class&#x3D;&quot;registro-card mb-4&quot;&gt;
+
+        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center mb-4&quot;&gt;
+          &lt;div&gt;
+            &lt;h1 class&#x3D;&quot;registro-titulo mb-1&quot;&gt;Mi perfil&lt;/h1&gt;
+            &lt;p class&#x3D;&quot;text-muted mb-0&quot;&gt;Bienvenido/a, {{ authService.usuarioActual?.nombre }}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;badge text-bg-info fs-6&quot;&gt;{{ authService.usuarioActual?.rol }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;alert rounded-3&quot; *ngIf&#x3D;&quot;mensaje&quot;
+          [class.alert-success]&#x3D;&quot;tipoMensaje &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
+          [class.alert-danger]&#x3D;&quot;tipoMensaje &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;&gt;
+          {{ mensaje }}
+        &lt;/div&gt;
+
+        &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;guardar()&quot;&gt;
+
+          &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nombre completo&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;nombre&quot;
+              [class.is-invalid]&#x3D;&quot;nombre?.invalid &amp;&amp; nombre?.touched&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;nombre?.errors?.[&#x27;required&#x27;]&quot;&gt;El nombre es obligatorio.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;nombre?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 3 caracteres.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nombre de usuario&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;usuario&quot;
+              [class.is-invalid]&#x3D;&quot;usuario?.invalid &amp;&amp; usuario?.touched&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;usuario?.errors?.[&#x27;required&#x27;]&quot;&gt;El usuario es obligatorio.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;usuario?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 3 caracteres.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Correo electrónico&lt;/label&gt;
+            &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;correo&quot;
+              [class.is-invalid]&#x3D;&quot;correo?.invalid &amp;&amp; correo?.touched&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;correo?.errors?.[&#x27;required&#x27;]&quot;&gt;El correo es obligatorio.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;correo?.errors?.[&#x27;email&#x27;]&quot;&gt;Ingresa un correo válido.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Dirección&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;direccion&quot;
+              placeholder&#x3D;&quot;Opcional&quot;&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;d-flex gap-2&quot; *ngIf&#x3D;&quot;editando&quot;&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;Guardar cambios&lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;cancelarEdicion()&quot;&gt;Cancelar&lt;/button&gt;
+          &lt;/div&gt;
+
+        &lt;/form&gt;
+
+        &lt;div class&#x3D;&quot;d-grid mt-3&quot; *ngIf&#x3D;&quot;!editando&quot;&gt;
+          &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-primary&quot; (click)&#x3D;&quot;activarEdicion()&quot;&gt;
+            Editar perfil
+          &lt;/button&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+      &lt;!-- CAMBIO DE CONTRASEÑA --&gt;
+      &lt;div class&#x3D;&quot;registro-card mb-4&quot;&gt;
+
+        &lt;h2 class&#x3D;&quot;registro-titulo mb-1&quot;&gt;Contraseña&lt;/h2&gt;
+        &lt;p class&#x3D;&quot;text-muted mb-4&quot;&gt;Cambia tu contraseña de acceso.&lt;/p&gt;
+
+        &lt;div class&#x3D;&quot;alert rounded-3&quot; *ngIf&#x3D;&quot;mensajePassword&quot;
+          [class.alert-success]&#x3D;&quot;tipoMensajePassword &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
+          [class.alert-danger]&#x3D;&quot;tipoMensajePassword &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;&gt;
+          {{ mensajePassword }}
+        &lt;/div&gt;
+
+        &lt;form [formGroup]&#x3D;&quot;formPassword&quot; (ngSubmit)&#x3D;&quot;guardarPassword()&quot; *ngIf&#x3D;&quot;editandoPassword&quot;&gt;
+
+          &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Contraseña actual&lt;/label&gt;
+            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;passwordActual&quot;
+              placeholder&#x3D;&quot;Ingresa tu contraseña actual&quot;
+              [class.is-invalid]&#x3D;&quot;passwordActual?.invalid &amp;&amp; passwordActual?.touched&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordActual?.errors?.[&#x27;required&#x27;]&quot;&gt;La contraseña actual es obligatoria.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nueva contraseña&lt;/label&gt;
+            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;passwordNueva&quot;
+              placeholder&#x3D;&quot;Mínimo 6 caracteres&quot;
+              [class.is-invalid]&#x3D;&quot;passwordNueva?.invalid &amp;&amp; passwordNueva?.touched&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;required&#x27;]&quot;&gt;La nueva contraseña es obligatoria.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 6 caracteres.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;pattern&#x27;]&quot;&gt;Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Confirmar nueva contraseña&lt;/label&gt;
+            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+              formControlName&#x3D;&quot;confirmarPassword&quot;
+              placeholder&#x3D;&quot;Repite la nueva contraseña&quot;
+              [class.is-invalid]&#x3D;&quot;(confirmarPassword?.invalid &amp;&amp; confirmarPassword?.touched) || (formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; confirmarPassword?.touched)&quot;&gt;
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;span *ngIf&#x3D;&quot;confirmarPassword?.errors?.[&#x27;required&#x27;]&quot;&gt;Confirma tu nueva contraseña.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; !confirmarPassword?.errors?.[&#x27;required&#x27;]&quot;&gt;Las contraseñas no coinciden.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;Guardar contraseña&lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;cancelarCambioPassword()&quot;&gt;Cancelar&lt;/button&gt;
+          &lt;/div&gt;
+
+        &lt;/form&gt;
+
+        &lt;div class&#x3D;&quot;d-grid&quot; *ngIf&#x3D;&quot;!editandoPassword&quot;&gt;
+          &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;activarCambioPassword()&quot;&gt;
+            Cambiar contraseña
+          &lt;/button&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+      
+      &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;
+        &lt;a routerLink&#x3D;&quot;/carro&quot; class&#x3D;&quot;btn registro-btn-secondary flex-grow-1&quot;&gt;Ver mi carro&lt;/a&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;cerrarSesion()&quot;&gt;Cerrar sesión&lt;/button&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main class="page-animation container py-5">  <div class="row justify-content-center">    <div class="col-12 col-lg-8">      <!-- PERFIL -->      <div class="registro-card mb-4">        <div class="d-flex justify-content-between align-items-center mb-4">          <div>            <h1 class="registro-titulo mb-1">Mi perfil</h1>            <p class="text-muted mb-0">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>          </div>          <span class="badge text-bg-info fs-6">{{ authService.usuarioActual?.rol }}</span>        </div>        <div class="alert rounded-3" *ngIf="mensaje"          [class.alert-success]="tipoMensaje === \'success\'"          [class.alert-danger]="tipoMensaje === \'danger\'">          {{ mensaje }}        </div>        <form [formGroup]="form" (ngSubmit)="guardar()">          <div class="mb-3">            <label class="form-label registro-label">Nombre completo</label>            <input type="text" class="form-control registro-input"              formControlName="nombre"              [class.is-invalid]="nombre?.invalid && nombre?.touched">            <div class="invalid-feedback">              <span *ngIf="nombre?.errors?.[\'required\']">El nombre es obligatorio.</span>              <span *ngIf="nombre?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nombre de usuario</label>            <input type="text" class="form-control registro-input"              formControlName="usuario"              [class.is-invalid]="usuario?.invalid && usuario?.touched">            <div class="invalid-feedback">              <span *ngIf="usuario?.errors?.[\'required\']">El usuario es obligatorio.</span>              <span *ngIf="usuario?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Correo electrónico</label>            <input type="email" class="form-control registro-input"              formControlName="correo"              [class.is-invalid]="correo?.invalid && correo?.touched">            <div class="invalid-feedback">              <span *ngIf="correo?.errors?.[\'required\']">El correo es obligatorio.</span>              <span *ngIf="correo?.errors?.[\'email\']">Ingresa un correo válido.</span>            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Dirección</label>            <input type="text" class="form-control registro-input"              formControlName="direccion"              placeholder="Opcional">          </div>          <div class="d-flex gap-2" *ngIf="editando">            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar cambios</button>            <button type="button" class="btn registro-btn-secondary" (click)="cancelarEdicion()">Cancelar</button>          </div>        </form>        <div class="d-grid mt-3" *ngIf="!editando">          <button type="button" class="btn registro-btn-primary" (click)="activarEdicion()">            Editar perfil          </button>        </div>      </div>      <!-- CAMBIO DE CONTRASEÑA -->      <div class="registro-card mb-4">        <h2 class="registro-titulo mb-1">Contraseña</h2>        <p class="text-muted mb-4">Cambia tu contraseña de acceso.</p>        <div class="alert rounded-3" *ngIf="mensajePassword"          [class.alert-success]="tipoMensajePassword === \'success\'"          [class.alert-danger]="tipoMensajePassword === \'danger\'">          {{ mensajePassword }}        </div>        <form [formGroup]="formPassword" (ngSubmit)="guardarPassword()" *ngIf="editandoPassword">          <div class="mb-3">            <label class="form-label registro-label">Contraseña actual</label>            <input type="password" class="form-control registro-input"              formControlName="passwordActual"              placeholder="Ingresa tu contraseña actual"              [class.is-invalid]="passwordActual?.invalid && passwordActual?.touched">            <div class="invalid-feedback">              <span *ngIf="passwordActual?.errors?.[\'required\']">La contraseña actual es obligatoria.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nueva contraseña</label>            <input type="password" class="form-control registro-input"              formControlName="passwordNueva"              placeholder="Mínimo 6 caracteres"              [class.is-invalid]="passwordNueva?.invalid && passwordNueva?.touched">            <div class="invalid-feedback">              <span *ngIf="passwordNueva?.errors?.[\'required\']">La nueva contraseña es obligatoria.</span>              <span *ngIf="passwordNueva?.errors?.[\'minlength\']">Mínimo 6 caracteres.</span>              <span *ngIf="passwordNueva?.errors?.[\'pattern\']">Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.</span>            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Confirmar nueva contraseña</label>            <input type="password" class="form-control registro-input"              formControlName="confirmarPassword"              placeholder="Repite la nueva contraseña"              [class.is-invalid]="(confirmarPassword?.invalid && confirmarPassword?.touched) || (formPassword.errors?.[\'noCoinciden\'] && confirmarPassword?.touched)">            <div class="invalid-feedback">              <span *ngIf="confirmarPassword?.errors?.[\'required\']">Confirma tu nueva contraseña.</span>              <span *ngIf="formPassword.errors?.[\'noCoinciden\'] && !confirmarPassword?.errors?.[\'required\']">Las contraseñas no coinciden.</span>            </div>          </div>          <div class="d-flex gap-2">            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar contraseña</button>            <button type="button" class="btn registro-btn-secondary" (click)="cancelarCambioPassword()">Cancelar</button>          </div>        </form>        <div class="d-grid" *ngIf="!editandoPassword">          <button type="button" class="btn registro-btn-secondary" (click)="activarCambioPassword()">            Cambiar contraseña          </button>        </div>      </div>            <div class="d-flex gap-2">        <a routerLink="/carro" class="btn registro-btn-secondary flex-grow-1">Ver mi carro</a>        <button type="button" class="btn btn-outline-danger" (click)="cerrarSesion()">Cerrar sesión</button>      </div>    </div>  </div></main></div>'
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Panel'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Panel.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -5,6 +5,28 @@ import { RolUsuario, Usuario, USUARIOS } from '../data/usuarios';
 const CLAVE_USUARIOS = 'aoisCakesUsuarios';
 const CLAVE_SESION = 'aoisCakesSesion';
 
+
+
+/**
+ * @description
+ * Servicio encargado de gestionar la autenticación y la sesión de usuarios
+ * de la aplicación.
+ *
+ * Este servicio centraliza las operaciones relacionadas con:
+ * - inicio de sesión,
+ * - registro de usuarios,
+ * - actualización de perfil,
+ * - recuperación de contraseña,
+ * - cambio de contraseña,
+ * - lectura del estado de autenticación,
+ * - cierre de sesión.
+ *
+ * @usageNotes
+ * El servicio carga y persiste usuarios en `localStorage` usando una lista
+ * inicial tomada desde `USUARIOS` cuando no existe información guardada.
+ * La sesión activa se mantiene en `sessionStorage` y se expone mediante un
+ * `BehaviorSubject` para permitir que la interfaz reaccione a cambios de estado.
+ */
 @Injectable({
   providedIn: 'root'
 })
