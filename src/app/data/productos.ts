@@ -76,7 +76,7 @@ export const PRODUCTOS: Producto[] = [
     imagen: 'assets/img/tortas/unnamed.jpg',
     descripcion: 'Torta para 15 personas de bizcocho de zanahoria con crema bon o bon, cubierta en crema de mantequilla sabor vainilla.',
     disponible: true,
-    destacado: false,
+    destacado: true,
   
 
   }
@@ -109,7 +109,7 @@ export const PRODUCTOS: Producto[] = [
     imagen: 'assets/img/galletas/1000250908.jpg',
     descripcion: 'Galletas decoradas con diseño temático personalizado.',
     disponible: true,
-    destacado: false,
+    destacado: true,
   },
   {
     id: 10,

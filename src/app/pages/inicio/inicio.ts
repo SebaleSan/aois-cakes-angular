@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { PRODUCTOS, Producto } from '../../data/productos';
@@ -6,7 +7,7 @@ import { PRODUCTOS, Producto } from '../../data/productos';
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgFor],
   templateUrl: './inicio.html',
   styleUrl: './inicio.css'
 })
@@ -41,7 +42,7 @@ export class Inicio implements OnInit, OnDestroy {
     const total = this.destacados.length;
     const visibles = this.cantidadVisible;
 
-    if (total <= visibles) {
+    if (total < visibles) {
       return this.destacados;
     }
 
@@ -82,6 +83,10 @@ export class Inicio implements OnInit, OnDestroy {
   seleccionarCategoria(categoria: string): void {
     this.router.navigate(['/catalogo'], {
       queryParams: { categoria } });
+  }
+
+  trackByProductId(index: number, producto: Producto): number {
+    return producto.id;
   }
 
   private obtenerDestacados(): Producto[] {
