@@ -29,6 +29,16 @@ export class Recuperar {
 
   get correo() { return this.form.get('correo'); }
 
+  /**
+   * @description
+   * Solicita la recuperación de contraseña para el correo ingresado.
+   *
+   * @usageNotes
+   * Si el formulario es inválido, marca todos los campos como tocados para
+   * mostrar los errores de validación.
+   *
+   * @return No retorna ningún valor.
+   */
   recuperar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

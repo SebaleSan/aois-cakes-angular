@@ -370,19 +370,26 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/pages/login/login.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/pages/login/login.ts:56</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Intenta iniciar sesión con los valores actuales del formulario.</p>
+<p>Si el inicio de sesión es exitoso, redirige según el rol del usuario autenticado.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>No retorna ningún valor.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -407,14 +414,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/pages/login/login.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/pages/login/login.ts:89</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Carga credenciales de demostración para acelerar pruebas manuales.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">usarDemo(&#39;cliente&#39;);</code></pre></div></div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -425,6 +434,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -439,6 +449,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Rol de la cuenta de ejemplo que se desea usar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -448,7 +462,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>No retorna ningún valor.</p>
+
                             </div>
                 </td>
             </tr>
@@ -570,9 +585,18 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/login/login.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/login/login.ts:38</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Devuelve el control del correo del formulario de acceso.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -592,9 +616,18 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/login/login.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/login/login.ts:46</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Devuelve el control de la contraseña del formulario de acceso.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -634,9 +667,30 @@ export class Login {
     });
   }
 
+  /**
+   * @description
+   * Devuelve el control del correo del formulario de acceso.
+   *
+   * @returns Control reactivo asociado al campo correo.
+   */
   get correo() { return this.form.get(&#x27;correo&#x27;); }
+
+  /**
+   * @description
+   * Devuelve el control de la contraseña del formulario de acceso.
+   *
+   * @returns Control reactivo asociado al campo contraseña.
+   */
   get password() { return this.form.get(&#x27;password&#x27;); }
 
+  /**
+   * @description
+   * Intenta iniciar sesión con los valores actuales del formulario.
+   *
+   * @returns No retorna ningún valor.
+   * @usageNotes
+   * Si el inicio de sesión es exitoso, redirige según el rol del usuario autenticado.
+   */
   ingresar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -661,6 +715,15 @@ export class Login {
     }
   }
 
+  /**
+   * @description
+   * Carga credenciales de demostración para acelerar pruebas manuales.
+   *
+   * @param rol Rol de la cuenta de ejemplo que se desea usar.
+   * @returns No retorna ningún valor.
+   * @example
+   * usarDemo(&#x27;cliente&#x27;);
+   */
   usarDemo(rol: &#x27;cliente&#x27; | &#x27;admin&#x27;): void {
     if (rol &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;) {
       this.form.setValue({ correo: &#x27;admin@aoiscakes.cl&#x27;, password: &#x27;Admin123&#x27; });

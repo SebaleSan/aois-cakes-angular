@@ -137,6 +137,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio responsable de administrar el carrito de compras del usuario autenticado.</p>
+<p>Sincroniza el estado con localStorage usando una clave distinta por usuario para evitar mezclar carritos.</p>
+
+            </p>
 
 
 
@@ -241,12 +249,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/carro.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/carro.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el carrito reactivo y recarga el estado cuando cambia la sesión.</p>
+<p>Al cerrar sesión se vacía la vista del carrito; al iniciar sesión se recuperan los items guardados.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -255,6 +266,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -269,6 +281,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Servicio de autenticación usado para conocer la sesión activa.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -304,14 +320,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/services/carro.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/services/carro.ts:69</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Agrega una unidad de producto al carrito o incrementa la cantidad existente.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">carroService.agregar(producto);</code></pre></div></div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -322,6 +340,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -336,6 +355,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Producto que se quiere sumar al carrito.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -345,7 +368,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>No retorna ningún valor.</p>
+
                             </div>
                 </td>
             </tr>
@@ -373,8 +397,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/services/carro.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/services/carro.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -442,8 +466,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/services/carro.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/services/carro.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -479,14 +503,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/services/carro.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/services/carro.ts:113</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Elimina por completo un producto del carrito.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -497,6 +523,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -511,6 +538,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del producto que se eliminará.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -520,7 +551,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>No retorna ningún valor.</p>
+
                             </div>
                 </td>
             </tr>
@@ -546,14 +578,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/app/services/carro.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/services/carro.ts:161</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Formatea un valor numérico como moneda chilena.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">carroService.formatearPrecio(12000);</code></pre></div></div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -564,6 +598,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -578,6 +613,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Valor numérico del precio a formatear.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -587,7 +626,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Precio formateado con separador local.</p>
+
                             </div>
                 </td>
             </tr>
@@ -615,8 +655,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/services/carro.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/services/carro.ts:135</a></div>
                         </td>
                     </tr>
 
@@ -652,14 +692,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/services/carro.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/services/carro.ts:90</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Disminuye en una unidad la cantidad de un producto o lo elimina si queda en cero.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -670,6 +712,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -684,6 +727,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del producto a reducir.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -693,7 +740,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>No retorna ningún valor.</p>
+
                             </div>
                 </td>
             </tr>
@@ -719,19 +767,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/services/carro.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/services/carro.ts:125</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Vacía todos los productos del carrito activo.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>No retorna ningún valor.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -766,7 +820,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/carro.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/carro.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -798,7 +852,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/carro.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/services/carro.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -827,7 +881,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/services/carro.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/services/carro.ts:48</a></div>
                                 </td>
                             </tr>
 
@@ -849,7 +903,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/services/carro.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/carro.ts:52</a></div>
                                 </td>
                             </tr>
 
@@ -871,7 +925,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/services/carro.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/carro.ts:56</a></div>
                                 </td>
                             </tr>
 
@@ -887,11 +941,22 @@ import { BehaviorSubject } from &#x27;rxjs&#x27;;
 import { Producto } from &#x27;../data/productos&#x27;;
 import { AuthService } from &#x27;./auth&#x27;;
 
+/**
+ * @description
+ * Representa una línea del carrito con el producto seleccionado y su cantidad.
+ */
 export interface ItemCarro {
   producto: Producto;
   cantidad: number;
 }
 
+/**
+ * @description
+ * Servicio responsable de administrar el carrito de compras del usuario autenticado.
+ *
+ * @usageNotes
+ * Sincroniza el estado con localStorage usando una clave distinta por usuario para evitar mezclar carritos.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -900,6 +965,14 @@ export class CarroService {
   private itemsSubject &#x3D; new BehaviorSubject&lt;ItemCarro[]&gt;([]);
   items$ &#x3D; this.itemsSubject.asObservable();
 
+  /**
+   * @description
+   * Inicializa el carrito reactivo y recarga el estado cuando cambia la sesión.
+   *
+   * @param authService Servicio de autenticación usado para conocer la sesión activa.
+   * @usageNotes
+   * Al cerrar sesión se vacía la vista del carrito; al iniciar sesión se recuperan los items guardados.
+   */
   constructor(private authService: AuthService) {
     this.authService.usuarioActual$.subscribe(usuario &#x3D;&gt; {
       if (usuario) {
@@ -922,6 +995,15 @@ export class CarroService {
     return this.items.reduce((acc, item) &#x3D;&gt; acc + item.producto.precio * item.cantidad, 0);
   }
 
+  /**
+   * @description
+   * Agrega una unidad de producto al carrito o incrementa la cantidad existente.
+   *
+   * @param producto Producto que se quiere sumar al carrito.
+   * @returns No retorna ningún valor.
+   * @example
+   * carroService.agregar(producto);
+   */
   agregar(producto: Producto): void {
     const items &#x3D; [...this.items];
     const index &#x3D; items.findIndex(i &#x3D;&gt; i.producto.id &#x3D;&#x3D;&#x3D; producto.id);
@@ -936,6 +1018,13 @@ export class CarroService {
     this.guardarCarro();
   }
 
+  /**
+   * @description
+   * Disminuye en una unidad la cantidad de un producto o lo elimina si queda en cero.
+   *
+   * @param productoId Identificador del producto a reducir.
+   * @returns No retorna ningún valor.
+   */
   reducir(productoId: number): void {
     const items &#x3D; [...this.items];
     const index &#x3D; items.findIndex(i &#x3D;&gt; i.producto.id &#x3D;&#x3D;&#x3D; productoId);
@@ -952,12 +1041,25 @@ export class CarroService {
     this.guardarCarro();
   }
 
+  /**
+   * @description
+   * Elimina por completo un producto del carrito.
+   *
+   * @param productoId Identificador del producto que se eliminará.
+   * @returns No retorna ningún valor.
+   */
   eliminar(productoId: number): void {
     const items &#x3D; this.items.filter(i &#x3D;&gt; i.producto.id !&#x3D;&#x3D; productoId);
     this.itemsSubject.next(items);
     this.guardarCarro();
   }
 
+  /**
+   * @description
+   * Vacía todos los productos del carrito activo.
+   *
+   * @returns No retorna ningún valor.
+   */
   vaciar(): void {
     this.itemsSubject.next([]);
     this.guardarCarro();
@@ -985,6 +1087,15 @@ export class CarroService {
     }
   }
 
+  /**
+   * @description
+   * Formatea un valor numérico como moneda chilena.
+   *
+   * @param precio Valor numérico del precio a formatear.
+   * @returns Precio formateado con separador local.
+   * @example
+   * carroService.formatearPrecio(12000);
+   */
   formatearPrecio(precio: number): string {
     return &#x27;$&#x27; + precio.toLocaleString(&#x27;es-CL&#x27;);
   }

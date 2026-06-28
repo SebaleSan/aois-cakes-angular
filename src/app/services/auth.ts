@@ -52,10 +52,39 @@ export class AuthService {
     return this.usuarioActual?.rol === 'admin';
   }
 
+  /**
+   * @description
+   * Devuelve una copia superficial de los usuarios cargados en memoria.
+   *
+   * @returns Copia del listado de usuarios registrados.
+   * @example
+   * const usuarios = authService.obtenerUsuarios();
+   *
+   * @usageNotes
+   * La copia evita que una vista o componente muten el arreglo interno del servicio.
+   */
   obtenerUsuarios(): Usuario[] {
     return [...this.usuarios];
   }
 
+  /**
+   * @description
+   * Registra una nueva cuenta de usuario y la persiste en almacenamiento local.
+   *
+   * @param nombre Nombre visible del usuario.
+   * @param usuario Alias o nombre de acceso único.
+   * @param correo Correo electrónico de la cuenta.
+   * @param fechaNacimiento Fecha de nacimiento en formato ISO.
+   * @param direccion Dirección postal o de despacho.
+   * @param password Contraseña inicial de la cuenta.
+   * @param rol Rol asignado al usuario dentro de la aplicación.
+   * @returns Objeto con el estado de la operación y un mensaje para la UI.
+   * @example
+   * authService.registrar('Ana', 'ana01', 'ana@correo.cl', '1998-01-01', '', 'Clave123!', 'cliente');
+   *
+   * @usageNotes
+   * Valida campos obligatorios, correo único y nombre de usuario único antes de guardar.
+   */
   registrar(nombre: string, usuario: string, correo: string, fechaNacimiento: string, direccion: string, password: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
     const nombreLimpio = nombre.trim();
     const usuarioLimpio = usuario.trim();
@@ -93,6 +122,19 @@ export class AuthService {
     return { ok: true, mensaje: 'Cuenta creada correctamente. Ahora puedes iniciar sesión.' };
   }
 
+  /**
+   * @description
+   * Autentica a un usuario con su correo y contraseña.
+   *
+   * @param correo Correo utilizado como credencial de acceso.
+   * @param password Contraseña ingresada por el usuario.
+   * @returns Resultado de la autenticación y mensaje para mostrar.
+   * @example
+   * authService.login('cliente@aoiscakes.cl', 'Cliente123');
+   *
+   * @usageNotes
+   * Si la autenticación es correcta, la sesión queda persistida en sessionStorage.
+   */
   login(correo: string, password: string): { ok: boolean; mensaje: string } {
     const correoLimpio = correo.trim().toLowerCase();
     const passwordLimpia = password.trim();
@@ -148,86 +190,124 @@ export class AuthService {
     this.usuarioActualSubject.next(usuario);
   }
 
+  /**
+   * @description
+   * Actualiza los datos básicos del perfil del usuario autenticado.
+   *
+   * @param nombre Nuevo nombre visible.
+   * @param usuario Nuevo nombre de usuario.
+   * @param correo Nuevo correo electrónico.
+   * @param direccion Nueva dirección registrada.
+   * @returns Resultado de la actualización y mensaje de feedback.
+   * @example
+   * authService.actualizarPerfil('Ana Pérez', 'ana', 'ana@correo.cl', 'Chile 123');
+   *
+   * @usageNotes
+   * Requiere una sesión activa y evita duplicar correos en otras cuentas.
+   */
   actualizarPerfil(nombre: string, usuario: string, correo: string, direccion: string): { ok: boolean; mensaje: string } {
-  const usuarioActual = this.usuarioActual;
-  if (!usuarioActual) {
-    return { ok: false, mensaje: 'No hay sesión activa.' };
+    const usuarioActual = this.usuarioActual;
+    if (!usuarioActual) {
+      return { ok: false, mensaje: 'No hay sesión activa.' };
+    }
+
+    const correoLimpio = correo.trim().toLowerCase();
+    const existeCorreo = this.usuarios.some(
+      u => u.correo.toLowerCase() === correoLimpio && u.id !== usuarioActual.id
+    );
+
+    if (existeCorreo) {
+      return { ok: false, mensaje: 'Ese correo ya está en uso por otra cuenta.' };
+    }
+
+    const usuarioActualizado = {
+      ...usuarioActual,
+      nombre: nombre.trim(),
+      usuario: usuario.trim(),
+      correo: correoLimpio,
+      direccion: direccion.trim()
+    };
+
+    this.usuarios = this.usuarios.map(u =>
+      u.id === usuarioActual.id ? usuarioActualizado : u
+    );
+
+    this.guardarUsuarios();
+    this.guardarSesion(usuarioActualizado);
+
+    return { ok: true, mensaje: 'Perfil actualizado correctamente.' };
   }
 
-  const correoLimpio = correo.trim().toLowerCase();
-  const existeCorreo = this.usuarios.some(
-    u => u.correo.toLowerCase() === correoLimpio && u.id !== usuarioActual.id
-  );
+  /**
+   * @description
+   * Genera una contraseña temporal para una cuenta registrada.
+   *
+   * @param correo Correo asociado a la cuenta que solicita recuperación.
+   * @returns Resultado del proceso y la contraseña temporal generada.
+   * @example
+   * authService.recuperarPassword('cliente@aoiscakes.cl');
+   *
+   * @usageNotes
+   * La contraseña temporal se persiste en el almacenamiento local y debe ser cambiada luego del ingreso.
+   */
+  recuperarPassword(correo: string): { ok: boolean; mensaje: string } {
+    const correoLimpio = correo.trim().toLowerCase();
 
-  if (existeCorreo) {
-    return { ok: false, mensaje: 'Ese correo ya está en uso por otra cuenta.' };
+    const usuario = this.usuarios.find(
+      u => u.correo.toLowerCase() === correoLimpio
+    );
+
+    if (!usuario) {
+      return { ok: false, mensaje: 'No existe una cuenta registrada con ese correo.' };
+    }
+
+    const passwordTemporal = 'Temp' + Math.random().toString(36).slice(-4).toUpperCase() + '1!';
+
+    this.usuarios = this.usuarios.map(u =>
+      u.id === usuario.id ? { ...u, password: passwordTemporal } : u
+    );
+
+    this.guardarUsuarios();
+
+    return {
+      ok: true,
+      mensaje: `Contraseña temporal generada: ${passwordTemporal} — Inicia sesión y cámbiala desde tu perfil.`
+    };
   }
 
-  const usuarioActualizado = {
-    ...usuarioActual,
-    nombre: nombre.trim(),
-    usuario: usuario.trim(),
-    correo: correoLimpio,
-    direccion: direccion.trim()
-  };
+  /**
+   * @description
+   * Cambia la contraseña del usuario autenticado.
+   *
+   * @param passwordActual Contraseña actual de la sesión activa.
+   * @param passwordNueva Nueva contraseña que reemplazará a la anterior.
+   * @returns Resultado del cambio y mensaje de feedback.
+   * @example
+   * authService.cambiarPassword('ClaveActual1!', 'ClaveNueva1!');
+   *
+   * @usageNotes
+   * Verifica que la contraseña actual coincida antes de persistir el cambio.
+   */
+  cambiarPassword(passwordActual: string, passwordNueva: string): { ok: boolean; mensaje: string } {
+    const usuario = this.usuarioActual;
+    if (!usuario) {
+      return { ok: false, mensaje: 'No hay sesión activa.' };
+    }
 
-  this.usuarios = this.usuarios.map(u =>
-    u.id === usuarioActual.id ? usuarioActualizado : u
-  );
+    if (usuario.password !== passwordActual.trim()) {
+      return { ok: false, mensaje: 'La contraseña actual es incorrecta.' };
+    }
 
-  this.guardarUsuarios();
-  this.guardarSesion(usuarioActualizado);
+    const usuarioActualizado = { ...usuario, password: passwordNueva.trim() };
+    this.usuarios = this.usuarios.map(u =>
+      u.id === usuario.id ? usuarioActualizado : u
+    );
 
-  return { ok: true, mensaje: 'Perfil actualizado correctamente.' };
-}
+    this.guardarUsuarios();
+    this.guardarSesion(usuarioActualizado);
 
-recuperarPassword(correo: string): { ok: boolean; mensaje: string } {
-  const correoLimpio = correo.trim().toLowerCase();
-
-  const usuario = this.usuarios.find(
-    u => u.correo.toLowerCase() === correoLimpio
-  );
-
-  if (!usuario) {
-    return { ok: false, mensaje: 'No existe una cuenta registrada con ese correo.' };
+    return { ok: true, mensaje: 'Contraseña actualizada correctamente.' };
   }
-
-  
-  const passwordTemporal = 'Temp' + Math.random().toString(36).slice(-4).toUpperCase() + '1!';
-
-  this.usuarios = this.usuarios.map(u =>
-    u.id === usuario.id ? { ...u, password: passwordTemporal } : u
-  );
-
-  this.guardarUsuarios();
-
- 
-  return {
-    ok: true,
-    mensaje: `Contraseña temporal generada: ${passwordTemporal} — Inicia sesión y cámbiala desde tu perfil.`
-  };
-}
-
-cambiarPassword(passwordActual: string, passwordNueva: string): { ok: boolean; mensaje: string } {
-  const usuario = this.usuarioActual;
-  if (!usuario) {
-    return { ok: false, mensaje: 'No hay sesión activa.' };
-  }
-
-  if (usuario.password !== passwordActual.trim()) {
-    return { ok: false, mensaje: 'La contraseña actual es incorrecta.' };
-  }
-
-  const usuarioActualizado = { ...usuario, password: passwordNueva.trim() };
-  this.usuarios = this.usuarios.map(u =>
-    u.id === usuario.id ? usuarioActualizado : u
-  );
-
-  this.guardarUsuarios();
-  this.guardarSesion(usuarioActualizado);
-
-  return { ok: true, mensaje: 'Contraseña actualizada correctamente.' };
-}
 
 
 

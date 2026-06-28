@@ -1,5 +1,13 @@
+/**
+ * @description
+ * Roles permitidos dentro del sistema de autenticación.
+ */
 export type RolUsuario = 'cliente' | 'admin';
 
+/**
+ * @description
+ * Representa la estructura de un usuario en el sistema.
+ */
 export interface Usuario {
   id: number;
   nombre: string;
@@ -11,6 +19,13 @@ export interface Usuario {
   rol: RolUsuario;
 }
 
+/**
+ * @description
+ * Lista inicial de usuarios disponible cuando no existe sesión ni datos guardados.
+ *
+ * @usageNotes
+ * Se utiliza como respaldo inicial para poblar localStorage en el primer arranque.
+ */
 export const USUARIOS: Usuario[] = [
   {
     id: 1,

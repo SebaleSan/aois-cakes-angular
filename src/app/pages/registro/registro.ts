@@ -5,11 +5,19 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { RolUsuario } from '../../data/usuarios';
 
+/**
+ * @description
+ * Comprueba que las dos contraseñas del formulario de registro coincidan.
+ *
+ * @param form Grupo reactivo con los campos password y confirmarPassword.
+ * @returns Error `noCoinciden` cuando los valores difieren; en caso contrario `null`.
+ */
 function passwordsIguales(form: AbstractControl): ValidationErrors | null {
   const password = form.get('password')?.value;
   const confirmar = form.get('confirmarPassword')?.value;
   return password === confirmar ? null : { noCoinciden: true };
 }
+
 
 function mayorDe13(control: AbstractControl): ValidationErrors | null {
   if (!control.value) return null;
@@ -37,7 +45,6 @@ export class Registro {
 
   mensaje: string = '';
   tipoMensaje: 'success' | 'danger' | '' = '';
-  fechaMaxima: string;
 
   form: FormGroup;
 
@@ -46,10 +53,7 @@ export class Registro {
     private authService: AuthService,
     private router: Router
   ) {
-    // Calcula la fecha maxima (hoy - 13 años)
-    const hoy = new Date();
-    hoy.setFullYear(hoy.getFullYear() - 13);
-    this.fechaMaxima = hoy.toISOString().split('T')[0];
+  
 
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -75,6 +79,14 @@ export class Registro {
   get password() { return this.form.get('password'); }
   get confirmarPassword() { return this.form.get('confirmarPassword'); }
 
+  /**
+   * @description
+   * Ejecuta el registro de un nuevo cliente con los datos del formulario y envia a authService para guardar en localStorage.
+   *
+   * @returns No retorna ningún valor.
+   * @usageNotes
+   * Si el registro es exitoso, limpia el formulario y vuelve al login tras un breve retraso visual.
+   */
   registrar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

@@ -355,19 +355,27 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/pages/recuperar/recuperar.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/pages/recuperar/recuperar.ts:42</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Solicita la recuperación de contraseña para el correo ingresado.</p>
+<p>Si el formulario es inválido, marca todos los campos como tocados para
+mostrar los errores de validación.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>No retorna ningún valor.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -561,6 +569,16 @@ export class Recuperar {
 
   get correo() { return this.form.get(&#x27;correo&#x27;); }
 
+  /**
+   * @description
+   * Solicita la recuperación de contraseña para el correo ingresado.
+   *
+   * @usageNotes
+   * Si el formulario es inválido, marca todos los campos como tocados para
+   * mostrar los errores de validación.
+   *
+   * @return No retorna ningún valor.
+   */
   recuperar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

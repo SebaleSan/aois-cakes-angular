@@ -144,6 +144,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Modelo de un producto mostrado en el catálogo y usado por el carrito.</p>
+
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -496,6 +503,11 @@
   disponible: boolean;
   destacado: boolean;
 }
+
+/**
+ * @description
+ * Categorías disponibles para filtrar el catálogo.
+ */
 export const CATEGORIAS: string[] &#x3D; [
   &#x27;Todas&#x27;,
   &#x27;Tortas&#x27;,
@@ -504,6 +516,13 @@ export const CATEGORIAS: string[] &#x3D; [
   &#x27;Tradicional&#x27;
 ];
 
+/**
+ * @description
+ * Catálogo base de productos visibles en la tienda.
+ *
+ * @usageNotes
+ * Cada entrada define imagen, precio, disponibilidad y si debe destacarse en la portada.
+ */
 export const PRODUCTOS: Producto[] &#x3D; [
   {
     id: 1,

@@ -32,6 +32,22 @@ export class Login {
   get correo() { return this.form.get('correo'); }
   get password() { return this.form.get('password'); }
 
+  /**
+   * @description
+    * Valida el formulario de acceso, intenta autenticar al usuario y redirige
+    * según el rol obtenido en la sesión.
+    *
+    * @param correo Valor del control de correo usado para iniciar sesión.
+    * @param password Valor del control de contraseña usado para iniciar sesión.
+   *
+   * @returns No retorna ningún valor.
+   * @usageNotes
+    * Si el formulario es inválido, marca los campos como tocados para mostrar
+    * los errores. Cuando el login es correcto, guarda el mensaje de respuesta y
+    * envía a `/admin` si el usuario es administrador o a `/inicio` en caso contrario.
+    * @example
+    * ingresar();
+   */
   ingresar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -56,6 +72,15 @@ export class Login {
     }
   }
 
+  /**
+   * @description
+   * Carga credenciales de demostración para acelerar pruebas manuales.
+   *
+   * @param rol Rol de la cuenta de ejemplo que se desea usar.
+   * @returns No retorna ningún valor.
+   * @example
+   * usarDemo('cliente');
+   */
   usarDemo(rol: 'cliente' | 'admin'): void {
     if (rol === 'admin') {
       this.form.setValue({ correo: 'admin@aoiscakes.cl', password: 'Admin123' });

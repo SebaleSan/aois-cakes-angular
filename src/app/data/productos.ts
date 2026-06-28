@@ -1,3 +1,7 @@
+/**
+ * @description
+ * Modelo de un producto mostrado en el catálogo y usado por el carrito.
+ */
 export interface Producto {
   id: number;
   nombre: string;
@@ -8,6 +12,11 @@ export interface Producto {
   disponible: boolean;
   destacado: boolean;
 }
+
+/**
+ * @description
+ * Categorías disponibles para filtrar el catálogo.
+ */
 export const CATEGORIAS: string[] = [
   'Todas',
   'Tortas',
@@ -16,6 +25,13 @@ export const CATEGORIAS: string[] = [
   'Tradicional'
 ];
 
+/**
+ * @description
+ * Catálogo base de productos visibles en la tienda.
+ *
+ * @usageNotes
+ * Cada entrada define imagen, precio, disponibilidad y si debe destacarse en la portada.
+ */
 export const PRODUCTOS: Producto[] = [
   {
     id: 1,

@@ -137,6 +137,28 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio encargado de gestionar la autenticación y la sesión de usuarios
+de la aplicación.</p>
+<p>Este servicio centraliza las operaciones relacionadas con:</p>
+<ul>
+<li>inicio de sesión,</li>
+<li>registro de usuarios,</li>
+<li>actualización de perfil,</li>
+<li>recuperación de contraseña,</li>
+<li>cambio de contraseña,</li>
+<li>lectura del estado de autenticación,</li>
+<li>cierre de sesión.</li>
+</ul>
+<p>El servicio carga y persiste usuarios en <code>localStorage</code> usando una lista
+inicial tomada desde <code>USUARIOS</code> cuando no existe información guardada.
+La sesión activa se mantiene en <code>sessionStorage</code> y se expone mediante un
+<code>BehaviorSubject</code> para permitir que la interfaz reaccione a cambios de estado.</p>
+
+            </p>
 
 
 
@@ -270,14 +292,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/services/auth.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="208"
+                                    class="link-to-prism">src/app/services/auth.ts:208</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza los datos básicos del perfil del usuario autenticado.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">authService.actualizarPerfil(&#39;Ana Pérez&#39;, &#39;ana&#39;, &#39;ana&#64;correo.cl&#39;, &#39;Chile 123&#39;);</code></pre></div><p>Requiere una sesión activa y evita duplicar correos en otras cuentas.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -288,6 +313,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -302,6 +328,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nuevo nombre visible.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>usuario</td>
@@ -314,6 +344,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nuevo nombre de usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>correo</td>
@@ -326,6 +360,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nuevo correo electrónico.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>direccion</td>
@@ -338,6 +376,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nueva dirección registrada.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -347,7 +389,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado de la actualización y mensaje de feedback.</p>
+
                             </div>
                 </td>
             </tr>
@@ -373,14 +416,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="189"
-                                    class="link-to-prism">src/app/services/auth.ts:189</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/app/services/auth.ts:291</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Cambia la contraseña del usuario autenticado.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">authService.cambiarPassword(&#39;ClaveActual1!&#39;, &#39;ClaveNueva1!&#39;);</code></pre></div><p>Verifica que la contraseña actual coincida antes de persistir el cambio.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -391,6 +437,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -405,6 +452,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contraseña actual de la sesión activa.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>passwordNueva</td>
@@ -417,6 +468,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nueva contraseña que reemplazará a la anterior.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -426,7 +481,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado del cambio y mensaje de feedback.</p>
+
                             </div>
                 </td>
             </tr>
@@ -454,8 +510,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/services/auth.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/services/auth.ts:177</a></div>
                         </td>
                     </tr>
 
@@ -493,8 +549,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/services/auth.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/services/auth.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -532,8 +588,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/services/auth.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/services/auth.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -601,8 +657,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/services/auth.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/services/auth.ts:173</a></div>
                         </td>
                     </tr>
 
@@ -638,14 +694,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/services/auth.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/services/auth.ts:138</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Autentica a un usuario con su correo y contraseña.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">authService.login(&#39;cliente&#64;aoiscakes.cl&#39;, &#39;Cliente123&#39;);</code></pre></div><p>Si la autenticación es correcta, la sesión queda persistida en sessionStorage.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -656,6 +715,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -670,6 +730,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Correo utilizado como credencial de acceso.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>password</td>
@@ -682,6 +746,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contraseña ingresada por el usuario.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -691,7 +759,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado de la autenticación y mensaje para mostrar.</p>
+
                             </div>
                 </td>
             </tr>
@@ -717,8 +786,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/app/services/auth.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/services/auth.ts:154</a></div>
                         </td>
                     </tr>
 
@@ -754,19 +823,26 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/services/auth.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/services/auth.ts:66</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve una copia superficial de los usuarios cargados en memoria.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">const usuarios = authService.obtenerUsuarios();</code></pre></div><p>La copia evita que una vista o componente muten el arreglo interno del servicio.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../interfaces/Usuario.html" target="_self" >Usuario[]</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>Copia del listado de usuarios registrados.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -791,14 +867,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="162"
-                                    class="link-to-prism">src/app/services/auth.ts:162</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/app/services/auth.ts:253</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Genera una contraseña temporal para una cuenta registrada.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">authService.recuperarPassword(&#39;cliente&#64;aoiscakes.cl&#39;);</code></pre></div><p>La contraseña temporal se persiste en el almacenamiento local y debe ser cambiada luego del ingreso.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -809,6 +888,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -823,6 +903,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Correo asociado a la cuenta que solicita recuperación.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -832,7 +916,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resultado del proceso y la contraseña temporal generada.</p>
+
                             </div>
                 </td>
             </tr>
@@ -858,14 +943,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/services/auth.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/services/auth.ts:88</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registra una nueva cuenta de usuario y la persiste en almacenamiento local.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">authService.registrar(&#39;Ana&#39;, &#39;ana01&#39;, &#39;ana&#64;correo.cl&#39;, &#39;1998-01-01&#39;, &#39;&#39;, &#39;Clave123!&#39;, &#39;cliente&#39;);</code></pre></div><p>Valida campos obligatorios, correo único y nombre de usuario único antes de guardar.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -876,6 +964,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -890,6 +979,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nombre visible del usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>usuario</td>
@@ -902,6 +995,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Alias o nombre de acceso único.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>correo</td>
@@ -914,6 +1011,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Correo electrónico de la cuenta.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>fechaNacimiento</td>
@@ -926,6 +1027,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Fecha de nacimiento en formato ISO.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>direccion</td>
@@ -938,6 +1043,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Dirección postal o de despacho.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>password</td>
@@ -950,6 +1059,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contraseña inicial de la cuenta.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>rol</td>
@@ -962,6 +1075,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Rol asignado al usuario dentro de la aplicación.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -971,7 +1088,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Objeto con el estado de la operación y un mensaje para la UI.</p>
+
                             </div>
                 </td>
             </tr>
@@ -1007,7 +1125,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/services/auth.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/services/auth.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -1041,7 +1159,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/auth.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/services/auth.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -1073,7 +1191,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/auth.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/services/auth.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -1102,7 +1220,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/services/auth.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/services/auth.ts:43</a></div>
                                 </td>
                             </tr>
 
@@ -1124,7 +1242,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/auth.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/services/auth.ts:47</a></div>
                                 </td>
                             </tr>
 
@@ -1146,7 +1264,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/services/auth.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/services/auth.ts:51</a></div>
                                 </td>
                             </tr>
 
@@ -1164,6 +1282,28 @@ import { RolUsuario, Usuario, USUARIOS } from &#x27;../data/usuarios&#x27;;
 const CLAVE_USUARIOS &#x3D; &#x27;aoisCakesUsuarios&#x27;;
 const CLAVE_SESION &#x3D; &#x27;aoisCakesSesion&#x27;;
 
+
+
+/**
+ * @description
+ * Servicio encargado de gestionar la autenticación y la sesión de usuarios
+ * de la aplicación.
+ *
+ * Este servicio centraliza las operaciones relacionadas con:
+ * - inicio de sesión,
+ * - registro de usuarios,
+ * - actualización de perfil,
+ * - recuperación de contraseña,
+ * - cambio de contraseña,
+ * - lectura del estado de autenticación,
+ * - cierre de sesión.
+ *
+ * @usageNotes
+ * El servicio carga y persiste usuarios en &#x60;localStorage&#x60; usando una lista
+ * inicial tomada desde &#x60;USUARIOS&#x60; cuando no existe información guardada.
+ * La sesión activa se mantiene en &#x60;sessionStorage&#x60; y se expone mediante un
+ * &#x60;BehaviorSubject&#x60; para permitir que la interfaz reaccione a cambios de estado.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -1189,10 +1329,39 @@ export class AuthService {
     return this.usuarioActual?.rol &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;;
   }
 
+  /**
+   * @description
+   * Devuelve una copia superficial de los usuarios cargados en memoria.
+   *
+   * @returns Copia del listado de usuarios registrados.
+   * @example
+   * const usuarios &#x3D; authService.obtenerUsuarios();
+   *
+   * @usageNotes
+   * La copia evita que una vista o componente muten el arreglo interno del servicio.
+   */
   obtenerUsuarios(): Usuario[] {
     return [...this.usuarios];
   }
 
+  /**
+   * @description
+   * Registra una nueva cuenta de usuario y la persiste en almacenamiento local.
+   *
+   * @param nombre Nombre visible del usuario.
+   * @param usuario Alias o nombre de acceso único.
+   * @param correo Correo electrónico de la cuenta.
+   * @param fechaNacimiento Fecha de nacimiento en formato ISO.
+   * @param direccion Dirección postal o de despacho.
+   * @param password Contraseña inicial de la cuenta.
+   * @param rol Rol asignado al usuario dentro de la aplicación.
+   * @returns Objeto con el estado de la operación y un mensaje para la UI.
+   * @example
+   * authService.registrar(&#x27;Ana&#x27;, &#x27;ana01&#x27;, &#x27;ana@correo.cl&#x27;, &#x27;1998-01-01&#x27;, &#x27;&#x27;, &#x27;Clave123!&#x27;, &#x27;cliente&#x27;);
+   *
+   * @usageNotes
+   * Valida campos obligatorios, correo único y nombre de usuario único antes de guardar.
+   */
   registrar(nombre: string, usuario: string, correo: string, fechaNacimiento: string, direccion: string, password: string, rol: RolUsuario): { ok: boolean; mensaje: string } {
     const nombreLimpio &#x3D; nombre.trim();
     const usuarioLimpio &#x3D; usuario.trim();
@@ -1230,6 +1399,19 @@ export class AuthService {
     return { ok: true, mensaje: &#x27;Cuenta creada correctamente. Ahora puedes iniciar sesión.&#x27; };
   }
 
+  /**
+   * @description
+   * Autentica a un usuario con su correo y contraseña.
+   *
+   * @param correo Correo utilizado como credencial de acceso.
+   * @param password Contraseña ingresada por el usuario.
+   * @returns Resultado de la autenticación y mensaje para mostrar.
+   * @example
+   * authService.login(&#x27;cliente@aoiscakes.cl&#x27;, &#x27;Cliente123&#x27;);
+   *
+   * @usageNotes
+   * Si la autenticación es correcta, la sesión queda persistida en sessionStorage.
+   */
   login(correo: string, password: string): { ok: boolean; mensaje: string } {
     const correoLimpio &#x3D; correo.trim().toLowerCase();
     const passwordLimpia &#x3D; password.trim();
@@ -1285,86 +1467,124 @@ export class AuthService {
     this.usuarioActualSubject.next(usuario);
   }
 
+  /**
+   * @description
+   * Actualiza los datos básicos del perfil del usuario autenticado.
+   *
+   * @param nombre Nuevo nombre visible.
+   * @param usuario Nuevo nombre de usuario.
+   * @param correo Nuevo correo electrónico.
+   * @param direccion Nueva dirección registrada.
+   * @returns Resultado de la actualización y mensaje de feedback.
+   * @example
+   * authService.actualizarPerfil(&#x27;Ana Pérez&#x27;, &#x27;ana&#x27;, &#x27;ana@correo.cl&#x27;, &#x27;Chile 123&#x27;);
+   *
+   * @usageNotes
+   * Requiere una sesión activa y evita duplicar correos en otras cuentas.
+   */
   actualizarPerfil(nombre: string, usuario: string, correo: string, direccion: string): { ok: boolean; mensaje: string } {
-  const usuarioActual &#x3D; this.usuarioActual;
-  if (!usuarioActual) {
-    return { ok: false, mensaje: &#x27;No hay sesión activa.&#x27; };
+    const usuarioActual &#x3D; this.usuarioActual;
+    if (!usuarioActual) {
+      return { ok: false, mensaje: &#x27;No hay sesión activa.&#x27; };
+    }
+
+    const correoLimpio &#x3D; correo.trim().toLowerCase();
+    const existeCorreo &#x3D; this.usuarios.some(
+      u &#x3D;&gt; u.correo.toLowerCase() &#x3D;&#x3D;&#x3D; correoLimpio &amp;&amp; u.id !&#x3D;&#x3D; usuarioActual.id
+    );
+
+    if (existeCorreo) {
+      return { ok: false, mensaje: &#x27;Ese correo ya está en uso por otra cuenta.&#x27; };
+    }
+
+    const usuarioActualizado &#x3D; {
+      ...usuarioActual,
+      nombre: nombre.trim(),
+      usuario: usuario.trim(),
+      correo: correoLimpio,
+      direccion: direccion.trim()
+    };
+
+    this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
+      u.id &#x3D;&#x3D;&#x3D; usuarioActual.id ? usuarioActualizado : u
+    );
+
+    this.guardarUsuarios();
+    this.guardarSesion(usuarioActualizado);
+
+    return { ok: true, mensaje: &#x27;Perfil actualizado correctamente.&#x27; };
   }
 
-  const correoLimpio &#x3D; correo.trim().toLowerCase();
-  const existeCorreo &#x3D; this.usuarios.some(
-    u &#x3D;&gt; u.correo.toLowerCase() &#x3D;&#x3D;&#x3D; correoLimpio &amp;&amp; u.id !&#x3D;&#x3D; usuarioActual.id
-  );
+  /**
+   * @description
+   * Genera una contraseña temporal para una cuenta registrada.
+   *
+   * @param correo Correo asociado a la cuenta que solicita recuperación.
+   * @returns Resultado del proceso y la contraseña temporal generada.
+   * @example
+   * authService.recuperarPassword(&#x27;cliente@aoiscakes.cl&#x27;);
+   *
+   * @usageNotes
+   * La contraseña temporal se persiste en el almacenamiento local y debe ser cambiada luego del ingreso.
+   */
+  recuperarPassword(correo: string): { ok: boolean; mensaje: string } {
+    const correoLimpio &#x3D; correo.trim().toLowerCase();
 
-  if (existeCorreo) {
-    return { ok: false, mensaje: &#x27;Ese correo ya está en uso por otra cuenta.&#x27; };
+    const usuario &#x3D; this.usuarios.find(
+      u &#x3D;&gt; u.correo.toLowerCase() &#x3D;&#x3D;&#x3D; correoLimpio
+    );
+
+    if (!usuario) {
+      return { ok: false, mensaje: &#x27;No existe una cuenta registrada con ese correo.&#x27; };
+    }
+
+    const passwordTemporal &#x3D; &#x27;Temp&#x27; + Math.random().toString(36).slice(-4).toUpperCase() + &#x27;1!&#x27;;
+
+    this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
+      u.id &#x3D;&#x3D;&#x3D; usuario.id ? { ...u, password: passwordTemporal } : u
+    );
+
+    this.guardarUsuarios();
+
+    return {
+      ok: true,
+      mensaje: &#x60;Contraseña temporal generada: ${passwordTemporal} — Inicia sesión y cámbiala desde tu perfil.&#x60;
+    };
   }
 
-  const usuarioActualizado &#x3D; {
-    ...usuarioActual,
-    nombre: nombre.trim(),
-    usuario: usuario.trim(),
-    correo: correoLimpio,
-    direccion: direccion.trim()
-  };
+  /**
+   * @description
+   * Cambia la contraseña del usuario autenticado.
+   *
+   * @param passwordActual Contraseña actual de la sesión activa.
+   * @param passwordNueva Nueva contraseña que reemplazará a la anterior.
+   * @returns Resultado del cambio y mensaje de feedback.
+   * @example
+   * authService.cambiarPassword(&#x27;ClaveActual1!&#x27;, &#x27;ClaveNueva1!&#x27;);
+   *
+   * @usageNotes
+   * Verifica que la contraseña actual coincida antes de persistir el cambio.
+   */
+  cambiarPassword(passwordActual: string, passwordNueva: string): { ok: boolean; mensaje: string } {
+    const usuario &#x3D; this.usuarioActual;
+    if (!usuario) {
+      return { ok: false, mensaje: &#x27;No hay sesión activa.&#x27; };
+    }
 
-  this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
-    u.id &#x3D;&#x3D;&#x3D; usuarioActual.id ? usuarioActualizado : u
-  );
+    if (usuario.password !&#x3D;&#x3D; passwordActual.trim()) {
+      return { ok: false, mensaje: &#x27;La contraseña actual es incorrecta.&#x27; };
+    }
 
-  this.guardarUsuarios();
-  this.guardarSesion(usuarioActualizado);
+    const usuarioActualizado &#x3D; { ...usuario, password: passwordNueva.trim() };
+    this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
+      u.id &#x3D;&#x3D;&#x3D; usuario.id ? usuarioActualizado : u
+    );
 
-  return { ok: true, mensaje: &#x27;Perfil actualizado correctamente.&#x27; };
-}
+    this.guardarUsuarios();
+    this.guardarSesion(usuarioActualizado);
 
-recuperarPassword(correo: string): { ok: boolean; mensaje: string } {
-  const correoLimpio &#x3D; correo.trim().toLowerCase();
-
-  const usuario &#x3D; this.usuarios.find(
-    u &#x3D;&gt; u.correo.toLowerCase() &#x3D;&#x3D;&#x3D; correoLimpio
-  );
-
-  if (!usuario) {
-    return { ok: false, mensaje: &#x27;No existe una cuenta registrada con ese correo.&#x27; };
+    return { ok: true, mensaje: &#x27;Contraseña actualizada correctamente.&#x27; };
   }
-
-  
-  const passwordTemporal &#x3D; &#x27;Temp&#x27; + Math.random().toString(36).slice(-4).toUpperCase() + &#x27;1!&#x27;;
-
-  this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
-    u.id &#x3D;&#x3D;&#x3D; usuario.id ? { ...u, password: passwordTemporal } : u
-  );
-
-  this.guardarUsuarios();
-
- 
-  return {
-    ok: true,
-    mensaje: &#x60;Contraseña temporal generada: ${passwordTemporal} — Inicia sesión y cámbiala desde tu perfil.&#x60;
-  };
-}
-
-cambiarPassword(passwordActual: string, passwordNueva: string): { ok: boolean; mensaje: string } {
-  const usuario &#x3D; this.usuarioActual;
-  if (!usuario) {
-    return { ok: false, mensaje: &#x27;No hay sesión activa.&#x27; };
-  }
-
-  if (usuario.password !&#x3D;&#x3D; passwordActual.trim()) {
-    return { ok: false, mensaje: &#x27;La contraseña actual es incorrecta.&#x27; };
-  }
-
-  const usuarioActualizado &#x3D; { ...usuario, password: passwordNueva.trim() };
-  this.usuarios &#x3D; this.usuarios.map(u &#x3D;&gt;
-    u.id &#x3D;&#x3D;&#x3D; usuario.id ? usuarioActualizado : u
-  );
-
-  this.guardarUsuarios();
-  this.guardarSesion(usuarioActualizado);
-
-  return { ok: true, mensaje: &#x27;Contraseña actualizada correctamente.&#x27; };
-}
 
 
 

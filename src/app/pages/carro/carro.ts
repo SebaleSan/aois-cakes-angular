@@ -5,6 +5,13 @@ import { Subscription } from 'rxjs';
 import { CarroService, ItemCarro } from '../../services/carro';
 import { AuthService } from '../../services/auth';
 
+/**
+ * @description
+ * Componente contenedor de la vista del carrito de compras.
+ *
+ * Este componente escucha los cambios del servicio de carrito y mantiene una
+ * copia local de los items para renderizarlos en la plantilla.
+ */
 @Component({
   selector: 'app-carro',
   standalone: true,
@@ -21,6 +28,7 @@ export class Carro implements OnInit, OnDestroy {
     public carroService: CarroService,
     public authService: AuthService
   ) {}
+
 
   ngOnInit(): void {
     this.sub = this.carroService.items$.subscribe(items => {

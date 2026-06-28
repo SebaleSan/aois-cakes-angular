@@ -10,6 +10,13 @@ function passwordsIguales(form: AbstractControl): ValidationErrors | null {
   return nueva === confirmar ? null : { noCoinciden: true };
 }
 
+/**
+ * @description
+ * Componente de panel de usuario para editar perfil, cambiar contraseña y cerrar sesión.
+ *
+ * @usageNotes
+ * Mantiene el formulario deshabilitado hasta que el usuario decide editar su perfil.
+ */
 @Component({
   selector: 'app-panel',
   standalone: true,
@@ -52,6 +59,12 @@ export class Panel implements OnInit {
   }
 
   ngOnInit(): void {
+  /**
+   * @description
+   * Carga los datos del usuario autenticado en el formulario de perfil.
+   *
+   * @returns No retorna ningún valor.
+   */
     if (!this.authService.logueado) {
       this.router.navigate(['/login']);
       return;
@@ -70,6 +83,7 @@ export class Panel implements OnInit {
     });
   }
 
+  
   get nombre() { return this.form.get('nombre'); }
   get usuario() { return this.form.get('usuario'); }
   get correo() { return this.form.get('correo'); }
@@ -112,12 +126,12 @@ export class Panel implements OnInit {
     }
   }
 
+
   activarCambioPassword(): void {
     this.editandoPassword = true;
     this.mensajePassword = '';
     this.formPassword.reset();
   }
-
   cancelarCambioPassword(): void {
     this.editandoPassword = false;
     this.formPassword.reset();
@@ -143,6 +157,7 @@ export class Panel implements OnInit {
       this.formPassword.reset();
     }
   }
+
 
   cerrarSesion(): void {
     this.authService.logout();
