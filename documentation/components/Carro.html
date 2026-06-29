@@ -362,25 +362,19 @@ copia local de los items para renderizarlos en la plantilla.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/pages/carro/carro.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/pages/carro/carro.ts:39</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Libera la suscripción activa al destruir el componente.</p>
-</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>No retorna ningún valor.</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -405,25 +399,19 @@ copia local de los items para renderizarlos en la plantilla.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/pages/carro/carro.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/pages/carro/carro.ts:33</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Se suscribe al stream de items del carrito para reflejar los cambios en la vista.</p>
-</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>No retorna ningún valor.</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -588,24 +576,13 @@ export class Carro implements OnInit, OnDestroy {
     public authService: AuthService
   ) {}
 
-  /**
-   * @description
-   * Se suscribe al stream de items del carrito para reflejar los cambios en la vista.
-   *
-   * @return No retorna ningún valor.
-   */
+
   ngOnInit(): void {
     this.sub &#x3D; this.carroService.items$.subscribe(items &#x3D;&gt; {
       this.items &#x3D; items;
     });
   }
 
-  /**
-   * @description
-   * Libera la suscripción activa al destruir el componente.
-   *
-   * @return No retorna ningún valor.
-   */
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
