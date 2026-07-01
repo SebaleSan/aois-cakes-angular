@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CATEGORIAS, PRODUCTOS, Producto } from '../../data/productos';
+import { CATEGORIAS, Producto } from '../../data/productos';
+import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-catalogo',
@@ -12,20 +13,27 @@ import { CATEGORIAS, PRODUCTOS, Producto } from '../../data/productos';
   styleUrl: './catalogo.css'
 })
 export class Catalogo implements OnInit {
-  productos: Producto[] = PRODUCTOS;
+  productos: Producto[] = [];
   categorias: string[] = CATEGORIAS;
 
   categoriaSeleccionada: string = 'Todas';
   mostrarSoloDisponibles: boolean = false;
   busqueda: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productosService: Productos
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.categoriaSeleccionada = params['categoria'] || 'Todas';
       this.mostrarSoloDisponibles = params['disponible'] === 'true';
       this.busqueda = params['busqueda'] || '';
+    });
+
+    this.productosService.cargarProductos().subscribe((productos) => {
+      this.productos = productos;
     });
   }
 

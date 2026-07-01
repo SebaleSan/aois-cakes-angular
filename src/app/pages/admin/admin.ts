@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AuthService } from '../../services/auth';
 import { Usuario } from '../../data/usuarios';
-import { PRODUCTOS, Producto } from '../../data/productos';
+import { Producto } from '../../data/productos';
+import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-admin',
@@ -14,12 +15,18 @@ import { PRODUCTOS, Producto } from '../../data/productos';
 })
 export class Admin implements OnInit {
   usuarios: Usuario[] = [];
-  productos: Producto[] = PRODUCTOS;
+  productos: Producto[] = [];
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private productosService: Productos
+  ) {}
 
   ngOnInit(): void {
     this.usuarios = this.authService.obtenerUsuarios();
+    this.productosService.cargarProductos().subscribe((productos) => {
+      this.productos = productos;
+    });
   }
 
   get totalUsuarios(): number {

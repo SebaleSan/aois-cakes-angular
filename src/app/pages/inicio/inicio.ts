@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-import { PRODUCTOS, Producto } from '../../data/productos';
+import { Producto } from '../../data/productos';
+import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-inicio',
@@ -13,9 +14,10 @@ import { PRODUCTOS, Producto } from '../../data/productos';
 })
 export class Inicio implements OnInit, OnDestroy {
   private readonly router = inject(Router);
+  private readonly productosService = inject(Productos);
   private autoplayId: ReturnType<typeof setInterval> | null = null;
 
-  readonly destacados: Producto[] = this.obtenerDestacados();
+  destacados: Producto[] = [];
   readonly visiblesDesktop = 4;
   readonly visiblesMobile = 1;
   readonly intervaloAutoplayMs = 5000;
@@ -24,6 +26,10 @@ export class Inicio implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.iniciarAutoplay();
+
+    this.productosService.cargarProductos().subscribe((productos) => {
+      this.destacados = this.obtenerDestacados(productos);
+    });
   }
 
   ngOnDestroy(): void {
@@ -89,14 +95,14 @@ export class Inicio implements OnInit, OnDestroy {
     return producto.id;
   }
 
-  private obtenerDestacados(): Producto[] {
-    const marcados = PRODUCTOS.filter((producto) => producto.destacado);
+  private obtenerDestacados(productos: Producto[]): Producto[] {
+    const marcados = productos.filter((producto) => producto.destacado);
 
     if (marcados.length > 0) {
       return marcados;
     }
 
-    return PRODUCTOS.slice(0, this.visiblesDesktop);
+    return productos.slice(0, this.visiblesDesktop);
   }
 
   private iniciarAutoplay(): void {

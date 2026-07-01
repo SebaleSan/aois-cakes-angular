@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { PRODUCTOS, Producto } from '../../data/productos';
+import { Producto } from '../../data/productos';
 import { CarroService } from '../../services/carro';
 import { AuthService } from '../../services/auth';
+import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-detalle',
@@ -16,25 +17,30 @@ export class Detalle implements OnInit {
   producto?: Producto;
   productosRelacionados: Producto[] = [];
   mostrarToast: boolean = false;
+  private productos: Producto[] = [];
 
   constructor(
     private route: ActivatedRoute,
     public carroService: CarroService,
-    public authService: AuthService
+    public authService: AuthService,
+    private productosService: Productos
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.cargarProducto(id);
+      this.productosService.cargarProductos().subscribe((productos) => {
+        this.productos = productos;
+        this.cargarProducto(id);
+      });
     });
   }
 
   private cargarProducto(id: number): void {
-    this.producto = PRODUCTOS.find(p => p.id === id);
+    this.producto = this.productos.find(p => p.id === id);
 
     if (this.producto) {
-      this.productosRelacionados = PRODUCTOS
+      this.productosRelacionados = this.productos
         .filter(p => p.categoria === this.producto?.categoria && p.id !== this.producto?.id)
         .slice(0, 3);
     } else {
