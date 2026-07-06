@@ -14,6 +14,22 @@ export interface ItemCarro {
 
 /**
  * @description
+ * Snapshot de una compra simulada guardada en almacenamiento local y de sesión.
+ */
+export interface CompraPedido {
+  id: number;
+  usuarioId: number;
+  fechaISO: string;
+  items: ItemCarro[];
+  totalItems: number;
+  totalPrecio: number;
+}
+
+const CLAVE_COMPRA_RECIENTE = 'aoisUltimaCompra';
+const CLAVE_HISTORIAL_COMPRAS = 'aoisHistorialCompras';
+
+/**
+ * @description
  * Servicio responsable de administrar el carrito de compras del usuario autenticado.
  *
  * @usageNotes
@@ -127,6 +143,55 @@ export class CarroService {
     this.guardarCarro();
   }
 
+  /**
+   * @description
+   * Simula la finalización de un pedido, persiste el resumen en almacenamiento
+   * local y de sesión, y vacía el carrito activo.
+   *
+   * @returns Un snapshot de la compra realizada o `null` si no había productos.
+   */
+  finalizarPedido(itemsPedido: ItemCarro[] = this.items): CompraPedido | null {
+    const usuario = this.authService.usuarioActual;
+
+    if (!usuario || itemsPedido.length === 0) {
+      return null;
+    }
+
+    const compra: CompraPedido = {
+      id: Date.now(),
+      usuarioId: usuario.id,
+      fechaISO: new Date().toISOString(),
+      items: itemsPedido.map(item => ({
+        producto: { ...item.producto },
+        cantidad: item.cantidad
+      })),
+      totalItems: itemsPedido.reduce((acumulado, item) => acumulado + item.cantidad, 0),
+      totalPrecio: itemsPedido.reduce((acumulado, item) => acumulado + item.producto.precio * item.cantidad, 0)
+    };
+
+    this.guardarCompraReciente(compra);
+    this.guardarHistorialCompras(compra);
+    this.vaciar();
+
+    return compra;
+  }
+
+  /**
+   * @description
+   * Recupera la última compra simulada del usuario activo desde sessionStorage.
+   *
+   * @returns La última compra guardada o `null` si no existe.
+   */
+  obtenerUltimaCompra(): CompraPedido | null {
+    const usuario = this.authService.usuarioActual;
+
+    if (!usuario) {
+      return null;
+    }
+
+    return this.leerCompraReciente(usuario.id);
+  }
+
   private claveStorage(): string {
     const usuario = this.authService.usuarioActual;
     return `aoisCarro_${usuario?.id}`;
@@ -134,6 +199,59 @@ export class CarroService {
 
   private guardarCarro(): void {
     localStorage.setItem(this.claveStorage(), JSON.stringify(this.items));
+  }
+
+  private guardarCompraReciente(compra: CompraPedido): void {
+    sessionStorage.setItem(
+      this.claveCompraReciente(compra.usuarioId),
+      JSON.stringify(compra)
+    );
+  }
+
+  private guardarHistorialCompras(compra: CompraPedido): void {
+    const historial = this.leerHistorialCompras(compra.usuarioId);
+    localStorage.setItem(
+      this.claveHistorialCompras(compra.usuarioId),
+      JSON.stringify([...historial, compra])
+    );
+  }
+
+  private leerCompraReciente(usuarioId: number): CompraPedido | null {
+    const guardada = sessionStorage.getItem(this.claveCompraReciente(usuarioId));
+
+    if (!guardada) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(guardada) as CompraPedido;
+    } catch {
+      sessionStorage.removeItem(this.claveCompraReciente(usuarioId));
+      return null;
+    }
+  }
+
+  private leerHistorialCompras(usuarioId: number): CompraPedido[] {
+    const guardado = localStorage.getItem(this.claveHistorialCompras(usuarioId));
+
+    if (!guardado) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(guardado) as CompraPedido[];
+    } catch {
+      localStorage.removeItem(this.claveHistorialCompras(usuarioId));
+      return [];
+    }
+  }
+
+  private claveCompraReciente(usuarioId: number): string {
+    return `${CLAVE_COMPRA_RECIENTE}_${usuarioId}`;
+  }
+
+  private claveHistorialCompras(usuarioId: number): string {
+    return `${CLAVE_HISTORIAL_COMPRAS}_${usuarioId}`;
   }
 
   private cargarCarro(usuarioId: number): void {
