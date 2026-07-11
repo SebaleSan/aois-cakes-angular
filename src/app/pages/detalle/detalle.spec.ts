@@ -3,6 +3,8 @@ import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/route
 import { of } from 'rxjs';
 import { Detalle } from './detalle';
 import { Productos } from '../../services/productos';
+import { CarroService } from '../../services/carro';
+import { AuthService } from '../../services/auth';
 import { Producto } from '../../data/productos';
 
 describe('Detalle', () => {
@@ -50,6 +52,7 @@ describe('Detalle', () => {
         {
           provide: ActivatedRoute,
           useValue: {
+            paramMap: of(convertToParamMap({ id: '2' })),
             snapshot: {
               paramMap: convertToParamMap({ id: '2' })
             }
@@ -62,13 +65,13 @@ describe('Detalle', () => {
           }
         },
         {
-          provide: 'CarroService',
+          provide: CarroService,
           useValue: {
             agregar: () => undefined
           }
         },
         {
-          provide: 'AuthService',
+          provide: AuthService,
           useValue: {
             logueado: true
           }
@@ -82,11 +85,11 @@ describe('Detalle', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('deberia crear', () => {
     expect(component).toBeTruthy();
   });
 
-  it('carga el producto segun id', () => {
+  it('deberia cargar el producto segun id', () => {
     expect(component.producto?.id).toBe(2);
     expect(component.producto?.nombre).toBe('Lemon Pie');
     expect(component.productosRelacionados.length).toBe(2);
