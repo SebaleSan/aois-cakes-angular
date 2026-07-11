@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CATEGORIAS, Producto } from '../../data/productos';
+import { Producto } from '../../data/productos';
 import { Productos } from '../../services/productos';
 
 @Component({
@@ -14,7 +14,7 @@ import { Productos } from '../../services/productos';
 })
 export class Catalogo implements OnInit {
   productos: Producto[] = [];
-  categorias: string[] = CATEGORIAS;
+  categorias: string[] = ['Todas'];
 
   categoriaSeleccionada: string = 'Todas';
   mostrarSoloDisponibles: boolean = false;
@@ -34,6 +34,7 @@ export class Catalogo implements OnInit {
 
     this.productosService.cargarProductos().subscribe((productos) => {
       this.productos = productos;
+      this.categorias = this.productosService.obtenerCategorias();
     });
   }
 

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CATEGORIAS } from '../../data/productos';
+import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-buscador',
@@ -11,15 +11,24 @@ import { CATEGORIAS } from '../../data/productos';
   templateUrl: './buscador.html',
   styleUrl: './buscador.css'
 })
-export class Buscador {
+export class Buscador implements OnInit {
   panelAbierto = false;
 
   busqueda = '';
   categoriaSeleccionada = 'Todas';
 
-  categorias: string[] = CATEGORIAS;
+  categorias: string[] = ['Todas'];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private productosService: Productos
+  ) {}
+
+  ngOnInit(): void {
+    this.productosService.cargarProductos().subscribe(() => {
+      this.categorias = this.productosService.obtenerCategorias();
+    });
+  }
 
   abrir(): void {
     this.panelAbierto = true;

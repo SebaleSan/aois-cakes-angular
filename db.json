@@ -28,7 +28,7 @@
       "imagen": "assets/img/tradicional/empolvados-copia.jpg",
       "descripcion": "Tradicional empolvado chileno relleno con manjar clásico.",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": 4,
@@ -58,7 +58,7 @@
       "imagen": "assets/img/tortas/unnamed.jpg",
       "descripcion": "Torta para 15 personas de bizcocho de zanahoria con crema bon o bon, cubierta en crema de mantequilla sabor vainilla.",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": 7,

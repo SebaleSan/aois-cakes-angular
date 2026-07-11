@@ -12,27 +12,3 @@ export interface Producto {
   disponible: boolean;
   destacado: boolean;
 }
-
-/**
- * @description
- * Respuesta esperada desde la API remota que expone el catálogo de productos.
- */
-export interface ProductosResponse {
-  PRODUCTOS: Producto[];
-}
-
-/**
- * @description
- * Categorías disponibles para filtrar el catálogo.
- */
-export const CATEGORIAS: string[] = [
-  'Todas',
-  'Tortas',
-  'Catering',
-  'Cookies',
-  'Tradicional',
-
-  
-
-
-];

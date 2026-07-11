@@ -10,6 +10,7 @@ import { Detalle } from './pages/detalle/detalle';
 import { Panel } from './pages/panel/panel';
 import { adminGuard } from './guards/admin-guard';
 import { Recuperar } from './pages/recuperar/recuperar';
+import { ProductoForm } from './pages/producto-form/producto-form';
 
 
 
@@ -22,6 +23,8 @@ export const routes: Routes = [
   { path: 'carro', component: Carro, title: 'Aois Cakes - Carro' },
   { path: 'detalle/:id', component: Detalle, title: 'Aois Cakes - Detalle' },
   { path: 'admin', component: Admin, title: 'Aois Cakes - Admin', canActivate: [adminGuard] },
+  { path: 'admin/productos/nuevo', component: ProductoForm, title: 'Aois Cakes - Nuevo producto', canActivate: [adminGuard] },
+  { path: 'admin/productos/:id/editar', component: ProductoForm, title: 'Aois Cakes - Editar producto', canActivate: [adminGuard] },
   {path: 'recuperar', component: Recuperar, title: 'Aois Cakes - Recuperar password' },
   { path: '**', redirectTo: '' }
 ];

@@ -16,7 +16,8 @@ describe('Catalogo', () => {
         {
           provide: Productos,
           useValue: {
-            cargarProductos: () => of([])
+            cargarProductos: () => of([]),
+            obtenerCategorias: () => ['Todas']
           }
         }
       ]
