@@ -24,29 +24,25 @@ describe('Productos', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should load products from the remote json using GET', () => {
-    const sample = {
-      PRODUCTOS: [
-        {
-          id: 1,
-          nombre: 'Brownie',
-          categoria: 'Tradicional',
-          precio: 2500,
-          imagen: 'assets/img/tradicional/brownie.jpg',
-          descripcion: 'Brownie con centro fudge, cobertura de nueces tostadas.',
-          disponible: true,
-          destacado: false
-        }
-      ]
-    };
+  it('should load products from json-server using GET', () => {
+    const sample = [
+      {
+        id: 1,
+        nombre: 'Brownie',
+        categoria: 'Tradicional',
+        precio: 2500,
+        imagen: 'assets/img/tradicional/brownie.jpg',
+        descripcion: 'Brownie con centro fudge, cobertura de nueces tostadas.',
+        disponible: true,
+        destacado: false
+      }
+    ];
 
     service.cargarProductos().subscribe((productos) => {
-      expect(productos).toEqual(sample.PRODUCTOS);
+      expect(productos).toEqual(sample);
     });
 
-    const request = httpMock.expectOne(
-      'https://raw.githubusercontent.com/SebaleSan/product-api/refs/heads/main/productos.json'
-    );
+    const request = httpMock.expectOne('http://localhost:3000/productos');
     expect(request.request.method).toBe('GET');
     request.flush(sample);
   });

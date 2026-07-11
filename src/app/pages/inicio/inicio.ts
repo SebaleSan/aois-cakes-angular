@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, ChangeDetectorRef} from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
@@ -24,11 +24,14 @@ export class Inicio implements OnInit, OnDestroy {
 
   indiceActual = 0;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit(): void {
     this.iniciarAutoplay();
 
     this.productosService.cargarProductos().subscribe((productos) => {
       this.destacados = this.obtenerDestacados(productos);
+      this.cdr.detectChanges();
     });
   }
 

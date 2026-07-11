@@ -16,7 +16,9 @@ describe('Admin', () => {
         {
           provide: Productos,
           useValue: {
-            cargarProductos: () => of([])
+            cargarProductos: () => of([]),
+            refrescarProductos: () => of([]),
+            eliminarProducto: () => of(void 0)
           }
         }
       ]

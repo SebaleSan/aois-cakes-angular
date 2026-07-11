@@ -3,9 +3,9 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs';
 
-import { Producto, ProductosResponse } from '../data/productos';
+import { Producto } from '../data/productos';
 
-const PRODUCTOS_URL = 'https://raw.githubusercontent.com/SebaleSan/product-api/refs/heads/main/productos.json';
+const PRODUCTOS_URL = 'http://localhost:3000/productos';
 
 @Injectable({
 	providedIn: 'root'
@@ -21,13 +21,29 @@ export class Productos {
 		return this.productosSubject.value;
 	}
 
-	cargarProductos(): Observable<Producto[]> {
+	obtenerProductoPorId(id: number): Producto | undefined {
+		return this.productosSubject.value.find((producto) => producto.id === id);
+	}
+
+	obtenerCategorias(): string[] {
+		const categorias = new Set(
+			this.productosSubject.value.map((producto) => producto.categoria)
+		);
+
+		return ['Todas', ...categorias];
+	}
+
+	cargarProductos(forceRefresh = false): Observable<Producto[]> {
+		if (forceRefresh) {
+			this.cargados = false;
+		}
+
 		if (this.cargados) {
 			return of(this.productosSubject.value);
 		}
 
-		return this.http.get<ProductosResponse>(PRODUCTOS_URL).pipe(
-			map((respuesta) => respuesta.PRODUCTOS ?? []),
+		return this.http.get<Producto[]>(PRODUCTOS_URL).pipe(
+			map((productos) => productos ?? []),
 			tap((productos) => {
 				this.cargados = true;
 				this.productosSubject.next(productos);
@@ -35,6 +51,43 @@ export class Productos {
 			catchError(() => {
 				this.productosSubject.next([]);
 				return of([]);
+			})
+		);
+	}
+
+	refrescarProductos(): Observable<Producto[]> {
+		return this.cargarProductos(true);
+	}
+
+	crearProducto(producto: Omit<Producto, 'id'>): Observable<Producto> {
+		return this.http.post<Producto>(PRODUCTOS_URL, producto).pipe(
+			tap((nuevoProducto) => {
+				this.productosSubject.next([
+					...this.productosSubject.value,
+					nuevoProducto
+				]);
+			})
+		);
+	}
+
+	actualizarProducto(id: number, cambios: Partial<Producto>): Observable<Producto> {
+		return this.http.patch<Producto>(`${PRODUCTOS_URL}/${id}`, cambios).pipe(
+			tap((productoActualizado) => {
+				this.productosSubject.next(
+					this.productosSubject.value.map((producto) =>
+						producto.id === id ? productoActualizado : producto
+					)
+				);
+			})
+		);
+	}
+
+	eliminarProducto(id: number): Observable<void> {
+		return this.http.delete<void>(`${PRODUCTOS_URL}/${id}`).pipe(
+			tap(() => {
+				this.productosSubject.next(
+					this.productosSubject.value.filter((producto) => producto.id !== id)
+				);
 			})
 		);
 	}
