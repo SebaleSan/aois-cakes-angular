@@ -59,16 +59,33 @@ export class Productos {
     return this.cargarProductos(true);
   }
 
-  crearProducto(producto: Omit<Producto, 'id'>): Observable<Producto> {
-    return this.http.post<Producto>(PRODUCTOS_URL, producto).pipe(
-      tap((nuevoProducto) => {
-        this.productosSubject.next([
-          ...this.productosSubject.value,
-          this.normalizarProducto(nuevoProducto),
-        ]);
-      }),
-    );
+
+  private obtenerSiguienteId(): number {
+  const productos = this.productosSubject.value;
+
+  if (productos.length === 0) {
+    return 1;
   }
+
+  const maxId = Math.max(...productos.map((producto) => producto.id));
+  return maxId + 1;
+}
+
+  
+
+  crearProducto(producto: Omit<Producto, 'id'>): Observable<Producto> {
+  const siguienteId = this.obtenerSiguienteId();
+  const productoConId = { ...producto, id: siguienteId };
+
+  return this.http.post<Producto>(PRODUCTOS_URL, productoConId).pipe(
+    tap((nuevoProducto) => {
+      this.productosSubject.next([
+        ...this.productosSubject.value,
+        this.normalizarProducto(nuevoProducto),
+      ]);
+    }),
+  );
+}
 
   actualizarProducto(id: number, cambios: Partial<Producto>): Observable<Producto> {
     return this.http.patch<Producto>(`${PRODUCTOS_URL}/${id}`, cambios).pipe(

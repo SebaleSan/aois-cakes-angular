@@ -6,7 +6,7 @@
       "categoria": "Tradicional",
       "precio": 2500,
       "imagen": "assets/img/tradicional/brownie.jpg",
-      "descripcion": "Brownie con centro fudge, cobertura de nueces tostadas.",
+      "descripcion": "Brownie con centro fudge. Cobertura de nueces tostadas.",
       "disponible": true,
       "destacado": false
     },
@@ -18,7 +18,7 @@
       "imagen": "assets/img/tradicional/lemonPie.jpg",
       "descripcion": "Base crumble, crema de limón y cobertura de merengue italiano.",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "3",
@@ -37,7 +37,7 @@
       "precio": 55000,
       "imagen": "assets/img/tortas/tortaoso.jpg",
       "descripcion": "Torta para 10 personas, diseño vintage en crema de mantequilla, bizcocho de chocolate con crema de cookie&cream, trozos de oreo y manjar.",
-      "disponible": true,
+      "disponible": false,
       "destacado": false
     },
     {
@@ -119,6 +119,26 @@
       "descripcion": "Mini tartaleta crujiente con frutas frescas y crema pastelera suave.",
       "disponible": true,
       "destacado": false
+    },
+    {
+      "nombre": "asdasdasdasdasd",
+      "categoria": "Tradicional",
+      "precio": 123123123,
+      "imagen": "asdasdasdasd",
+      "descripcion": "asdasdasdasdasdasdasd",
+      "disponible": true,
+      "destacado": false,
+      "id": 13
+    },
+    {
+      "nombre": "asdasdasdasdasd",
+      "categoria": "Tortas",
+      "precio": 123123123,
+      "imagen": "asdasdasdasd",
+      "descripcion": "asdasdasdasdasd",
+      "disponible": false,
+      "destacado": false,
+      "id": 14
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
