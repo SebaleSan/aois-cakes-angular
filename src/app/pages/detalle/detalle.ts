@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Producto } from '../../data/productos';
@@ -23,18 +23,22 @@ export class Detalle implements OnInit {
     private route: ActivatedRoute,
     public carroService: CarroService,
     public authService: AuthService,
-    private productosService: Productos
+    private productosService: Productos,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      this.productosService.cargarProductos().subscribe((productos) => {
+  this.route.paramMap.subscribe(params => {
+    const id = Number(params.get('id'));
+    if (!Number.isNaN(id)) {
+      this.productosService.cargarProductos().subscribe(productos => {
         this.productos = productos;
         this.cargarProducto(id);
       });
-    });
-  }
+    }
+  });
+}
+
 
   private cargarProducto(id: number): void {
     this.producto = this.productos.find(p => p.id === id);
@@ -45,6 +49,7 @@ export class Detalle implements OnInit {
         .slice(0, 3);
     } else {
       this.productosRelacionados = [];
+    
     }
   }
 

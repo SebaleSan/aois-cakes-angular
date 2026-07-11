@@ -21,6 +21,7 @@ Aplicación web desarrollada con Angular para la gestión y visualización de un
 - CSS3
 - LocalStorage
 - Vitest (pruebas unitarias)
+- Json Server (base de datos json)
 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.1.
