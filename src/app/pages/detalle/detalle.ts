@@ -57,9 +57,11 @@ export class Detalle implements OnInit {
     if (!this.authService.logueado) return;
     this.carroService.agregar(producto);
     this.mostrarToast = true;
+    
     setTimeout(() => {
       this.mostrarToast = false;
-    }, 3000);
+      this.cdr.detectChanges();
+    }, 2000);
   }
 
   formatearPrecio(precio: number): string {

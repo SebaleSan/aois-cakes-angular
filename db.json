@@ -1,7 +1,7 @@
 {
   "productos": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Brownie",
       "categoria": "Tradicional",
       "precio": 2500,
@@ -11,7 +11,7 @@
       "destacado": false
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Lemon Pie",
       "categoria": "Tradicional",
       "precio": 14600,
@@ -21,7 +21,7 @@
       "destacado": true
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Empolvados",
       "categoria": "Tradicional",
       "precio": 1000,
@@ -31,7 +31,7 @@
       "destacado": true
     },
     {
-      "id": 4,
+      "id": "4",
       "nombre": "Torta Osos",
       "categoria": "Tortas",
       "precio": 55000,
@@ -41,7 +41,7 @@
       "destacado": false
     },
     {
-      "id": 5,
+      "id": "5",
       "nombre": "Torta de Bodas",
       "categoria": "Tortas",
       "precio": 120000,
@@ -51,7 +51,7 @@
       "destacado": true
     },
     {
-      "id": 6,
+      "id": "6",
       "nombre": "Torta Minecraft",
       "categoria": "Tortas",
       "precio": 68000,
@@ -61,7 +61,7 @@
       "destacado": false
     },
     {
-      "id": 7,
+      "id": "7",
       "nombre": "Galletas New York Oreo",
       "categoria": "Cookies",
       "precio": 2900,
@@ -71,7 +71,7 @@
       "destacado": false
     },
     {
-      "id": 8,
+      "id": "8",
       "nombre": "Galletas Variadas",
       "categoria": "Cookies",
       "precio": 16000,
@@ -81,7 +81,7 @@
       "destacado": true
     },
     {
-      "id": 9,
+      "id": "9",
       "nombre": "Galletas Personalizadas",
       "categoria": "Cookies",
       "precio": 3000,
@@ -91,17 +91,17 @@
       "destacado": false
     },
     {
-      "id": 10,
+      "id": "10",
       "nombre": "Mini Lemon",
       "categoria": "Catering",
       "precio": 10000,
       "imagen": "assets/img/catering/1000017786.jpg",
       "descripcion": "Mini Lemon pie relleno de crema de limón con cobertura de merengue.",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
-      "id": 11,
+      "id": "11",
       "nombre": "Dulces Chilenos",
       "categoria": "Catering",
       "precio": 14600,
@@ -111,7 +111,7 @@
       "destacado": true
     },
     {
-      "id": 12,
+      "id": "12",
       "nombre": "Mini Tartaleta de Frutas",
       "categoria": "Catering",
       "precio": 18670,
@@ -120,5 +120,6 @@
       "disponible": true,
       "destacado": false
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
