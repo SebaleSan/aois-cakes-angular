@@ -25,7 +25,7 @@
       "nombre": "Empolvados",
       "categoria": "Tradicional",
       "precio": 1000,
-      "imagen": "assets/img/tradicional/empolvados-copia.jpg",
+      "imagen": "assets/img/tradicional/empolvados.jpg",
       "descripcion": "Tradicional empolvado chileno relleno con manjar clásico.",
       "disponible": true,
       "destacado": true
@@ -119,26 +119,6 @@
       "descripcion": "Mini tartaleta crujiente con frutas frescas y crema pastelera suave.",
       "disponible": true,
       "destacado": false
-    },
-    {
-      "nombre": "asdasdasdasdasd",
-      "categoria": "Tradicional",
-      "precio": 123123123,
-      "imagen": "asdasdasdasd",
-      "descripcion": "asdasdasdasdasdasdasd",
-      "disponible": true,
-      "destacado": false,
-      "id": 13
-    },
-    {
-      "nombre": "asdasdasdasdasd",
-      "categoria": "Tortas",
-      "precio": 123123123,
-      "imagen": "asdasdasdasd",
-      "descripcion": "asdasdasdasdasd",
-      "disponible": false,
-      "destacado": false,
-      "id": 14
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
