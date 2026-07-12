@@ -32,28 +32,28 @@ export class Productos {
   }
 
   cargarProductos(forceRefresh = false): Observable<Producto[]> {
-    if (forceRefresh) {
-      this.cargados = false;
-    }
-
-    if (this.cargados) {
-      return of(this.productosSubject.value);
-    }
-
-    return this.http.get<Producto[]>(PRODUCTOS_URL).pipe(
-      map((productos) => (productos ?? []).map((producto) => this.normalizarProducto(producto))),
-      tap((productos) => {
-        this.cargados = true;
-        this.productosSubject.next(productos);
-      }),
-      catchError((error) => {
-        this.productosSubject.next([]);
-        return throwError(
-          () => new Error('No se pudieron cargar los productos. Intenta nuevamente.'),
-        );
-      }),
-    );
+  if (forceRefresh) {
+    this.cargados = false;
   }
+
+  if (this.cargados) {
+    return of(this.productosSubject.value);
+  }
+
+  return this.http.get<Producto[]>(`${PRODUCTOS_URL}?_=${Date.now()}`).pipe(
+    map((productos) => (productos ?? []).map((producto) => this.normalizarProducto(producto))),
+    tap((productos) => {
+      this.cargados = true;
+      this.productosSubject.next(productos);
+    }),
+    catchError((error) => {
+      this.productosSubject.next([]);
+      return throwError(
+        () => new Error('No se pudieron cargar los productos. Intenta nuevamente.'),
+      );
+    }),
+  );
+}
 
   refrescarProductos(): Observable<Producto[]> {
     return this.cargarProductos(true);

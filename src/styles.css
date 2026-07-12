@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700&display=swap');
 @import "bootstrap/dist/css/bootstrap.min.css";
+
 
 
 /* ========================================================= */
@@ -35,7 +37,7 @@ html {
   --sombra-suave: 0 4px 14px rgba(0, 0, 0, 0.12);
   --sombra-fuerte: 0 8px 24px rgba(0, 0, 0, 0.22);
 
-  --fuente-principal: sans-serif;
+  --fuente-principal: 'Nunito';
 }
 
 /* ========================================================= */

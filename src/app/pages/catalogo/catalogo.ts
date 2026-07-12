@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +22,8 @@ export class Catalogo implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productosService: Productos
+    private productosService: Productos,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -30,11 +31,13 @@ export class Catalogo implements OnInit {
       this.categoriaSeleccionada = params['categoria'] || 'Todas';
       this.mostrarSoloDisponibles = params['disponible'] === 'true';
       this.busqueda = params['busqueda'] || '';
+      this.cdr.detectChanges();
     });
 
     this.productosService.cargarProductos().subscribe((productos) => {
       this.productos = productos;
       this.categorias = this.productosService.obtenerCategorias();
+      this.cdr.detectChanges();
     });
   }
 

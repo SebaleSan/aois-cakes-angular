@@ -34,6 +34,7 @@ export class Detalle implements OnInit {
       this.productosService.cargarProductos().subscribe(productos => {
         this.productos = productos;
         this.cargarProducto(id);
+        this.cdr.detectChanges();
       });
     }
   });
