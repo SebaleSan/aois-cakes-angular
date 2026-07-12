@@ -26,11 +26,13 @@ export class Buscador implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productosService.cargarProductos().subscribe(() => {
-      this.categorias = this.productosService.obtenerCategorias();
-      this.cdr.detectChanges();
-    });
-  }
+  this.productosService.cargarProductos().subscribe();
+
+  this.productosService.productos$.subscribe(() => {
+    this.categorias = this.productosService.obtenerCategorias();
+    this.cdr.detectChanges();
+  });
+}
 
   abrir(): void {
     this.panelAbierto = true;
