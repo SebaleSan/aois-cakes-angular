@@ -6,7 +6,11 @@
           <div class="mb-4">
             <h1 class="h3 mb-1">{{ modoEdicion ? 'Editar producto' : 'Nuevo producto' }}</h1>
             <p class="text-muted mb-0">
-              {{ modoEdicion ? 'Modifica los datos del producto seleccionado.' : 'Completa los datos para agregar un nuevo producto.' }}
+              {{
+              modoEdicion
+              ? 'Modifica los datos del producto seleccionado.'
+              : 'Completa los datos para agregar un nuevo producto.'
+              }}
             </p>
           </div>
 
@@ -14,14 +18,8 @@
             <div class="row g-4">
               <div class="col-12 col-md-6">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input
-                  id="nombre"
-                  type="text"
-                  class="form-control"
-                  formControlName="nombre"
-                  placeholder="Ej: Torta Frutilla"
-                  [class.is-invalid]="nombre?.invalid && nombre?.touched"
-                />
+                <input id="nombre" type="text" class="form-control" formControlName="nombre"
+                  placeholder="Ej: Torta Frutilla" [class.is-invalid]="nombre?.invalid && nombre?.touched" />
                 <div class="invalid-feedback">
                   <span *ngIf="nombre?.errors?.['required']">El nombre es obligatorio.</span>
                   <span *ngIf="nombre?.errors?.['minlength']">Debe tener al menos 3 caracteres.</span>
@@ -30,33 +28,33 @@
 
               <div class="col-12 col-md-6">
                 <label for="categoria" class="form-label">Categoría</label>
-                <select
-                  id="categoria"
-                  class="form-select"
-                  formControlName="categoria"
-                  [class.is-invalid]="categoria?.invalid && categoria?.touched"
-                >
+                <select id="categoria" class="form-select" formControlName="categoria"
+                  [class.is-invalid]="categoria?.invalid && categoria?.touched">
                   <option value="" disabled>Selecciona una categoría</option>
                   <option *ngFor="let categoriaItem of categorias" [value]="categoriaItem">
                     {{ categoriaItem }}
                   </option>
+                  <option value="__nueva__">+ Agregar nueva categoría</option>
                 </select>
                 <div class="invalid-feedback">
                   <span *ngIf="categoria?.errors?.['required']">La categoría es obligatoria.</span>
                 </div>
               </div>
 
+              <div class="col-12 col-md-6" *ngIf="categoria?.value === '__nueva__'">
+                <label for="categoriaNueva" class="form-label">Nombre de la nueva categoría</label>
+                <input id="categoriaNueva" type="text" class="form-control" formControlName="categoriaNueva"
+                  placeholder="Ej: Tortas sin azúcar"
+                  [class.is-invalid]="form.errors?.['categoriaNuevaInvalida'] && categoriaNueva?.touched" />
+                <div class="invalid-feedback">
+                  Ingresa un nombre de categoría válido (mínimo 3 caracteres).
+                </div>
+              </div>
+
               <div class="col-12 col-md-6">
                 <label for="precio" class="form-label">Precio</label>
-                <input
-                  id="precio"
-                  type="number"
-                  min="0"
-                  class="form-control"
-                  formControlName="precio"
-                  placeholder="Ej: 15000"
-                  [class.is-invalid]="precio?.invalid && precio?.touched"
-                />
+                <input id="precio" type="number" class="form-control" formControlName="precio"
+                  placeholder="Ej: 15000" [class.is-invalid]="precio?.invalid && precio?.touched" />
                 <div class="invalid-feedback">
                   <span *ngIf="precio?.errors?.['required']">El precio es obligatorio.</span>
                   <span *ngIf="precio?.errors?.['precioInvalido']">Ingresa un precio válido mayor a 0.</span>
@@ -65,17 +63,10 @@
 
               <div class="col-12 col-md-6">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input
-                  id="imagen"
-                  type="text"
-                  class="form-control"
-                  formControlName="imagen"
+                <input id="imagen" type="text" class="form-control" formControlName="imagen"
                   placeholder="Arrastrar imagen aqui o subir aqui"
-                  [class.is-invalid]="imagen?.invalid && imagen?.touched"
-                />
-                <div class="form-text">
-                  Escribe una ruta o nombre de archivo.
-                </div>
+                  [class.is-invalid]="imagen?.invalid && imagen?.touched" />
+                <div class="form-text">Escribe una ruta o nombre de archivo.</div>
                 <div class="invalid-feedback">
                   <span *ngIf="imagen?.errors?.['required']">La imagen es obligatoria.</span>
                   <span *ngIf="imagen?.errors?.['minlength']">Ingresa una ruta válida.</span>
@@ -84,14 +75,9 @@
 
               <div class="col-12">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea
-                  id="descripcion"
-                  rows="4"
-                  class="form-control"
-                  formControlName="descripcion"
+                <textarea id="descripcion" rows="4" class="form-control" formControlName="descripcion"
                   placeholder="Describe el producto"
-                  [class.is-invalid]="descripcion?.invalid && descripcion?.touched"
-                ></textarea>
+                  [class.is-invalid]="descripcion?.invalid && descripcion?.touched"></textarea>
                 <div class="invalid-feedback">
                   <span *ngIf="descripcion?.errors?.['required']">La descripción es obligatoria.</span>
                   <span *ngIf="descripcion?.errors?.['minlength']">Debe tener al menos 10 caracteres.</span>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,12 +21,14 @@ export class Buscador implements OnInit {
 
   constructor(
     private router: Router,
-    private productosService: Productos
+    private productosService: Productos,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.productosService.cargarProductos().subscribe(() => {
       this.categorias = this.productosService.obtenerCategorias();
+      this.cdr.detectChanges();
     });
   }
 

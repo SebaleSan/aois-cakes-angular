@@ -17,6 +17,17 @@ function precioMinimo(control: AbstractControl): ValidationErrors | null {
   return null;
 }
 
+function categoriaValida(group: AbstractControl): ValidationErrors | null {
+  const categoria = group.get('categoria')?.value;
+  const categoriaNueva = group.get('categoriaNueva')?.value;
+
+  if (categoria === '__nueva__' && (!categoriaNueva || categoriaNueva.trim().length < 3)) {
+    return { categoriaNuevaInvalida: true };
+  }
+
+  return null;
+}
+
 @Component({
   selector: 'app-producto-form',
   standalone: true,
@@ -32,22 +43,26 @@ export class ProductoForm implements OnInit {
   private valoresOriginales: ProductoFormValues | null = null;
 
   constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location,
-    private productosService: Productos
-  ) {
-    this.form = this.fb.group({
+  private fb: FormBuilder,
+  private route: ActivatedRoute,
+  private router: Router,
+  private location: Location,
+  private productosService: Productos
+) {
+  this.form = this.fb.group(
+    {
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       categoria: ['', Validators.required],
-      precio: [0, [Validators.required, precioMinimo]],
+      categoriaNueva: [''],
+      precio: [null, [Validators.required, precioMinimo]],
       imagen: ['', [Validators.required, Validators.minLength(3)]],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
       disponible: [true],
       destacado: [false]
-    });
-  }
+    },
+    { validators: categoriaValida }
+  );
+}
 
   ngOnInit(): void {
     this.productosService.cargarProductos().subscribe(() => {
@@ -96,6 +111,10 @@ export class ProductoForm implements OnInit {
   get destacado() {
     return this.form.get('destacado');
   }
+
+  get categoriaNueva() {
+  return this.form.get('categoriaNueva');
+}
 
   guardar(): void {
     if (this.form.invalid) {
@@ -179,7 +198,7 @@ export class ProductoForm implements OnInit {
     return {
       nombre: '',
       categoria: this.categorias[0] ?? '',
-      precio: 0,
+      precio: null as unknown as number,
       imagen: '',
       descripcion: '',
       disponible: true,
@@ -188,16 +207,21 @@ export class ProductoForm implements OnInit {
   }
 
   private obtenerValoresFormulario(): Omit<Producto, 'id'> {
-    return {
-      nombre: this.nombre?.value?.trim() ?? '',
-      categoria: this.categoria?.value ?? '',
-      precio: Number(this.precio?.value ?? 0),
-      imagen: this.imagen?.value?.trim() ?? '',
-      descripcion: this.descripcion?.value?.trim() ?? '',
-      disponible: Boolean(this.disponible?.value),
-      destacado: Boolean(this.destacado?.value)
-    };
-  }
+  const categoriaFinal =
+    this.categoria?.value === '__nueva__'
+      ? (this.categoriaNueva?.value ?? '').trim()
+      : (this.categoria?.value ?? '');
+
+  return {
+    nombre: this.nombre?.value?.trim() ?? '',
+    categoria: categoriaFinal,
+    precio: Number(this.precio?.value ?? 0),
+    imagen: this.imagen?.value?.trim() ?? '',
+    descripcion: this.descripcion?.value?.trim() ?? '',
+    disponible: Boolean(this.disponible?.value),
+    destacado: Boolean(this.destacado?.value)
+  };
+}
 
   private convertirAValoresForm(producto: Producto): ProductoFormValues {
     return {
