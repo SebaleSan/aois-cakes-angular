@@ -37,7 +37,7 @@
       "precio": 55000,
       "imagen": "assets/img/tortas/tortaoso.jpg",
       "descripcion": "Torta para 10 personas, diseño vintage en crema de mantequilla, bizcocho de chocolate con crema de cookie&cream, trozos de oreo y manjar.",
-      "disponible": false,
+      "disponible": true,
       "destacado": false
     },
     {

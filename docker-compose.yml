@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   # Servicio principal de Angular.
   # Sirve la aplicación compilada mediante NGINX.
@@ -19,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.api
-    container_name: duocplay-json-server-container
+    container_name: aoiscakes-json-server-container
     ports:
       - "3000:3000"
     volumes:
