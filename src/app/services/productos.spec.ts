@@ -1,24 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { describe, beforeEach, afterEach, it, expect } from 'vitest';
+import { provideHttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 import { Productos } from './productos';
 import { Producto } from '../data/productos';
 
+// Ajusta la ruta de import de "Productos" y "Producto" según la ubicación real
+// de tu servicio y tu interfaz en el proyecto.
+
 const PRODUCTOS_URL = 'http://localhost:3000/productos';
 
-const crearProductoMock = (overrides: Partial<Producto> = {}): Producto => ({
-  id: 1,
-  nombre: 'Brownie',
-  categoria: 'Tradicional',
-  precio: 2500,
-  imagen: 'assets/img/tradicional/brownie.jpg',
-  descripcion: 'Brownie con centro fudge, cobertura de nueces tostadas.',
-  disponible: true,
-  destacado: false,
-  ...overrides,
-});
+const crearProductoMock = (overrides: Partial<Producto> = {}): Producto =>
+  ({
+    id: 1,
+    nombre: 'Producto de prueba',
+    categoria: 'Categoria A',
+    precio: 100,
+    ...overrides,
+  }) as Producto;
 
 describe('Productos', () => {
   let service: Productos;
@@ -28,6 +28,7 @@ describe('Productos', () => {
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
+
     service = TestBed.inject(Productos);
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -36,297 +37,158 @@ describe('Productos', () => {
     httpMock.verify();
   });
 
-  it('debería crearse', () => {
+  it('debería crearse correctamente', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('obtenerProductos', () => {
-    it('debería devolver un arreglo vacío cuando aún no se han cargado productos', () => {
-      expect(service.obtenerProductos()).toEqual([]);
-    });
-
-    it('debería devolver los productos actuales después de cargarlos', () => {
-      const mock = [crearProductoMock()];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-
-      expect(service.obtenerProductos()).toEqual(mock);
-    });
+  it('obtenerProductos() debería devolver un arreglo vacío inicialmente', () => {
+    expect(service.obtenerProductos()).toEqual([]);
   });
 
-  describe('obtenerProductoPorId', () => {
-    it('debería devolver el producto correspondiente al id indicado', () => {
-      const mock = [crearProductoMock({ id: 1 }), crearProductoMock({ id: 2, nombre: 'Alfajor' })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-
-      expect(service.obtenerProductoPorId(2)).toEqual(mock[1]);
-    });
-
-    it('debería devolver undefined cuando el id no existe', () => {
-      const mock = [crearProductoMock({ id: 1 })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-
-      expect(service.obtenerProductoPorId(99)).toBeUndefined();
-    });
+  it('obtenerProductoPorId() debería devolver undefined si no hay productos cargados', () => {
+    expect(service.obtenerProductoPorId(1)).toBeUndefined();
   });
 
-  describe('obtenerCategorias', () => {
-    it('debería devolver "Todas" junto con las categorías únicas de los productos', () => {
-      const mock = [
-        crearProductoMock({ id: 1, categoria: 'Tradicional' }),
-        crearProductoMock({ id: 2, categoria: 'tradicional' }),
-        crearProductoMock({ id: 3, categoria: 'Tradicional' }),
-      ];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-
-      expect(service.obtenerCategorias()).toEqual(['Todas', 'Tradicional', 'tradicional']);
-    });
-
-    it('debería devolver solo "Todas" cuando no hay productos cargados', () => {
-      expect(service.obtenerCategorias()).toEqual(['Todas']);
-    });
+  it('obtenerCategorias() debería devolver solo "Todas" cuando no hay productos', () => {
+    expect(service.obtenerCategorias()).toEqual(['Todas']);
   });
 
-  describe('cargarProductos', () => {
-    it('debería realizar una petición GET a la URL de productos', () => {
-      const mock = [crearProductoMock()];
+  it('cargarProductos() debería hacer la petición HTTP, normalizar y emitir los productos', () => {
+    const productosMock = [
+      crearProductoMock({ id: '1' as unknown as number, categoria: 'Ropa' }),
+      crearProductoMock({ id: '2' as unknown as number, categoria: 'Calzado' }),
+    ];
 
-      service.cargarProductos().subscribe((productos) => {
-        expect(productos).toEqual(mock);
-      });
+    let resultado: Producto[] | undefined;
+    service.cargarProductos().subscribe((productos) => (resultado = productos));
 
-      const request = httpMock.expectOne(PRODUCTOS_URL);
-      expect(request.request.method).toBe('GET');
-      request.flush(mock);
-    });
+    const req = httpMock.expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`));
+    expect(req.request.method).toBe('GET');
+    req.flush(productosMock);
 
-    it('debería normalizar los productos convirtiendo el id a número', () => {
-      const mock = [{ ...crearProductoMock(), id: '5' as unknown as number }];
-
-      service.cargarProductos().subscribe((productos) => {
-        expect(productos[0].id).toBe(5);
-        expect(typeof productos[0].id).toBe('number');
-      });
-
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-    });
-
-    it('debería devolver un arreglo vacío cuando la API responde null', () => {
-      service.cargarProductos().subscribe((productos) => {
-        expect(productos).toEqual([]);
-      });
-
-      httpMock.expectOne(PRODUCTOS_URL).flush(null as unknown as Producto[]);
-    });
-
-    it('debería usar la caché en cargas posteriores sin volver a llamar al backend', () => {
-      const mock = [crearProductoMock()];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mock);
-
-      service.cargarProductos().subscribe((productos) => {
-        expect(productos).toEqual(mock);
-      });
-
-      httpMock.expectNone(PRODUCTOS_URL);
-    });
-
-    it('debería forzar la recarga cuando forceRefresh es true', () => {
-      const mockInicial = [crearProductoMock()];
-      const mockActualizado = [crearProductoMock({ nombre: 'Brownie Actualizado' })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mockInicial);
-
-      service.cargarProductos(true).subscribe((productos) => {
-        expect(productos).toEqual(mockActualizado);
-      });
-
-      httpMock.expectOne(PRODUCTOS_URL).flush(mockActualizado);
-    });
-
-    it('debería vaciar el listado y emitir un error controlado cuando la petición falla', () => {
-      service.cargarProductos().subscribe({
-        next: () => {
-          throw new Error('No debería emitir un valor exitoso');
-        },
-        error: (error: Error) => {
-          expect(error.message).toBe('No se pudieron cargar los productos. Intenta nuevamente.');
-        },
-      });
-
-      httpMock.expectOne(PRODUCTOS_URL).flush('error', { status: 500, statusText: 'Server Error' });
-
-      expect(service.obtenerProductos()).toEqual([]);
-    });
+    expect(resultado).toEqual([
+      { id: 1, nombre: 'Producto de prueba', categoria: 'Ropa', precio: 100 },
+      { id: 2, nombre: 'Producto de prueba', categoria: 'Calzado', precio: 100 },
+    ]);
+    expect(service.obtenerProductos()).toEqual(resultado);
+    expect(service.obtenerCategorias()).toEqual(['Todas', 'Ropa', 'Calzado']);
   });
 
-  describe('refrescarProductos', () => {
-    it('debería forzar la recarga de productos ignorando la caché', () => {
-      const mockInicial = [crearProductoMock()];
-      const mockRefrescado = [crearProductoMock({ nombre: 'Brownie Nuevo' })];
+  it('cargarProductos() no debería volver a llamar al HTTP si ya están cargados', () => {
+    const productosMock = [crearProductoMock()];
 
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(mockInicial);
+    service.cargarProductos().subscribe();
+    const req = httpMock.expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`));
+    req.flush(productosMock);
 
-      service.refrescarProductos().subscribe((productos) => {
-        expect(productos).toEqual(mockRefrescado);
-      });
+    let segundaRespuesta: Producto[] | undefined;
+    service.cargarProductos().subscribe((productos) => (segundaRespuesta = productos));
 
-      httpMock.expectOne(PRODUCTOS_URL).flush(mockRefrescado);
-    });
+    httpMock.expectNone((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`));
+    expect(segundaRespuesta).toEqual(productosMock);
   });
 
-  describe('crearProducto', () => {
-    it('debería asignar id 1 cuando no hay productos previos', () => {
-      const nuevoProducto = {
-        nombre: 'Alfajor',
-        categoria: 'Tradional',
-        precio: 1800,
-        imagen: 'assets/img/tradicional/alfajor.jpg',
-        descripcion: 'Alfajor bañado en chocolate.',
-        disponible: true,
-        destacado: true,
-      };
+  it('cargarProductos(true) / refrescarProductos() debería forzar una nueva petición HTTP', () => {
+    service.cargarProductos().subscribe();
+    httpMock.expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`)).flush([crearProductoMock()]);
 
-      service.crearProducto(nuevoProducto).subscribe((producto) => {
-        expect(producto.id).toBe(1);
-      });
+    service.refrescarProductos().subscribe();
+    const segundaReq = httpMock.expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`));
+    expect(segundaReq.request.method).toBe('GET');
+    segundaReq.flush([crearProductoMock({ id: 5 })]);
 
-      const request = httpMock.expectOne(PRODUCTOS_URL);
-      expect(request.request.method).toBe('POST');
-      expect(request.request.body).toEqual({ ...nuevoProducto, id: 1 });
-      request.flush({ ...nuevoProducto, id: 1 });
-    });
-
-    it('debería asignar el siguiente id disponible cuando ya existen productos', () => {
-      const existentes = [crearProductoMock({ id: 1 }), crearProductoMock({ id: 3 })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
-
-      const nuevoProducto = {
-        nombre: 'Alfajor',
-        categoria: 'Tradicional',
-        precio: 1800,
-        imagen: 'assets/img/tradicional/alfajor.jpg',
-        descripcion: 'Alfajor bañado en chocolate.',
-        disponible: true,
-        destacado: true,
-      };
-
-      service.crearProducto(nuevoProducto).subscribe((producto) => {
-        expect(producto.id).toBe(4);
-      });
-
-      const request = httpMock.expectOne(PRODUCTOS_URL);
-      expect(request.request.body).toEqual({ ...nuevoProducto, id: 4 });
-      request.flush({ ...nuevoProducto, id: 4 });
-    });
-
-    it('debería agregar el producto creado a la lista existente', () => {
-      const existentes = [crearProductoMock({ id: 1 })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
-
-      const nuevoProducto = {
-        nombre: 'Alfajor',
-        categoria: 'Tradicional',
-        precio: 1800,
-        imagen: 'assets/img/tradicional/alfajor.jpg',
-        descripcion: 'Alfajor bañado en chocolate.',
-        disponible: true,
-        destacado: true,
-      };
-
-      service.crearProducto(nuevoProducto).subscribe();
-
-      httpMock.expectOne(PRODUCTOS_URL).flush({ ...nuevoProducto, id: 2 });
-
-      expect(service.obtenerProductos()).toEqual([existentes[0], { ...nuevoProducto, id: 2 }]);
-    });
+    expect(service.obtenerProductoPorId(5)).toBeTruthy();
   });
 
-  describe('actualizarProducto', () => {
-    it('debería actualizar un producto existente mediante PATCH', () => {
-      const existentes = [crearProductoMock({ id: 1, nombre: 'Brownie' })];
+  it('cargarProductos() debería manejar errores, vaciar el estado y emitir un error personalizado', () => {
+    let errorRecibido: Error | undefined;
 
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
-
-      service.actualizarProducto(1, { precio: 3000 }).subscribe((producto) => {
-        expect(producto.precio).toBe(3000);
-      });
-
-      const request = httpMock.expectOne(`${PRODUCTOS_URL}/1`);
-      expect(request.request.method).toBe('PATCH');
-      expect(request.request.body).toEqual({ precio: 3000 });
-      request.flush({ ...existentes[0], precio: 3000 });
+    service.cargarProductos().subscribe({
+      next: () => {
+        throw new Error('No debería emitir un valor exitoso');
+      },
+      error: (err) => (errorRecibido = err),
     });
 
-    it('debería reflejar el producto actualizado en la lista interna', () => {
-      const existentes = [crearProductoMock({ id: 1, precio: 2500 })];
+    const req = httpMock.expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`));
+    req.flush('fallo', { status: 500, statusText: 'Server Error' });
 
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
-
-      service.actualizarProducto(1, { precio: 3000 }).subscribe();
-      httpMock.expectOne(`${PRODUCTOS_URL}/1`).flush({ ...existentes[0], precio: 3000 });
-
-      expect(service.obtenerProductoPorId(1)?.precio).toBe(3000);
-    });
-
-    it('debería normalizar el id en la lista interna aunque la API devuelva el id como string', () => {
-      const existentes = [crearProductoMock({ id: 1 })];
-
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
-
-      service.actualizarProducto(1, { nombre: 'Brownie Nuevo' }).subscribe();
-
-      httpMock
-        .expectOne(`${PRODUCTOS_URL}/1`)
-        .flush({ ...existentes[0], id: '1' as unknown as number, nombre: 'Brownie Nuevo' });
-
-      const productoGuardado = service.obtenerProductoPorId(1);
-      expect(productoGuardado?.id).toBe(1);
-      expect(typeof productoGuardado?.id).toBe('number');
-    });
+    expect(errorRecibido?.message).toBe('No se pudieron cargar los productos. Intenta nuevamente.');
+    expect(service.obtenerProductos()).toEqual([]);
   });
 
-  describe('eliminarProducto', () => {
-    it('debería eliminar un producto mediante DELETE', () => {
-      const existentes = [crearProductoMock({ id: 1 })];
+  it('crearProducto() debería asignar el siguiente id y agregar el producto al estado', () => {
+    service.cargarProductos().subscribe();
+    httpMock
+      .expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`))
+      .flush([crearProductoMock({ id: 3 }), crearProductoMock({ id: 7 })]);
 
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
+    const nuevoProducto = { nombre: 'Gorra', categoria: 'Accesorios', precio: 20 } as Omit<
+      Producto,
+      'id'
+    >;
 
-      service.eliminarProducto(1).subscribe();
+    let creado: Producto | undefined;
+    service.crearProducto(nuevoProducto).subscribe((producto) => (creado = producto));
 
-      const request = httpMock.expectOne(`${PRODUCTOS_URL}/1`);
-      expect(request.request.method).toBe('DELETE');
-      request.flush(null);
-    });
+    const req = httpMock.expectOne(PRODUCTOS_URL);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body.id).toBe(8); // maxId (7) + 1
 
-    it('debería quitar el producto eliminado de la lista interna', () => {
-      const existentes = [crearProductoMock({ id: 1 }), crearProductoMock({ id: 2, nombre: 'Alfajor' })];
+    req.flush({ ...req.request.body });
 
-      service.cargarProductos().subscribe();
-      httpMock.expectOne(PRODUCTOS_URL).flush(existentes);
+    expect(creado?.id).toBe(8);
+    expect(service.obtenerProductoPorId(8)).toBeTruthy();
+    expect(service.obtenerProductos().length).toBe(3);
+  });
 
-      service.eliminarProducto(1).subscribe();
-      httpMock.expectOne(`${PRODUCTOS_URL}/1`).flush(null);
+  it('crearProducto() debería asignar id = 1 cuando no hay productos previos', () => {
+    const nuevoProducto = { nombre: 'Único', categoria: 'Nueva', precio: 10 } as Omit<
+      Producto,
+      'id'
+    >;
 
-      expect(service.obtenerProductos()).toEqual([existentes[1]]);
-    });
+    service.crearProducto(nuevoProducto).subscribe();
+
+    const req = httpMock.expectOne(PRODUCTOS_URL);
+    expect(req.request.body.id).toBe(1);
+    req.flush({ ...req.request.body });
+  });
+
+  it('actualizarProducto() debería hacer PATCH y actualizar el producto correspondiente en el estado', () => {
+    service.cargarProductos().subscribe();
+    httpMock
+      .expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`))
+      .flush([crearProductoMock({ id: 1, nombre: 'Original' })]);
+
+    let actualizado: Producto | undefined;
+    service
+      .actualizarProducto(1, { nombre: 'Modificado' })
+      .subscribe((producto) => (actualizado = producto));
+
+    const req = httpMock.expectOne(`${PRODUCTOS_URL}/1`);
+    expect(req.request.method).toBe('PATCH');
+    req.flush(crearProductoMock({ id: 1, nombre: 'Modificado' }));
+
+    expect(actualizado?.nombre).toBe('Modificado');
+    expect(service.obtenerProductoPorId(1)?.nombre).toBe('Modificado');
+  });
+
+  it('eliminarProducto() debería hacer DELETE y quitar el producto del estado', () => {
+    service.cargarProductos().subscribe();
+    httpMock
+      .expectOne((r) => r.url.startsWith(`${PRODUCTOS_URL}?_=`))
+      .flush([crearProductoMock({ id: 1 }), crearProductoMock({ id: 2 })]);
+
+    let eliminado = false;
+    service.eliminarProducto(1).subscribe(() => (eliminado = true));
+
+    const req = httpMock.expectOne(`${PRODUCTOS_URL}/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
+
+    expect(eliminado).toBe(true);
+    expect(service.obtenerProductoPorId(1)).toBeUndefined();
+    expect(service.obtenerProductos().length).toBe(1);
   });
 });

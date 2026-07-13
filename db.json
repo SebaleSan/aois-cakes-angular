@@ -119,17 +119,6 @@
       "descripcion": "Mini tartaleta crujiente con frutas frescas y crema pastelera suave.",
       "disponible": true,
       "destacado": false
-    },
-    {
-      "nombre": "asdasdasd",
-      "categoria": "asdasdads",
-      "precio": 123123,
-      "imagen": "asdasdasdasd",
-      "descripcion": "asdasdasdasdasdasd",
-      "disponible": true,
-      "destacado": false,
-      "id": 13
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
