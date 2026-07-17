@@ -105,6 +105,7 @@
 <li>Búsqueda de productos.</li>
 <li>Filtrado por categorías.</li>
 <li>Visualización del detalle de productos.</li>
+<li>Panel de administración (CRUD de productos).</li>
 <li>Inicio de sesión simulado.</li>
 <li>Recuperación de contraseña simulada utilizando LocalStorage.</li>
 <li>Diseño responsive con Bootstrap.</li>
@@ -118,11 +119,141 @@
 <li>CSS3</li>
 <li>LocalStorage</li>
 <li>Vitest (pruebas unitarias)</li>
+<li>Json Server (base de datos json)</li>
+<li>Docker / Docker Compose (despliegue en contenedores)</li>
 </ul>
 <p>This project was generated using <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 22.0.1.</p>
+<h2>Requisitos previos</h2>
+<ul>
+<li>Node.js (versión compatible con Angular 22)</li>
+<li>npm</li>
+<li>Docker y Docker Compose (opcional, solo si se desea correr la app en contenedores)</li>
+</ul>
+<h2>Instalación</h2>
+<p>Clona el repositorio e instala las dependencias:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div><h2>Uso de Json Server (base de datos simulada)</h2>
+<p>Este proyecto <strong>no tiene backend propio</strong>: toda la persistencia de datos (productos, usuarios) se maneja con <a href="https://github.com/typicode/json-server">json-server</a>, que expone el archivo <code>db.json</code> como una API REST.</p>
+<h3>Instalar y ejecutar json-server</h3>
+<p>Antes de levantar la aplicación Angular, json-server debe estar corriendo. En una terminal aparte:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npx json-server&#64;0.17.4 --watch db.json --port 3000</code></pre></div><p>Esto expone la API en <code>http://localhost:3000</code>. Mientras esta terminal esté abierta, cualquier cambio hecho desde la app (crear, editar, eliminar productos) se guarda directamente en <code>db.json</code>.</p>
+<blockquote>
+<p><strong>Importante:</strong> json-server debe estar corriendo <em>antes</em> de iniciar <code>ng serve</code>, o las peticiones desde la app fallarán al no encontrar el servidor.</p>
+</blockquote>
+<h3>Endpoints disponibles</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/productos</code></td>
+<td>Lista todos los productos</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/productos/:id</code></td>
+<td>Obtiene un producto por ID</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/productos</code></td>
+<td>Crea un nuevo producto</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/productos/:id</code></td>
+<td>Actualiza un producto existente</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/productos/:id</code></td>
+<td>Elimina un producto</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/usuarios</code></td>
+<td>Lista todos los usuarios</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/usuarios?usuario=x&amp;password=y</code></td>
+<td>Consulta usada para el login</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/usuarios</code></td>
+<td>Registra un nuevo usuario</td>
+</tr>
+</tbody>
+</table>
+<h3>Estructura de <code>db.json</code></h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;productos&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;nombre&quot;: &quot;Brownie&quot;,
+      &quot;categoria&quot;: &quot;Tradicional&quot;,
+      &quot;precio&quot;: 2500,
+      &quot;imagen&quot;: &quot;assets/img/tradicional/brownie.jpg&quot;,
+      &quot;descripcion&quot;: &quot;Brownie con centro fudge, cobertura de nueces tostadas.&quot;,
+      &quot;disponible&quot;: true,
+      &quot;destacado&quot;: false
+    }
+  ],
+  &quot;usuarios&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;nombre&quot;: &quot;Administrador Aois Cakes&quot;,
+      &quot;usuario&quot;: &quot;admin&quot;,
+      &quot;correo&quot;: &quot;admin&#64;aoiscakes.cl&quot;,
+      &quot;password&quot;: &quot;Admin123&quot;,
+      &quot;direccion&quot;: &quot;&quot;,
+      &quot;fechaNacimiento&quot;: &quot;1985-07-20&quot;,
+      &quot;rol&quot;: &quot;admin&quot;
+    }
+  ]
+}</code></pre></div><h3>Cuentas de prueba</h3>
+<p>Para probar el inicio de sesión sin necesidad de registrar un usuario nuevo:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Rol</th>
+<th>Usuario</th>
+<th>Contraseña</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Administrador</td>
+<td><code>admin</code></td>
+<td><code>Admin123</code></td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td><code>cliente1</code></td>
+<td><code>Cliente123</code></td>
+</tr>
+</tbody>
+</table>
+<p>El rol <code>admin</code> habilita el acceso al panel de administración (<code>/admin</code>), donde se gestionan los productos del catálogo.</p>
 <h2>Development server</h2>
-<p>To start a local development server, run:</p>
+<p>Con json-server ya corriendo, en otra terminal inicia el servidor de desarrollo de Angular:</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng serve</code></pre></div><p>Once the server is running, open your browser and navigate to <code>http://localhost:4200/</code>. The application will automatically reload whenever you modify any of the source files.</p>
+<h2>Ejecutar con Docker</h2>
+<p>El proyecto también puede levantarse completo (Angular + json-server) usando Docker Compose, sin necesidad de instalar Node.js localmente:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker compose up --build</code></pre></div><p>Esto construye y levanta dos contenedores:</p>
+<ul>
+<li><strong>angular-app</strong>: compila la aplicación Angular y la sirve mediante Nginx.</li>
+<li><strong>json-server-api</strong>: expone la API REST a partir de <code>db.json</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Nota:</strong> para que los datos persistan entre reinicios de los contenedores, <code>db.json</code> debe estar montado como volumen en el <code>docker-compose.yml</code>; de lo contrario los cambios se pierden cada vez que se reconstruye el contenedor.</p>
+</blockquote>
 <h2>Code scaffolding</h2>
 <p>Angular CLI includes powerful code scaffolding tools. To generate a new component, run:</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng generate component component-name</code></pre></div><p>For a complete list of available schematics (such as <code>components</code>, <code>directives</code>, or <code>pipes</code>), run:</p>
@@ -134,6 +265,14 @@
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng test</code></pre></div><h2>Running end-to-end tests</h2>
 <p>For end-to-end (e2e) testing, run:</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng e2e</code></pre></div><p>Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.</p>
+<h2>Limitaciones conocidas (contexto académico)</h2>
+<p>Este proyecto es una simulación desarrollada con fines educativos, por lo que se tomaron algunas decisiones simplificadas que no serían apropiadas en un entorno de producción real:</p>
+<ul>
+<li>No existe autenticación real basada en tokens (JWT); la sesión se guarda en <code>localStorage</code> del navegador.</li>
+<li>json-server no valida reglas de negocio ni permisos a nivel de servidor: cualquier cliente con acceso a la URL puede consultar o modificar los datos directamente.</li>
+<li>No hay control de concurrencia: si dos usuarios editan el mismo producto al mismo tiempo, gana la última escritura.</li>
+</ul>
+<p>En un entorno real, estas limitaciones se resolverían con un backend propio, hash de contraseñas (bcrypt), autenticación JWT y validación de permisos en el servidor.</p>
 <h2>Additional Resources</h2>
 <p>For more information on using the Angular CLI, including detailed command references, visit the <a href="https://angular.dev/tools/cli">Angular CLI Overview and Command Reference</a> page.</p>
 

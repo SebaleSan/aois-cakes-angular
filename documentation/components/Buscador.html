@@ -140,6 +140,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -244,6 +250,9 @@
                             <li>
                                 <a href="#cerrar" >cerrar</a>
                             </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -262,7 +271,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, productosService: <a href="../injectables/Productos.html" target="_self">Productos</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -289,6 +298,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>productosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/Productos.html" target="_self" >Productos</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -334,8 +367,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/components/buscador/buscador.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/components/buscador/buscador.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -371,8 +404,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/components/buscador/buscador.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/components/buscador/buscador.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -402,6 +435,43 @@
             <tr>
                 <td class="col-md-4">
 <code>cerrar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/components/buscador/buscador.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
                 </td>
             </tr>
 
@@ -481,7 +551,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>CATEGORIAS</code>
+                        <i>Default value : </i><code>[&#x27;Todas&#x27;]</code>
                     </td>
                 </tr>
                     <tr>
@@ -561,11 +631,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, OnInit } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { CATEGORIAS } from &#x27;../../data/productos&#x27;;
+import { Productos } from &#x27;../../services/productos&#x27;;
 
 @Component({
   selector: &#x27;app-buscador&#x27;,
@@ -574,15 +644,28 @@ import { CATEGORIAS } from &#x27;../../data/productos&#x27;;
   templateUrl: &#x27;./buscador.html&#x27;,
   styleUrl: &#x27;./buscador.css&#x27;
 })
-export class Buscador {
+export class Buscador implements OnInit {
   panelAbierto &#x3D; false;
 
   busqueda &#x3D; &#x27;&#x27;;
   categoriaSeleccionada &#x3D; &#x27;Todas&#x27;;
 
-  categorias: string[] &#x3D; CATEGORIAS;
+  categorias: string[] &#x3D; [&#x27;Todas&#x27;];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private productosService: Productos,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+  this.productosService.cargarProductos().subscribe();
+
+  this.productosService.productos$.subscribe(() &#x3D;&gt; {
+    this.categorias &#x3D; this.productosService.obtenerCategorias();
+    this.cdr.detectChanges();
+  });
+}
 
   abrir(): void {
     this.panelAbierto &#x3D; true;
@@ -672,7 +755,7 @@ export class Buscador {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><button class="btn btn-lupa" (click)="abrir()">  <i class="fas fa-search"></i></button><div class="busqueda-overlay" *ngIf="panelAbierto" (click)="cerrar()">  <div class="busqueda-panel" (click)="$event.stopPropagation()">    <div class="d-flex justify-content-between align-items-center mb-4">      <h2 class="h5 mb-0">Buscar productos</h2>      <button class="btn btn-close" (click)="cerrar()"></button>    </div>    <input      type="text"      class="form-control form-control-lg mb-3"      placeholder="Nombre, descripción, categoría..."      [(ngModel)]="busqueda"      (keyup.enter)="buscar()">    <select class="form-select mb-4" [(ngModel)]="categoriaSeleccionada">      <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>    </select>    <button class="btn w-100 main-btn" (click)="buscar()">      Buscar    </button>  </div></div></div>'
-    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'ProductoForm', 'selector': 'app-producto-form'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Buscador'};
 </script>

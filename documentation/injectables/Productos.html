@@ -1,0 +1,1492 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aois-cakes-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aois-cakes-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >Productos</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/productos.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio central para la gestión de productos consumidos desde la API REST.</p>
+<p>Este servicio utiliza un <a href="BehaviorSubject">BehaviorSubject</a> como fuente única de verdad
+(single source of truth) para el estado de los productos en memoria. Esto permite:</p>
+<ul>
+<li>Que múltiples componentes se suscriban a productos$ y reciban actualizaciones
+automáticas cada vez que la lista cambia (crear, actualizar, eliminar).</li>
+<li>Evitar llamadas HTTP redundantes mediante un flag de caché (cargados).</li>
+<li>Forzar la actualización de las vistas sin necesidad de recargar el componente,
+ya que cualquier .next() sobre el subject notifica a todos los suscriptores.</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">export class ProductosListComponent {
+  private readonly productosService = inject(Productos);
+  productos$ = this.productosService.productos$;
+
+
+  ngOnInit(): void {
+    this.productosService.cargarProductos().subscribe();
+  }
+}</code></pre></div>
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargados" >cargados</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#http" >http</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#productos$" >productos$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#productosSubject" >productosSubject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actualizarProducto" >actualizarProducto</a>
+                            </li>
+                            <li>
+                                <a href="#cargarProductos" >cargarProductos</a>
+                            </li>
+                            <li>
+                                <a href="#crearProducto" >crearProducto</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarProducto" >eliminarProducto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizarProducto" >normalizarProducto</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerCategorias" >obtenerCategorias</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerProductoPorId" >obtenerProductoPorId</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerProductos" >obtenerProductos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#obtenerSiguienteId" >obtenerSiguienteId</a>
+                            </li>
+                            <li>
+                                <a href="#refrescarProductos" >refrescarProductos</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actualizarProducto"></a>
+                    <span class="name">
+                        <span ><b>actualizarProducto</b></span>
+                        <a href="#actualizarProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>actualizarProducto(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, cambios: <a href="../interfaces/Producto.html" target="_self">Partial&lt;Producto&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/app/services/productos.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza parcialmente un producto existente, tanto en la API como en el estado local.</p>
+<p>Utiliza PATCH para modificar solo los campos indicados. Al recibir la
+respuesta, reemplaza el producto correspondiente dentro del arreglo local
+ y emite el nuevo estado, propagando el
+cambio a todas las vistas suscritas.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del producto a actualizar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>cambios</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Producto.html" target="_self" >Partial&lt;Producto&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Objeto parcial con los campos a modificar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Observable&lt;Producto&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable que emite el producto actualizado (ya normalizado).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarProductos"></a>
+                    <span class="name">
+                        <span ><b>cargarProductos</b></span>
+                        <a href="#cargarProductos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarProductos(forceRefresh: unknown)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/services/productos.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga los productos desde la API y actualiza el estado compartido (productosSubject).</p>
+<p>nueva petición HTTP aunque los productos ya hayan sido cargados anteriormente.</p>
+<p>Comportamiento clave para el manejo de estado con BehaviorSubject:</p>
+<ul>
+<li>Si cargados es true y no se fuerza el refresco, retorna el valor
+en caché envuelto en of() sin hacer petición HTTP, evitando llamadas
+innecesarias a la API.</li>
+<li>Si hace la petición, normaliza cada producto (<a href="normalizarProducto">normalizarProducto</a>)
+y emite el nuevo arreglo mediante productosSubject.next(), lo cual
+notifica automáticamente a todos los componentes suscritos a productos$.</li>
+<li>En caso de error, limpia el estado (next([])) y relanza un error
+controlado con un mensaje amigable para el usuario.</li>
+</ul>
+<p>&#39;No se pudieron cargar los productos. Intenta nuevamente.&#39;</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>forceRefresh</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>Si es true, ignora la caché interna y fuerza una
+nueva petición HTTP aunque los productos ya hayan sido cargados anteriormente.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Observable&lt;Producto[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable que emite el arreglo de productos normalizado.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearProducto"></a>
+                    <span class="name">
+                        <span ><b>crearProducto</b></span>
+                        <a href="#crearProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crearProducto(producto: <a href="../interfaces/Producto.html" target="_self">Omit&lt;Producto | id&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/services/productos.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Crea un nuevo producto en la API y lo agrega al estado local.</p>
+<p>(se genera automáticamente mediante <a href="obtenerSiguienteId">obtenerSiguienteId</a>).</p>
+<p>Tras la creación exitosa, el nuevo producto se agrega de forma inmutable
+al arreglo existente y se emite el nuevo estado con productosSubject.next(),
+lo que actualiza automáticamente cualquier vista suscrita a productos$
+sin necesidad de volver a llamar a cargarProductos().</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>producto</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Producto.html" target="_self" >Omit&lt;Producto | id&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Datos del nuevo producto, sin incluir el id
+(se genera automáticamente mediante <a href="obtenerSiguienteId">obtenerSiguienteId</a>).</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Observable&lt;Producto&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable que emite el producto recién creado (ya normalizado).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarProducto"></a>
+                    <span class="name">
+                        <span ><b>eliminarProducto</b></span>
+                        <a href="#eliminarProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarProducto(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/services/productos.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Elimina un producto tanto de la API como del estado local.</p>
+<p>Tras confirmar la eliminación en el backend, filtra el producto eliminado
+del arreglo local y emite el nuevo estado, actualizando
+automáticamente las vistas suscritas sin necesidad de recargar la lista completa.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del producto a eliminar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable<void> que se completa cuando la eliminación es exitosa.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizarProducto"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizarProducto</b></span>
+                        <a href="#normalizarProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizarProducto(producto: <a href="../interfaces/Producto.html" target="_self">Producto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/services/productos.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Normaliza un producto recibido desde la API, asegurando que el campo id
+sea siempre de tipo number.</p>
+<p>Es necesario porque algunas respuestas de la API (o de json-server)
+pueden devolver el id como string, lo que rompería comparaciones
+estrictas como producto.id === id en otros métodos del servicio.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>producto</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Producto.html" target="_self" >Producto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Producto recibido desde la API.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Producto</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Una copia del producto con el id normalizado a tipo number.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerCategorias"></a>
+                    <span class="name">
+                        <span ><b>obtenerCategorias</b></span>
+                        <a href="#obtenerCategorias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerCategorias()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/services/productos.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene la lista de categorías únicas presentes en los productos cargados,
+incluyendo la opción &#39;Todas&#39; al inicio para su uso en filtros de UI.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un arreglo de strings con las categorías disponibles, precedido por &#39;Todas&#39;.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerProductoPorId"></a>
+                    <span class="name">
+                        <span ><b>obtenerProductoPorId</b></span>
+                        <a href="#obtenerProductoPorId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerProductoPorId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/services/productos.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Busca un producto por su identificador dentro del estado actual en memoria.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador numérico del producto a buscar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Producto | undefined</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>El producto encontrado, o undefined si no existe en el estado actual.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerProductos"></a>
+                    <span class="name">
+                        <span ><b>obtenerProductos</b></span>
+                        <a href="#obtenerProductos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerProductos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/services/productos.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve de forma síncrona el snapshot actual de productos en memoria.</p>
+<p>Útil cuando se necesita el valor actual sin suscribirse (por ejemplo,
+dentro de otro método del servicio). No dispara ninguna petición HTTP;
+si los productos aún no se han cargado, devolverá un arreglo vacío.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Producto[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>El arreglo de productos actualmente almacenado en el BehaviorSubject.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerSiguienteId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>obtenerSiguienteId</b></span>
+                        <a href="#obtenerSiguienteId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerSiguienteId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/services/productos.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Calcula el siguiente ID disponible para un nuevo producto, basado en el
+ID máximo actualmente presente en el estado en memoria.</p>
+<p> Esta estrategia de generación de ID es local y asume que la API
+respeta el ID enviado desde el cliente. Es adecuada para entornos de
+desarrollo tipo json-server, pero no debería usarse en producción,
+donde el ID debería generarse en el backend para evitar problemas.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>El siguiente ID numérico disponible (1 si no hay productos aún).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refrescarProductos"></a>
+                    <span class="name">
+                        <span ><b>refrescarProductos</b></span>
+                        <a href="#refrescarProductos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refrescarProductos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/services/productos.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fuerza una recarga completa de los productos desde la API, ignorando la caché.</p>
+<p>Es un atajo semántico equivalente a cargarProductos(true), pensado para
+usarse tras acciones externas que puedan haber modificado los datos en el
+backend.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Producto.html" target="_self" >Observable&lt;Producto[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable que emite el arreglo de productos actualizado.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargados"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargados</b></span>
+                        <a href="#cargados"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/productos.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bandera de caché. Evita repetir la petición HTTP a la API si los
+productos ya fueron cargados previamente, salvo que se solicite
+explícitamente un refresco (forceRefresh).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="http"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>http</b></span>
+                        <a href="#http"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(HttpClient)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/services/productos.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productos$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>productos$</b></span>
+                        <a href="#productos$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.productosSubject.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/services/productos.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable de solo lectura derivado del BehaviorSubject.</p>
+<p>Se expone como Observable (no como Subject) para que los componentes
+consumidores no puedan emitir valores directamente, solo suscribirse.
+Al ser un BehaviorSubject internamente, cualquier componente que se
+suscriba recibirá inmediatamente el último valor emitido, incluso si
+se suscribe después de que la carga inicial ya ocurrió.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productosSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>productosSubject</b></span>
+                        <a href="#productosSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;Producto[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/services/productos.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fuente de estado interna y privada. Solo el propio servicio puede
+emitir nuevos valores (.next()) para garantizar que el estado
+se modifique únicamente a través de los métodos públicos controlados.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Injectable, inject } from &#x27;@angular/core&#x27;;
+import { BehaviorSubject, Observable, of, throwError } from &#x27;rxjs&#x27;;
+import { catchError, map, tap } from &#x27;rxjs&#x27;;
+
+import { Producto } from &#x27;../data/productos&#x27;;
+
+const PRODUCTOS_URL &#x3D; &#x27;http://localhost:3000/productos&#x27;;
+
+/**
+ * Servicio central para la gestión de productos consumidos desde la API REST.
+ *
+ * @remarks
+ * Este servicio utiliza un {@link BehaviorSubject} como fuente única de verdad
+ * (single source of truth) para el estado de los productos en memoria. Esto permite:
+ * - Que múltiples componentes se suscriban a productos$ y reciban actualizaciones
+ *   automáticas cada vez que la lista cambia (crear, actualizar, eliminar).
+ * - Evitar llamadas HTTP redundantes mediante un flag de caché (cargados).
+ * - Forzar la actualización de las vistas sin necesidad de recargar el componente,
+ *   ya que cualquier .next() sobre el subject notifica a todos los suscriptores.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;typescript
+ * export class ProductosListComponent {
+ *   private readonly productosService &#x3D; inject(Productos);
+ *   productos$ &#x3D; this.productosService.productos$;
+ *
+ *   ngOnInit(): void {
+ *     this.productosService.cargarProductos().subscribe();
+ *   }
+ * }
+ * &#x60;&#x60;&#x60;
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class Productos {
+  private readonly http &#x3D; inject(HttpClient);
+
+  /**
+   * Fuente de estado interna y privada. Solo el propio servicio puede
+   * emitir nuevos valores (.next()) para garantizar que el estado
+   * se modifique únicamente a través de los métodos públicos controlados.
+   */
+  private readonly productosSubject &#x3D; new BehaviorSubject&lt;Producto[]&gt;([]);
+
+  /**
+   * Bandera de caché. Evita repetir la petición HTTP a la API si los
+   * productos ya fueron cargados previamente, salvo que se solicite
+   * explícitamente un refresco (forceRefresh).
+   */
+  private cargados &#x3D; false;
+
+  /**
+   * Observable de solo lectura derivado del BehaviorSubject.
+   *
+   * @remarks
+   * Se expone como Observable (no como Subject) para que los componentes
+   * consumidores no puedan emitir valores directamente, solo suscribirse.
+   * Al ser un BehaviorSubject internamente, cualquier componente que se
+   * suscriba recibirá inmediatamente el último valor emitido, incluso si
+   * se suscribe después de que la carga inicial ya ocurrió.
+   */
+  readonly productos$ &#x3D; this.productosSubject.asObservable();
+
+  /**
+   * Devuelve de forma síncrona el snapshot actual de productos en memoria.
+   *
+   * @returns El arreglo de productos actualmente almacenado en el BehaviorSubject.
+   *
+   * @remarks
+   * Útil cuando se necesita el valor actual sin suscribirse (por ejemplo,
+   * dentro de otro método del servicio). No dispara ninguna petición HTTP;
+   * si los productos aún no se han cargado, devolverá un arreglo vacío.
+   */
+  obtenerProductos(): Producto[] {
+    return this.productosSubject.value;
+  }
+
+  /**
+   * Busca un producto por su identificador dentro del estado actual en memoria.
+   *
+   * @param id - Identificador numérico del producto a buscar.
+   * @returns El producto encontrado, o undefined si no existe en el estado actual.
+   */
+  obtenerProductoPorId(id: number): Producto | undefined {
+    return this.productosSubject.value.find((producto) &#x3D;&gt; producto.id &#x3D;&#x3D;&#x3D; id);
+  }
+
+  /**
+   * Obtiene la lista de categorías únicas presentes en los productos cargados,
+   * incluyendo la opción &#x27;Todas&#x27; al inicio para su uso en filtros de UI.
+   *
+   * @returns Un arreglo de strings con las categorías disponibles, precedido por &#x27;Todas&#x27;.
+   */
+  obtenerCategorias(): string[] {
+    const categorias &#x3D; new Set(this.productosSubject.value.map((producto) &#x3D;&gt; producto.categoria));
+
+    return [&#x27;Todas&#x27;, ...categorias];
+  }
+
+  /**
+   * Carga los productos desde la API y actualiza el estado compartido (productosSubject).
+   *
+   * @param forceRefresh - Si es true, ignora la caché interna y fuerza una
+   * nueva petición HTTP aunque los productos ya hayan sido cargados anteriormente.
+   * @returns Un Observable que emite el arreglo de productos normalizado.
+   *
+   * @remarks
+   * Comportamiento clave para el manejo de estado con BehaviorSubject:
+   * - Si cargados es true y no se fuerza el refresco, retorna el valor
+   *   en caché envuelto en of() sin hacer petición HTTP, evitando llamadas
+   *   innecesarias a la API.
+   * - Si hace la petición, normaliza cada producto ({@link normalizarProducto})
+   *   y emite el nuevo arreglo mediante productosSubject.next(), lo cual
+   *   notifica automáticamente a todos los componentes suscritos a productos$.
+   * - En caso de error, limpia el estado (next([])) y relanza un error
+   *   controlado con un mensaje amigable para el usuario.
+   *
+   * @throws Error Si la petición HTTP falla, se emite un error con el mensaje
+   * &#x27;No se pudieron cargar los productos. Intenta nuevamente.&#x27;
+   */
+  cargarProductos(forceRefresh &#x3D; false): Observable&lt;Producto[]&gt; {
+    if (forceRefresh) {
+      this.cargados &#x3D; false;
+    }
+
+    if (this.cargados) {
+      return of(this.productosSubject.value);
+    }
+
+    return this.http.get&lt;Producto[]&gt;(&#x60;${PRODUCTOS_URL}?_&#x3D;${Date.now()}&#x60;).pipe(
+      map((productos) &#x3D;&gt; (productos ?? []).map((producto) &#x3D;&gt; this.normalizarProducto(producto))),
+      tap((productos) &#x3D;&gt; {
+        this.cargados &#x3D; true;
+        this.productosSubject.next(productos);
+      }),
+      catchError((error) &#x3D;&gt; {
+        this.productosSubject.next([]);
+        return throwError(
+          () &#x3D;&gt; new Error(&#x27;No se pudieron cargar los productos. Intenta nuevamente.&#x27;),
+        );
+      }),
+    );
+  }
+
+  /**
+   * Fuerza una recarga completa de los productos desde la API, ignorando la caché.
+   *
+   * @returns Un Observable que emite el arreglo de productos actualizado.
+   *
+   * @remarks
+   * Es un atajo semántico equivalente a cargarProductos(true), pensado para
+   * usarse tras acciones externas que puedan haber modificado los datos en el
+   * backend.
+   */
+  refrescarProductos(): Observable&lt;Producto[]&gt; {
+    return this.cargarProductos(true);
+  }
+
+  /**
+   * Calcula el siguiente ID disponible para un nuevo producto, basado en el
+   * ID máximo actualmente presente en el estado en memoria.
+   *
+   * @returns El siguiente ID numérico disponible (1 si no hay productos aún).
+   *
+   * @remarks
+   *  Esta estrategia de generación de ID es local y asume que la API
+   * respeta el ID enviado desde el cliente. Es adecuada para entornos de
+   * desarrollo tipo json-server, pero no debería usarse en producción,
+   * donde el ID debería generarse en el backend para evitar problemas.
+   */
+  private obtenerSiguienteId(): number {
+    const productos &#x3D; this.productosSubject.value;
+
+    if (productos.length &#x3D;&#x3D;&#x3D; 0) {
+      return 1;
+    }
+
+    const maxId &#x3D; Math.max(...productos.map((producto) &#x3D;&gt; producto.id));
+    return maxId + 1;
+  }
+
+  /**
+   * Crea un nuevo producto en la API y lo agrega al estado local.
+   *
+   * @param producto - Datos del nuevo producto, sin incluir el id
+   * (se genera automáticamente mediante {@link obtenerSiguienteId}).
+   * @returns Un Observable que emite el producto recién creado (ya normalizado).
+   *
+   * @remarks
+   * Tras la creación exitosa, el nuevo producto se agrega de forma inmutable
+   * al arreglo existente y se emite el nuevo estado con productosSubject.next(),
+   * lo que actualiza automáticamente cualquier vista suscrita a productos$
+   * sin necesidad de volver a llamar a cargarProductos().
+   */
+  crearProducto(producto: Omit&lt;Producto, &#x27;id&#x27;&gt;): Observable&lt;Producto&gt; {
+    const siguienteId &#x3D; this.obtenerSiguienteId();
+    const productoConId &#x3D; { ...producto, id: siguienteId };
+
+    return this.http.post&lt;Producto&gt;(PRODUCTOS_URL, productoConId).pipe(
+      tap((nuevoProducto) &#x3D;&gt; {
+        this.productosSubject.next([
+          ...this.productosSubject.value,
+          this.normalizarProducto(nuevoProducto),
+        ]);
+      }),
+    );
+  }
+
+  /**
+   * Actualiza parcialmente un producto existente, tanto en la API como en el estado local.
+   *
+   * @param id - Identificador del producto a actualizar.
+   * @param cambios - Objeto parcial con los campos a modificar.
+   * @returns Un Observable que emite el producto actualizado (ya normalizado).
+   *
+   * @remarks
+   * Utiliza PATCH para modificar solo los campos indicados. Al recibir la
+   * respuesta, reemplaza el producto correspondiente dentro del arreglo local
+   *  y emite el nuevo estado, propagando el
+   * cambio a todas las vistas suscritas.
+   */
+  actualizarProducto(id: number, cambios: Partial&lt;Producto&gt;): Observable&lt;Producto&gt; {
+    return this.http.patch&lt;Producto&gt;(&#x60;${PRODUCTOS_URL}/${id}&#x60;, cambios).pipe(
+      tap((productoActualizado) &#x3D;&gt; {
+        this.productosSubject.next(
+          this.productosSubject.value.map((producto) &#x3D;&gt;
+            producto.id &#x3D;&#x3D;&#x3D; id ? this.normalizarProducto(productoActualizado) : producto,
+          ),
+        );
+      }),
+    );
+  }
+
+  /**
+   * Elimina un producto tanto de la API como del estado local.
+   *
+   * @param id - Identificador del producto a eliminar.
+   * @returns Un Observable&lt;void&gt; que se completa cuando la eliminación es exitosa.
+   *
+   * @remarks
+   * Tras confirmar la eliminación en el backend, filtra el producto eliminado
+   * del arreglo local y emite el nuevo estado, actualizando
+   * automáticamente las vistas suscritas sin necesidad de recargar la lista completa.
+   */
+  eliminarProducto(id: number): Observable&lt;void&gt; {
+    return this.http.delete&lt;void&gt;(&#x60;${PRODUCTOS_URL}/${id}&#x60;).pipe(
+      tap(() &#x3D;&gt; {
+        this.productosSubject.next(
+          this.productosSubject.value.filter((producto) &#x3D;&gt; producto.id !&#x3D;&#x3D; id),
+        );
+      }),
+    );
+  }
+
+  /**
+   * Normaliza un producto recibido desde la API, asegurando que el campo id
+   * sea siempre de tipo number.
+   *
+   * @param producto - Producto recibido desde la API.
+   * @returns Una copia del producto con el id normalizado a tipo number.
+   *
+   * @remarks
+   * Es necesario porque algunas respuestas de la API (o de json-server)
+   * pueden devolver el id como string, lo que rompería comparaciones
+   * estrictas como producto.id &#x3D;&#x3D;&#x3D; id en otros métodos del servicio.
+   */
+  private normalizarProducto(producto: Producto): Producto {
+    return {
+      ...producto,
+      id: Number(producto.id),
+    };
+  }
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'Productos.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

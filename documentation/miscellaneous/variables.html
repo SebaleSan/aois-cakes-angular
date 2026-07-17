@@ -136,7 +136,10 @@
                             <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
                         </li>
                         <li>
-                            <a href="#CATEGORIAS" title="src/app/data/productos.ts" ><b>CATEGORIAS</b>&nbsp;&nbsp;&nbsp;(src/.../productos.ts)</a>
+                            <a href="#CLAVE_COMPRA_RECIENTE" title="src/app/services/carro.ts" ><b>CLAVE_COMPRA_RECIENTE</b>&nbsp;&nbsp;&nbsp;(src/.../carro.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CLAVE_HISTORIAL_COMPRAS" title="src/app/services/carro.ts" ><b>CLAVE_HISTORIAL_COMPRAS</b>&nbsp;&nbsp;&nbsp;(src/.../carro.ts)</a>
                         </li>
                         <li>
                             <a href="#CLAVE_SESION" title="src/app/services/auth.ts" ><b>CLAVE_SESION</b>&nbsp;&nbsp;&nbsp;(src/.../auth.ts)</a>
@@ -154,7 +157,7 @@
                             <a href="#monaco" title="documentation/template-playground/template-editor.service.ts" ><b>monaco</b>&nbsp;&nbsp;&nbsp;(documentation/.../template-editor.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#PRODUCTOS" title="src/app/data/productos.ts" ><b>PRODUCTOS</b>&nbsp;&nbsp;&nbsp;(src/.../productos.ts)</a>
+                            <a href="#PRODUCTOS_URL" title="src/app/services/productos.ts" ><b>PRODUCTOS_URL</b>&nbsp;&nbsp;&nbsp;(src/.../productos.ts)</a>
                         </li>
                         <li>
                             <a href="#routes" title="src/app/app.routes.ts" ><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
@@ -232,6 +235,7 @@
                         <i>Default value : </i><code>{
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
     provideRouter(routes)
   ]
 }</code>
@@ -242,34 +246,28 @@
         </tbody>
     </table>
 </section>
-    <h3>src/app/data/productos.ts</h3>
+    <h3>src/app/services/carro.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="CATEGORIAS"></a>
+                    <a name="CLAVE_COMPRA_RECIENTE"></a>
                     <span class="name">
-                        <span ><b>CATEGORIAS</b></span>
-                        <a href="#CATEGORIAS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>CLAVE_COMPRA_RECIENTE</b></span>
+                        <a href="#CLAVE_COMPRA_RECIENTE"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>string[]</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  &#x27;Todas&#x27;,
-  &#x27;Tortas&#x27;,
-  &#x27;Catering&#x27;,
-  &#x27;Cookies&#x27;,
-  &#x27;Tradicional&#x27;
-]</code>
+                        <i>Default value : </i><code>&#x27;aoisUltimaCompra&#x27;</code>
                     </td>
                 </tr>
 
@@ -280,152 +278,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="PRODUCTOS"></a>
+                    <a name="CLAVE_HISTORIAL_COMPRAS"></a>
                     <span class="name">
-                        <span ><b>PRODUCTOS</b></span>
-                        <a href="#PRODUCTOS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>CLAVE_HISTORIAL_COMPRAS</b></span>
+                        <a href="#CLAVE_HISTORIAL_COMPRAS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Producto.html" target="_self" >Producto[]</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    id: 1,
-    nombre: &#x27;Brownie&#x27;,
-    categoria: &#x27;Tradicional&#x27;,
-    precio: 2500,
-    imagen: &#x27;assets/img/tradicional/brownie.jpg&#x27;,
-    descripcion: &#x27;Brownie con centro fudge, cobertura de nueces tostadas.&#x27;,
-    disponible: true,
-    destacado: false,
-  },
-  {
-    id: 2,
-    nombre: &#x27;Lemon Pie&#x27;,
-    categoria: &#x27;Tradicional&#x27;,
-    precio: 14600,
-    imagen: &#x27;assets/img/tradicional/lemonPie.jpg&#x27;,
-    descripcion: &#x27;Base crumble, crema de limón y cobertura de merengue italiano.&#x27;,
-    disponible: true,
-    destacado: true,
-  },
-  {
-    id: 3,
-    nombre: &#x27;Empolvados&#x27;,
-    categoria: &#x27;Tradicional&#x27;,
-    precio: 1000,
-    imagen: &#x27;assets/img/tradicional/empolvados-copia.jpg&#x27;,
-    descripcion: &#x27;Tradicional empolvado chileno relleno con manjar clásico.&#x27;,
-    disponible: true,
-    destacado: false,
-  },
-  {
-    id: 4,
-    nombre: &#x27;Torta Osos&#x27;,
-    categoria: &#x27;Tortas&#x27;,
-    precio: 55000,
-    imagen: &#x27;assets/img/tortas/tortaoso.jpg&#x27;,
-    descripcion: &#x27;Torta para 10 personas, diseño vintage en crema de mantequilla, bizcocho de chocolate con crema de cookie&amp;cream, trozos de oreo y manjar.&#x27;,
-    disponible: true,
-    destacado: false,
-  },
-  {
-    id: 5,
-    nombre: &#x27;Torta de Bodas&#x27;,
-    categoria: &#x27;Tortas&#x27;,
-    precio: 120000,
-    imagen: &#x27;assets/img/tortas/tortabodas.jpg&#x27;,
-    descripcion: &#x27;Bizcocho de amapola con crema pastelera vainilla, mermelada frambuesa y crema tipo cheesecake. Dos pisos para 40 personas.&#x27;,
-    disponible: true,
-    destacado: true,
-  },
-
-  {
-    id: 6,
-    nombre: &#x27;Torta Minecraft&#x27;,
-    categoria: &#x27;Tortas&#x27;,
-    precio: 68000,
-    imagen: &#x27;assets/img/tortas/unnamed.jpg&#x27;,
-    descripcion: &#x27;Torta para 15 personas de bizcocho de zanahoria con crema bon o bon, cubierta en crema de mantequilla sabor vainilla.&#x27;,
-    disponible: true,
-    destacado: true,
-  
-
-  }
-,
-{
-    id: 7,
-    nombre: &#x27;Galletas New York Oreo&#x27;,
-    categoria: &#x27;Cookies&#x27;,
-    precio: 2900,
-    imagen: &#x27;assets/img/galletas/1000045912.jpg&#x27;,
-    descripcion: &#x27;Galletas New York de 100grms con trozos de galleta Oreo.&#x27;,
-    disponible: true,
-    destacado: false,
-  },
-  {
-    id: 8,
-    nombre: &#x27;Galletas Variadas&#x27;,
-    categoria: &#x27;Cookies&#x27;,
-    precio: 16000,
-    imagen: &#x27;assets/img/galletas/1000248584.jpg&#x27;,
-    descripcion: &#x27;Pack de 25 galletas gourmet surtidas para ocasión especial.&#x27;,
-    disponible: true,
-    destacado: true,
-  },
-  {
-    id: 9,
-    nombre: &#x27;Galletas Personalizadas&#x27;,
-    categoria: &#x27;Cookies&#x27;,
-    precio: 3000,
-    imagen: &#x27;assets/img/galletas/1000250908.jpg&#x27;,
-    descripcion: &#x27;Galletas decoradas con diseño temático personalizado.&#x27;,
-    disponible: true,
-    destacado: true,
-  },
-  {
-    id: 10,
-    nombre: &#x27;Mini Lemon&#x27;,
-    categoria: &#x27;Catering&#x27;,
-    precio: 10000,
-    imagen: &#x27;assets/img/catering/1000017786.jpg&#x27;,
-    descripcion: &#x27;Mini Lemon pie relleno de crema de limón con cobertura de merengue.&#x27;,
-    disponible: true,
-    destacado: false,
-  },
-  {
-    id: 11,
-    nombre: &#x27;Dulces Chilenos&#x27;,
-    categoria: &#x27;Catering&#x27;,
-    precio: 14600,
-    imagen: &#x27;assets/img/catering/1000164318.jpg&#x27;,
-    descripcion: &#x27;Variedad de dulces chilenos típicos y de temporada.&#x27;,
-    disponible: true,
-    destacado: true,
-  },
-  {
-    id: 12,
-    nombre: &#x27;Mini Tartaleta de Frutas&#x27;,
-    categoria: &#x27;Catering&#x27;,
-    precio: 18670,
-    imagen: &#x27;assets/img/catering/1000051665.jpg&#x27;,
-    descripcion: &#x27;Mini tartaleta crujiente con frutas frescas y crema pastelera suave.&#x27;,
-    disponible: true,
-    destacado: false,
-  }
-
-
-  
-
-
-]</code>
+                        <i>Default value : </i><code>&#x27;aoisHistorialCompras&#x27;</code>
                     </td>
                 </tr>
 
@@ -560,6 +428,35 @@
         </tbody>
     </table>
 </section>
+    <h3>src/app/services/productos.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PRODUCTOS_URL"></a>
+                    <span class="name">
+                        <span ><b>PRODUCTOS_URL</b></span>
+                        <a href="#PRODUCTOS_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;http://localhost:3000/productos&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/app.routes.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -590,6 +487,8 @@
   { path: &#x27;carro&#x27;, component: Carro, title: &#x27;Aois Cakes - Carro&#x27; },
   { path: &#x27;detalle/:id&#x27;, component: Detalle, title: &#x27;Aois Cakes - Detalle&#x27; },
   { path: &#x27;admin&#x27;, component: Admin, title: &#x27;Aois Cakes - Admin&#x27;, canActivate: [adminGuard] },
+  { path: &#x27;admin/productos/nuevo&#x27;, component: ProductoForm, title: &#x27;Aois Cakes - Nuevo producto&#x27;, canActivate: [adminGuard] },
+  { path: &#x27;admin/productos/:id/editar&#x27;, component: ProductoForm, title: &#x27;Aois Cakes - Editar producto&#x27;, canActivate: [adminGuard] },
   {path: &#x27;recuperar&#x27;, component: Recuperar, title: &#x27;Aois Cakes - Recuperar password&#x27; },
   { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; }
 ]</code>

@@ -178,6 +178,7 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
                 </td>
             </tr>
 
@@ -239,7 +240,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#eliminarProducto" >eliminarProducto</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#refrescarProductos" >refrescarProductos</a>
                             </li>
                         </ul>
                     </td>
@@ -279,12 +286,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, productosService: <a href="../injectables/Productos.html" target="_self">Productos</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/pages/admin/admin.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/admin/admin.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -306,6 +313,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>productosService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/Productos.html" target="_self" >Productos</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -335,6 +366,73 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="eliminarProducto"></a>
+                    <span class="name">
+                        <span ><b>eliminarProducto</b></span>
+                        <a href="#eliminarProducto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarProducto(producto: <a href="../interfaces/Producto.html" target="_self">Producto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/pages/admin/admin.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>producto</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Producto.html" target="_self" >Producto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -351,8 +449,45 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/app/pages/admin/admin.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/pages/admin/admin.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refrescarProductos"></a>
+                    <span class="name">
+                        <span ><b>refrescarProductos</b></span>
+                        <a href="#refrescarProductos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refrescarProductos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/pages/admin/admin.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +529,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/admin/admin.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/admin/admin.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -420,12 +555,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>PRODUCTOS</code>
+                        <i>Default value : </i><code>[]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/pages/admin/admin.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/admin/admin.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -456,7 +591,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/admin/admin.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/pages/admin/admin.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -485,7 +620,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/admin.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/admin.ts:35</a></div>
                                 </td>
                             </tr>
 
@@ -507,7 +642,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/admin.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/admin.ts:39</a></div>
                                 </td>
                             </tr>
 
@@ -529,7 +664,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/admin.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/admin.ts:43</a></div>
                                 </td>
                             </tr>
 
@@ -540,28 +675,38 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, OnInit } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 
 import { AuthService } from &#x27;../../services/auth&#x27;;
 import { Usuario } from &#x27;../../data/usuarios&#x27;;
-import { PRODUCTOS, Producto } from &#x27;../../data/productos&#x27;;
+import { Producto } from &#x27;../../data/productos&#x27;;
+import { Productos } from &#x27;../../services/productos&#x27;;
 
 @Component({
   selector: &#x27;app-admin&#x27;,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: &#x27;./admin.html&#x27;,
   styleUrl: &#x27;./admin.css&#x27;
 })
 export class Admin implements OnInit {
   usuarios: Usuario[] &#x3D; [];
-  productos: Producto[] &#x3D; PRODUCTOS;
+  productos: Producto[] &#x3D; [];
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private productosService: Productos,
+    private cdr: ChangeDetectorRef // es la unica manera que encontre para que se refresque automatico la vista
+  ) {}
 
   ngOnInit(): void {
     this.usuarios &#x3D; this.authService.obtenerUsuarios();
+    this.productosService.cargarProductos(true).subscribe((productos) &#x3D;&gt; {
+      this.productos &#x3D; productos;
+      this.cdr.detectChanges();
+    });
   }
 
   get totalUsuarios(): number {
@@ -574,6 +719,22 @@ export class Admin implements OnInit {
 
   get productosDisponibles(): number {
     return this.productos.filter(p &#x3D;&gt; p.disponible).length;
+  }
+
+ refrescarProductos(): void {
+    this.productosService.refrescarProductos().subscribe((productos) &#x3D;&gt; {
+      this.productos &#x3D; productos;
+      this.cdr.detectChanges();
+    });
+  }
+
+  eliminarProducto(producto: Producto): void {
+    const confirmar &#x3D; window.confirm(&#x60;¿Eliminar el producto &quot;${producto.nombre}&quot;?&#x60;);
+    if (!confirmar) return;
+
+    this.productosService.eliminarProducto(producto.id).subscribe(() &#x3D;&gt; {
+      this.refrescarProductos();
+    });
   }
 }</code></pre>
     </div>
@@ -648,7 +809,17 @@ export class Admin implements OnInit {
   &lt;!-- TABLA PRODUCTOS --&gt;
   &lt;div class&#x3D;&quot;card rounded-4 shadow-sm&quot;&gt;
     &lt;div class&#x3D;&quot;card-body&quot;&gt;
-      &lt;h2 class&#x3D;&quot;h4 mb-4&quot;&gt;Productos del catálogo&lt;/h2&gt;
+      &lt;div class&#x3D;&quot;d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4&quot;&gt;
+        &lt;h2 class&#x3D;&quot;h4 mb-0&quot;&gt;Productos del catálogo&lt;/h2&gt;
+        &lt;div class&#x3D;&quot;d-flex flex-wrap gap-2&quot;&gt;
+          &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-secondary&quot; (click)&#x3D;&quot;refrescarProductos()&quot;&gt;
+            Refrescar lista
+          &lt;/button&gt;
+          &lt;a routerLink&#x3D;&quot;/admin/productos/nuevo&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;
+            Ingresar producto
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
       &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
         &lt;table class&#x3D;&quot;table align-middle&quot;&gt;
           &lt;thead&gt;
@@ -657,6 +828,7 @@ export class Admin implements OnInit {
               &lt;th&gt;Categoría&lt;/th&gt;
               &lt;th&gt;Precio&lt;/th&gt;
               &lt;th&gt;Estado&lt;/th&gt;
+              &lt;th class&#x3D;&quot;text-end&quot;&gt;Acciones&lt;/th&gt;
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
@@ -670,6 +842,16 @@ export class Admin implements OnInit {
                   [class.text-bg-secondary]&#x3D;&quot;!producto.disponible&quot;&gt;
                   {{ producto.disponible ? &#x27;Disponible&#x27; : &#x27;No disponible&#x27; }}
                 &lt;/span&gt;
+              &lt;/td&gt;
+              &lt;td class&#x3D;&quot;text-end&quot;&gt;
+                &lt;div class&#x3D;&quot;btn-group btn-group-sm&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Acciones de producto&quot;&gt;
+                  &lt;a [routerLink]&#x3D;&quot;[&#x27;/admin/productos&#x27;, producto.id, &#x27;editar&#x27;]&quot; class&#x3D;&quot;btn btn-outline-primary&quot;&gt;
+                    Editar
+                  &lt;/a&gt;
+                  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;eliminarProducto(producto)&quot;&gt;
+                    Eliminar
+                  &lt;/button&gt;
+                &lt;/div&gt;
               &lt;/td&gt;
             &lt;/tr&gt;
           &lt;/tbody&gt;
@@ -707,8 +889,8 @@ export class Admin implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="page-animation container py-5">  <div class="row mb-4">    <div class="col-12">      <h1>Panel Administrador</h1>      <p class="text-muted">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>    </div>  </div>  <!-- RESUMEN -->  <div class="row g-4 mb-5">    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Usuarios registrados</p>        <h2 class="fw-bold fs-1">{{ totalUsuarios }}</h2>      </div>    </div>    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Productos</p>        <h2 class="fw-bold fs-1">{{ totalProductos }}</h2>      </div>    </div>    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Disponibles</p>        <h2 class="fw-bold fs-1">{{ productosDisponibles }}</h2>      </div>    </div>  </div>  <!-- TABLA USUARIOS -->  <div class="card rounded-4 shadow-sm mb-5">    <div class="card-body">      <h2 class="h4 mb-4">Usuarios registrados</h2>      <div class="table-responsive">        <table class="table align-middle">          <thead>            <tr>              <th>Nombre</th>              <th>Usuario</th>              <th>Correo</th>              <th>Dirección</th>              <th>Rol</th>            </tr>          </thead>          <tbody>            <tr *ngFor="let usuario of usuarios">              <td>{{ usuario.nombre }}</td>              <td>{{ usuario.usuario }}</td>              <td>{{ usuario.correo }}</td>              <td>{{ usuario.direccion || \'—\' }}</td>              <td>                <span class="badge"                  [class.text-bg-dark]="usuario.rol === \'admin\'"                  [class.text-bg-info]="usuario.rol === \'cliente\'">                  {{ usuario.rol }}                </span>              </td>            </tr>          </tbody>        </table>      </div>    </div>  </div>  <!-- TABLA PRODUCTOS -->  <div class="card rounded-4 shadow-sm">    <div class="card-body">      <h2 class="h4 mb-4">Productos del catálogo</h2>      <div class="table-responsive">        <table class="table align-middle">          <thead>            <tr>              <th>Producto</th>              <th>Categoría</th>              <th>Precio</th>              <th>Estado</th>            </tr>          </thead>          <tbody>            <tr *ngFor="let producto of productos">              <td>{{ producto.nombre }}</td>              <td>{{ producto.categoria }}</td>              <td>${{ producto.precio.toLocaleString(\'es-CL\') }}</td>              <td>                <span class="badge"                  [class.text-bg-success]="producto.disponible"                  [class.text-bg-secondary]="!producto.disponible">                  {{ producto.disponible ? \'Disponible\' : \'No disponible\' }}                </span>              </td>            </tr>          </tbody>        </table>      </div>    </div>  </div></main></div>'
-    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
+        var COMPONENT_TEMPLATE = '<div><main class="page-animation container py-5">  <div class="row mb-4">    <div class="col-12">      <h1>Panel Administrador</h1>      <p class="text-muted">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>    </div>  </div>  <!-- RESUMEN -->  <div class="row g-4 mb-5">    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Usuarios registrados</p>        <h2 class="fw-bold fs-1">{{ totalUsuarios }}</h2>      </div>    </div>    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Productos</p>        <h2 class="fw-bold fs-1">{{ totalProductos }}</h2>      </div>    </div>    <div class="col-12 col-md-4">      <div class="card rounded-4 shadow-sm text-center p-4">        <p class="text-muted mb-1">Disponibles</p>        <h2 class="fw-bold fs-1">{{ productosDisponibles }}</h2>      </div>    </div>  </div>  <!-- TABLA USUARIOS -->  <div class="card rounded-4 shadow-sm mb-5">    <div class="card-body">      <h2 class="h4 mb-4">Usuarios registrados</h2>      <div class="table-responsive">        <table class="table align-middle">          <thead>            <tr>              <th>Nombre</th>              <th>Usuario</th>              <th>Correo</th>              <th>Dirección</th>              <th>Rol</th>            </tr>          </thead>          <tbody>            <tr *ngFor="let usuario of usuarios">              <td>{{ usuario.nombre }}</td>              <td>{{ usuario.usuario }}</td>              <td>{{ usuario.correo }}</td>              <td>{{ usuario.direccion || \'—\' }}</td>              <td>                <span class="badge"                  [class.text-bg-dark]="usuario.rol === \'admin\'"                  [class.text-bg-info]="usuario.rol === \'cliente\'">                  {{ usuario.rol }}                </span>              </td>            </tr>          </tbody>        </table>      </div>    </div>  </div>  <!-- TABLA PRODUCTOS -->  <div class="card rounded-4 shadow-sm">    <div class="card-body">      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">        <h2 class="h4 mb-0">Productos del catálogo</h2>        <div class="d-flex flex-wrap gap-2">          <button type="button" class="btn btn-outline-secondary" (click)="refrescarProductos()">            Refrescar lista          </button>          <a routerLink="/admin/productos/nuevo" class="btn btn-primary">            Ingresar producto          </a>        </div>      </div>      <div class="table-responsive">        <table class="table align-middle">          <thead>            <tr>              <th>Producto</th>              <th>Categoría</th>              <th>Precio</th>              <th>Estado</th>              <th class="text-end">Acciones</th>            </tr>          </thead>          <tbody>            <tr *ngFor="let producto of productos">              <td>{{ producto.nombre }}</td>              <td>{{ producto.categoria }}</td>              <td>${{ producto.precio.toLocaleString(\'es-CL\') }}</td>              <td>                <span class="badge"                  [class.text-bg-success]="producto.disponible"                  [class.text-bg-secondary]="!producto.disponible">                  {{ producto.disponible ? \'Disponible\' : \'No disponible\' }}                </span>              </td>              <td class="text-end">                <div class="btn-group btn-group-sm" role="group" aria-label="Acciones de producto">                  <a [routerLink]="[\'/admin/productos\', producto.id, \'editar\']" class="btn btn-outline-primary">                    Editar                  </a>                  <button type="button" class="btn btn-outline-danger" (click)="eliminarProducto(producto)">                    Eliminar                  </button>                </div>              </td>            </tr>          </tbody>        </table>      </div>    </div>  </div></main></div>'
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'ProductoForm', 'selector': 'app-producto-form'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Admin'};
 </script>

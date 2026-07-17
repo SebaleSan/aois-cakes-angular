@@ -139,6 +139,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/Panel.html" data-type="entity-link" >Panel</a>
                             </li>
                             <li class="link">
+                                <a href="components/ProductoForm.html" data-type="entity-link" >ProductoForm</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/Recuperar.html" data-type="entity-link" >Recuperar</a>
                             </li>
                             <li class="link">
@@ -164,6 +167,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/HbsRenderService.html" data-type="entity-link" >HbsRenderService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/Productos.html" data-type="entity-link" >Productos</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/TemplateEditorService.html" data-type="entity-link" >TemplateEditorService</a>
                                 </li>
                                 <li class="link">
@@ -181,6 +187,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/CompoDocConfig.html" data-type="entity-link" >CompoDocConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CompraPedido.html" data-type="entity-link" >CompraPedido</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ItemCarro.html" data-type="entity-link" >ItemCarro</a>
