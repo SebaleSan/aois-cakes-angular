@@ -215,6 +215,44 @@ export class CarroService {
       .sort((a, b) => b.id - a.id);
   }
 
+  /**
+   * @description
+   * Recupera el historial de compras de **todos** los usuarios registrados,
+   * recorriendo las claves de localStorage con el prefijo de historial.
+   * Pensado para uso exclusivo del panel de administración.
+   *
+   * @returns Un arreglo con todas las compras de todos los usuarios,
+   * ordenadas desde la más reciente a la más antigua.
+   * @example
+   * const todasLasCompras = carroService.obtenerTodasLasCompras();
+   */
+  obtenerTodasLasCompras(): CompraPedido[] {
+    const compras: CompraPedido[] = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const clave = localStorage.key(i);
+
+      if (!clave || !clave.startsWith(CLAVE_HISTORIAL_COMPRAS)) {
+        continue;
+      }
+
+      const guardado = localStorage.getItem(clave);
+
+      if (!guardado) {
+        continue;
+      }
+
+      try {
+        const historialUsuario = JSON.parse(guardado) as CompraPedido[];
+        compras.push(...historialUsuario);
+      } catch {
+        localStorage.removeItem(clave);
+      }
+    }
+
+    return compras.sort((a, b) => b.id - a.id);
+  }
+
   private claveStorage(): string {
     const usuario = this.authService.usuarioActual;
     return `aoisCarro_${usuario?.id}`;
