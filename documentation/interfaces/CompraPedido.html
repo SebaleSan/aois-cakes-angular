@@ -609,6 +609,67 @@ export class CarroService {
     return this.leerCompraReciente(usuario.id);
   }
 
+
+  /**
+   * @description
+   * Recupera el historial completo de compras del usuario activo desde
+   * localStorage, ordenado desde la más reciente a la más antigua.
+   *
+   * @returns Un arreglo con todas las compras realizadas por el usuario,
+   * o un arreglo vacío si no hay sesión activa o no existe historial.
+   * @example
+   * const historial &#x3D; carroService.obtenerHistorialCompras();
+   */
+  obtenerHistorialCompras(): CompraPedido[] {
+    const usuario &#x3D; this.authService.usuarioActual;
+
+    if (!usuario) {
+      return [];
+    }
+
+    return this.leerHistorialCompras(usuario.id)
+      .slice()
+      .sort((a, b) &#x3D;&gt; b.id - a.id);
+  }
+
+  /**
+   * @description
+   * Recupera el historial de compras de **todos** los usuarios registrados,
+   * recorriendo las claves de localStorage con el prefijo de historial.
+   * Pensado para uso exclusivo del panel de administración.
+   *
+   * @returns Un arreglo con todas las compras de todos los usuarios,
+   * ordenadas desde la más reciente a la más antigua.
+   * @example
+   * const todasLasCompras &#x3D; carroService.obtenerTodasLasCompras();
+   */
+  obtenerTodasLasCompras(): CompraPedido[] {
+    const compras: CompraPedido[] &#x3D; [];
+
+    for (let i &#x3D; 0; i &lt; localStorage.length; i++) {
+      const clave &#x3D; localStorage.key(i);
+
+      if (!clave || !clave.startsWith(CLAVE_HISTORIAL_COMPRAS)) {
+        continue;
+      }
+
+      const guardado &#x3D; localStorage.getItem(clave);
+
+      if (!guardado) {
+        continue;
+      }
+
+      try {
+        const historialUsuario &#x3D; JSON.parse(guardado) as CompraPedido[];
+        compras.push(...historialUsuario);
+      } catch {
+        localStorage.removeItem(clave);
+      }
+    }
+
+    return compras.sort((a, b) &#x3D;&gt; b.id - a.id);
+  }
+
   private claveStorage(): string {
     const usuario &#x3D; this.authService.usuarioActual;
     return &#x60;aoisCarro_${usuario?.id}&#x60;;

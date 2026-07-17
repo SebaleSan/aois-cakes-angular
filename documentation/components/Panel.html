@@ -1360,10 +1360,8 @@ export class Panel implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;page-animation container py-5&quot;&gt;
   &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
     &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
-
       &lt;!-- PERFIL --&gt;
       &lt;div class&#x3D;&quot;registro-card mb-4&quot;&gt;
-
         &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center mb-4&quot;&gt;
           &lt;div&gt;
             &lt;h1 class&#x3D;&quot;registro-titulo mb-1&quot;&gt;Mi perfil&lt;/h1&gt;
@@ -1372,19 +1370,24 @@ export class Panel implements OnInit {
           &lt;span class&#x3D;&quot;badge text-bg-info fs-6&quot;&gt;{{ authService.usuarioActual?.rol }}&lt;/span&gt;
         &lt;/div&gt;
 
-        &lt;div class&#x3D;&quot;alert rounded-3&quot; *ngIf&#x3D;&quot;mensaje&quot;
+        &lt;div
+          class&#x3D;&quot;alert rounded-3&quot;
+          *ngIf&#x3D;&quot;mensaje&quot;
           [class.alert-success]&#x3D;&quot;tipoMensaje &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
-          [class.alert-danger]&#x3D;&quot;tipoMensaje &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;&gt;
+          [class.alert-danger]&#x3D;&quot;tipoMensaje &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;
+        &gt;
           {{ mensaje }}
         &lt;/div&gt;
 
         &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;guardar()&quot;&gt;
-
           &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nombre completo&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;nombre&quot;
-              [class.is-invalid]&#x3D;&quot;nombre?.invalid &amp;&amp; nombre?.touched&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;nombre?.invalid &amp;&amp; nombre?.touched&quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
               &lt;span *ngIf&#x3D;&quot;nombre?.errors?.[&#x27;required&#x27;]&quot;&gt;El nombre es obligatorio.&lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;nombre?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 3 caracteres.&lt;/span&gt;
@@ -1393,9 +1396,12 @@ export class Panel implements OnInit {
 
           &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nombre de usuario&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;usuario&quot;
-              [class.is-invalid]&#x3D;&quot;usuario?.invalid &amp;&amp; usuario?.touched&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;usuario?.invalid &amp;&amp; usuario?.touched&quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
               &lt;span *ngIf&#x3D;&quot;usuario?.errors?.[&#x27;required&#x27;]&quot;&gt;El usuario es obligatorio.&lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;usuario?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 3 caracteres.&lt;/span&gt;
@@ -1404,9 +1410,12 @@ export class Panel implements OnInit {
 
           &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Correo electrónico&lt;/label&gt;
-            &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;email&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;correo&quot;
-              [class.is-invalid]&#x3D;&quot;correo?.invalid &amp;&amp; correo?.touched&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;correo?.invalid &amp;&amp; correo?.touched&quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
               &lt;span *ngIf&#x3D;&quot;correo?.errors?.[&#x27;required&#x27;]&quot;&gt;El correo es obligatorio.&lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;correo?.errors?.[&#x27;email&#x27;]&quot;&gt;Ingresa un correo válido.&lt;/span&gt;
@@ -1415,16 +1424,22 @@ export class Panel implements OnInit {
 
           &lt;div class&#x3D;&quot;mb-4&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Dirección&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;direccion&quot;
-              placeholder&#x3D;&quot;Opcional&quot;&gt;
+              placeholder&#x3D;&quot;Opcional&quot;
+            /&gt;
           &lt;/div&gt;
 
           &lt;div class&#x3D;&quot;d-flex gap-2&quot; *ngIf&#x3D;&quot;editando&quot;&gt;
-            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;Guardar cambios&lt;/button&gt;
-            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;cancelarEdicion()&quot;&gt;Cancelar&lt;/button&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;
+              Guardar cambios
+            &lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;cancelarEdicion()&quot;&gt;
+              Cancelar
+            &lt;/button&gt;
           &lt;/div&gt;
-
         &lt;/form&gt;
 
         &lt;div class&#x3D;&quot;d-grid mt-3&quot; *ngIf&#x3D;&quot;!editando&quot;&gt;
@@ -1432,83 +1447,122 @@ export class Panel implements OnInit {
             Editar perfil
           &lt;/button&gt;
         &lt;/div&gt;
-
       &lt;/div&gt;
 
       &lt;!-- CAMBIO DE CONTRASEÑA --&gt;
       &lt;div class&#x3D;&quot;registro-card mb-4&quot;&gt;
-
         &lt;h2 class&#x3D;&quot;registro-titulo mb-1&quot;&gt;Contraseña&lt;/h2&gt;
         &lt;p class&#x3D;&quot;text-muted mb-4&quot;&gt;Cambia tu contraseña de acceso.&lt;/p&gt;
 
-        &lt;div class&#x3D;&quot;alert rounded-3&quot; *ngIf&#x3D;&quot;mensajePassword&quot;
+        &lt;div
+          class&#x3D;&quot;alert rounded-3&quot;
+          *ngIf&#x3D;&quot;mensajePassword&quot;
           [class.alert-success]&#x3D;&quot;tipoMensajePassword &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
-          [class.alert-danger]&#x3D;&quot;tipoMensajePassword &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;&gt;
+          [class.alert-danger]&#x3D;&quot;tipoMensajePassword &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;
+        &gt;
           {{ mensajePassword }}
         &lt;/div&gt;
 
         &lt;form [formGroup]&#x3D;&quot;formPassword&quot; (ngSubmit)&#x3D;&quot;guardarPassword()&quot; *ngIf&#x3D;&quot;editandoPassword&quot;&gt;
-
           &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Contraseña actual&lt;/label&gt;
-            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;password&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;passwordActual&quot;
               placeholder&#x3D;&quot;Ingresa tu contraseña actual&quot;
-              [class.is-invalid]&#x3D;&quot;passwordActual?.invalid &amp;&amp; passwordActual?.touched&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;passwordActual?.invalid &amp;&amp; passwordActual?.touched&quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
-              &lt;span *ngIf&#x3D;&quot;passwordActual?.errors?.[&#x27;required&#x27;]&quot;&gt;La contraseña actual es obligatoria.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordActual?.errors?.[&#x27;required&#x27;]&quot;
+                &gt;La contraseña actual es obligatoria.&lt;/span
+              &gt;
             &lt;/div&gt;
           &lt;/div&gt;
 
           &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Nueva contraseña&lt;/label&gt;
-            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;password&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;passwordNueva&quot;
               placeholder&#x3D;&quot;Mínimo 6 caracteres&quot;
-              [class.is-invalid]&#x3D;&quot;passwordNueva?.invalid &amp;&amp; passwordNueva?.touched&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;passwordNueva?.invalid &amp;&amp; passwordNueva?.touched&quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
-              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;required&#x27;]&quot;&gt;La nueva contraseña es obligatoria.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;required&#x27;]&quot;
+                &gt;La nueva contraseña es obligatoria.&lt;/span
+              &gt;
               &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 6 caracteres.&lt;/span&gt;
-              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;pattern&#x27;]&quot;&gt;Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;passwordNueva?.errors?.[&#x27;pattern&#x27;]&quot;
+                &gt;Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.&lt;/span
+              &gt;
             &lt;/div&gt;
           &lt;/div&gt;
 
           &lt;div class&#x3D;&quot;mb-4&quot;&gt;
             &lt;label class&#x3D;&quot;form-label registro-label&quot;&gt;Confirmar nueva contraseña&lt;/label&gt;
-            &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control registro-input&quot;
+            &lt;input
+              type&#x3D;&quot;password&quot;
+              class&#x3D;&quot;form-control registro-input&quot;
               formControlName&#x3D;&quot;confirmarPassword&quot;
               placeholder&#x3D;&quot;Repite la nueva contraseña&quot;
-              [class.is-invalid]&#x3D;&quot;(confirmarPassword?.invalid &amp;&amp; confirmarPassword?.touched) || (formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; confirmarPassword?.touched)&quot;&gt;
+              [class.is-invalid]&#x3D;&quot;
+                (confirmarPassword?.invalid &amp;&amp; confirmarPassword?.touched) ||
+                (formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; confirmarPassword?.touched)
+              &quot;
+            /&gt;
             &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
-              &lt;span *ngIf&#x3D;&quot;confirmarPassword?.errors?.[&#x27;required&#x27;]&quot;&gt;Confirma tu nueva contraseña.&lt;/span&gt;
-              &lt;span *ngIf&#x3D;&quot;formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; !confirmarPassword?.errors?.[&#x27;required&#x27;]&quot;&gt;Las contraseñas no coinciden.&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;confirmarPassword?.errors?.[&#x27;required&#x27;]&quot;
+                &gt;Confirma tu nueva contraseña.&lt;/span
+              &gt;
+              &lt;span
+                *ngIf&#x3D;&quot;
+                  formPassword.errors?.[&#x27;noCoinciden&#x27;] &amp;&amp; !confirmarPassword?.errors?.[&#x27;required&#x27;]
+                &quot;
+                &gt;Las contraseñas no coinciden.&lt;/span
+              &gt;
             &lt;/div&gt;
           &lt;/div&gt;
 
           &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;
-            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;Guardar contraseña&lt;/button&gt;
-            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;cancelarCambioPassword()&quot;&gt;Cancelar&lt;/button&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn registro-btn-primary flex-grow-1&quot;&gt;
+              Guardar contraseña
+            &lt;/button&gt;
+            &lt;button
+              type&#x3D;&quot;button&quot;
+              class&#x3D;&quot;btn registro-btn-secondary&quot;
+              (click)&#x3D;&quot;cancelarCambioPassword()&quot;
+            &gt;
+              Cancelar
+            &lt;/button&gt;
           &lt;/div&gt;
-
         &lt;/form&gt;
 
         &lt;div class&#x3D;&quot;d-grid&quot; *ngIf&#x3D;&quot;!editandoPassword&quot;&gt;
-          &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn registro-btn-secondary&quot; (click)&#x3D;&quot;activarCambioPassword()&quot;&gt;
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            class&#x3D;&quot;btn registro-btn-secondary&quot;
+            (click)&#x3D;&quot;activarCambioPassword()&quot;
+          &gt;
             Cambiar contraseña
           &lt;/button&gt;
         &lt;/div&gt;
-
       &lt;/div&gt;
 
-      
-      &lt;div class&#x3D;&quot;d-flex gap-2&quot;&gt;
+      &lt;div class&#x3D;&quot;d-flex gap-2 flex-wrap&quot;&gt;
         &lt;a routerLink&#x3D;&quot;/carro&quot; class&#x3D;&quot;btn registro-btn-secondary flex-grow-1&quot;&gt;Ver mi carro&lt;/a&gt;
-        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;cerrarSesion()&quot;&gt;Cerrar sesión&lt;/button&gt;
+        &lt;a routerLink&#x3D;&quot;/historial&quot; class&#x3D;&quot;btn registro-btn-secondary flex-grow-1&quot;
+          &gt;Ver historial de compras&lt;/a
+        &gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;cerrarSesion()&quot;&gt;
+          Cerrar sesión
+        &lt;/button&gt;
       &lt;/div&gt;
-
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/main&gt;</code></pre>
+&lt;/main&gt;
+</code></pre>
     </div>
 
 
@@ -1537,8 +1591,8 @@ export class Panel implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="page-animation container py-5">  <div class="row justify-content-center">    <div class="col-12 col-lg-8">      <!-- PERFIL -->      <div class="registro-card mb-4">        <div class="d-flex justify-content-between align-items-center mb-4">          <div>            <h1 class="registro-titulo mb-1">Mi perfil</h1>            <p class="text-muted mb-0">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>          </div>          <span class="badge text-bg-info fs-6">{{ authService.usuarioActual?.rol }}</span>        </div>        <div class="alert rounded-3" *ngIf="mensaje"          [class.alert-success]="tipoMensaje === \'success\'"          [class.alert-danger]="tipoMensaje === \'danger\'">          {{ mensaje }}        </div>        <form [formGroup]="form" (ngSubmit)="guardar()">          <div class="mb-3">            <label class="form-label registro-label">Nombre completo</label>            <input type="text" class="form-control registro-input"              formControlName="nombre"              [class.is-invalid]="nombre?.invalid && nombre?.touched">            <div class="invalid-feedback">              <span *ngIf="nombre?.errors?.[\'required\']">El nombre es obligatorio.</span>              <span *ngIf="nombre?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nombre de usuario</label>            <input type="text" class="form-control registro-input"              formControlName="usuario"              [class.is-invalid]="usuario?.invalid && usuario?.touched">            <div class="invalid-feedback">              <span *ngIf="usuario?.errors?.[\'required\']">El usuario es obligatorio.</span>              <span *ngIf="usuario?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Correo electrónico</label>            <input type="email" class="form-control registro-input"              formControlName="correo"              [class.is-invalid]="correo?.invalid && correo?.touched">            <div class="invalid-feedback">              <span *ngIf="correo?.errors?.[\'required\']">El correo es obligatorio.</span>              <span *ngIf="correo?.errors?.[\'email\']">Ingresa un correo válido.</span>            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Dirección</label>            <input type="text" class="form-control registro-input"              formControlName="direccion"              placeholder="Opcional">          </div>          <div class="d-flex gap-2" *ngIf="editando">            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar cambios</button>            <button type="button" class="btn registro-btn-secondary" (click)="cancelarEdicion()">Cancelar</button>          </div>        </form>        <div class="d-grid mt-3" *ngIf="!editando">          <button type="button" class="btn registro-btn-primary" (click)="activarEdicion()">            Editar perfil          </button>        </div>      </div>      <!-- CAMBIO DE CONTRASEÑA -->      <div class="registro-card mb-4">        <h2 class="registro-titulo mb-1">Contraseña</h2>        <p class="text-muted mb-4">Cambia tu contraseña de acceso.</p>        <div class="alert rounded-3" *ngIf="mensajePassword"          [class.alert-success]="tipoMensajePassword === \'success\'"          [class.alert-danger]="tipoMensajePassword === \'danger\'">          {{ mensajePassword }}        </div>        <form [formGroup]="formPassword" (ngSubmit)="guardarPassword()" *ngIf="editandoPassword">          <div class="mb-3">            <label class="form-label registro-label">Contraseña actual</label>            <input type="password" class="form-control registro-input"              formControlName="passwordActual"              placeholder="Ingresa tu contraseña actual"              [class.is-invalid]="passwordActual?.invalid && passwordActual?.touched">            <div class="invalid-feedback">              <span *ngIf="passwordActual?.errors?.[\'required\']">La contraseña actual es obligatoria.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nueva contraseña</label>            <input type="password" class="form-control registro-input"              formControlName="passwordNueva"              placeholder="Mínimo 6 caracteres"              [class.is-invalid]="passwordNueva?.invalid && passwordNueva?.touched">            <div class="invalid-feedback">              <span *ngIf="passwordNueva?.errors?.[\'required\']">La nueva contraseña es obligatoria.</span>              <span *ngIf="passwordNueva?.errors?.[\'minlength\']">Mínimo 6 caracteres.</span>              <span *ngIf="passwordNueva?.errors?.[\'pattern\']">Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.</span>            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Confirmar nueva contraseña</label>            <input type="password" class="form-control registro-input"              formControlName="confirmarPassword"              placeholder="Repite la nueva contraseña"              [class.is-invalid]="(confirmarPassword?.invalid && confirmarPassword?.touched) || (formPassword.errors?.[\'noCoinciden\'] && confirmarPassword?.touched)">            <div class="invalid-feedback">              <span *ngIf="confirmarPassword?.errors?.[\'required\']">Confirma tu nueva contraseña.</span>              <span *ngIf="formPassword.errors?.[\'noCoinciden\'] && !confirmarPassword?.errors?.[\'required\']">Las contraseñas no coinciden.</span>            </div>          </div>          <div class="d-flex gap-2">            <button type="submit" class="btn registro-btn-primary flex-grow-1">Guardar contraseña</button>            <button type="button" class="btn registro-btn-secondary" (click)="cancelarCambioPassword()">Cancelar</button>          </div>        </form>        <div class="d-grid" *ngIf="!editandoPassword">          <button type="button" class="btn registro-btn-secondary" (click)="activarCambioPassword()">            Cambiar contraseña          </button>        </div>      </div>            <div class="d-flex gap-2">        <a routerLink="/carro" class="btn registro-btn-secondary flex-grow-1">Ver mi carro</a>        <button type="button" class="btn btn-outline-danger" (click)="cerrarSesion()">Cerrar sesión</button>      </div>    </div>  </div></main></div>'
-    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'ProductoForm', 'selector': 'app-producto-form'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'}];
+        var COMPONENT_TEMPLATE = '<div><main class="page-animation container py-5">  <div class="row justify-content-center">    <div class="col-12 col-lg-8">      <!-- PERFIL -->      <div class="registro-card mb-4">        <div class="d-flex justify-content-between align-items-center mb-4">          <div>            <h1 class="registro-titulo mb-1">Mi perfil</h1>            <p class="text-muted mb-0">Bienvenido/a, {{ authService.usuarioActual?.nombre }}</p>          </div>          <span class="badge text-bg-info fs-6">{{ authService.usuarioActual?.rol }}</span>        </div>        <div          class="alert rounded-3"          *ngIf="mensaje"          [class.alert-success]="tipoMensaje === \'success\'"          [class.alert-danger]="tipoMensaje === \'danger\'"        >          {{ mensaje }}        </div>        <form [formGroup]="form" (ngSubmit)="guardar()">          <div class="mb-3">            <label class="form-label registro-label">Nombre completo</label>            <input              type="text"              class="form-control registro-input"              formControlName="nombre"              [class.is-invalid]="nombre?.invalid && nombre?.touched"            />            <div class="invalid-feedback">              <span *ngIf="nombre?.errors?.[\'required\']">El nombre es obligatorio.</span>              <span *ngIf="nombre?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nombre de usuario</label>            <input              type="text"              class="form-control registro-input"              formControlName="usuario"              [class.is-invalid]="usuario?.invalid && usuario?.touched"            />            <div class="invalid-feedback">              <span *ngIf="usuario?.errors?.[\'required\']">El usuario es obligatorio.</span>              <span *ngIf="usuario?.errors?.[\'minlength\']">Mínimo 3 caracteres.</span>            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Correo electrónico</label>            <input              type="email"              class="form-control registro-input"              formControlName="correo"              [class.is-invalid]="correo?.invalid && correo?.touched"            />            <div class="invalid-feedback">              <span *ngIf="correo?.errors?.[\'required\']">El correo es obligatorio.</span>              <span *ngIf="correo?.errors?.[\'email\']">Ingresa un correo válido.</span>            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Dirección</label>            <input              type="text"              class="form-control registro-input"              formControlName="direccion"              placeholder="Opcional"            />          </div>          <div class="d-flex gap-2" *ngIf="editando">            <button type="submit" class="btn registro-btn-primary flex-grow-1">              Guardar cambios            </button>            <button type="button" class="btn registro-btn-secondary" (click)="cancelarEdicion()">              Cancelar            </button>          </div>        </form>        <div class="d-grid mt-3" *ngIf="!editando">          <button type="button" class="btn registro-btn-primary" (click)="activarEdicion()">            Editar perfil          </button>        </div>      </div>      <!-- CAMBIO DE CONTRASEÑA -->      <div class="registro-card mb-4">        <h2 class="registro-titulo mb-1">Contraseña</h2>        <p class="text-muted mb-4">Cambia tu contraseña de acceso.</p>        <div          class="alert rounded-3"          *ngIf="mensajePassword"          [class.alert-success]="tipoMensajePassword === \'success\'"          [class.alert-danger]="tipoMensajePassword === \'danger\'"        >          {{ mensajePassword }}        </div>        <form [formGroup]="formPassword" (ngSubmit)="guardarPassword()" *ngIf="editandoPassword">          <div class="mb-3">            <label class="form-label registro-label">Contraseña actual</label>            <input              type="password"              class="form-control registro-input"              formControlName="passwordActual"              placeholder="Ingresa tu contraseña actual"              [class.is-invalid]="passwordActual?.invalid && passwordActual?.touched"            />            <div class="invalid-feedback">              <span *ngIf="passwordActual?.errors?.[\'required\']"                >La contraseña actual es obligatoria.</span              >            </div>          </div>          <div class="mb-3">            <label class="form-label registro-label">Nueva contraseña</label>            <input              type="password"              class="form-control registro-input"              formControlName="passwordNueva"              placeholder="Mínimo 6 caracteres"              [class.is-invalid]="passwordNueva?.invalid && passwordNueva?.touched"            />            <div class="invalid-feedback">              <span *ngIf="passwordNueva?.errors?.[\'required\']"                >La nueva contraseña es obligatoria.</span              >              <span *ngIf="passwordNueva?.errors?.[\'minlength\']">Mínimo 6 caracteres.</span>              <span *ngIf="passwordNueva?.errors?.[\'pattern\']"                >Debe tener al menos 1 mayúscula, 1 número y 1 carácter especial.</span              >            </div>          </div>          <div class="mb-4">            <label class="form-label registro-label">Confirmar nueva contraseña</label>            <input              type="password"              class="form-control registro-input"              formControlName="confirmarPassword"              placeholder="Repite la nueva contraseña"              [class.is-invalid]="                (confirmarPassword?.invalid && confirmarPassword?.touched) ||                (formPassword.errors?.[\'noCoinciden\'] && confirmarPassword?.touched)              "            />            <div class="invalid-feedback">              <span *ngIf="confirmarPassword?.errors?.[\'required\']"                >Confirma tu nueva contraseña.</span              >              <span                *ngIf="                  formPassword.errors?.[\'noCoinciden\'] && !confirmarPassword?.errors?.[\'required\']                "                >Las contraseñas no coinciden.</span              >            </div>          </div>          <div class="d-flex gap-2">            <button type="submit" class="btn registro-btn-primary flex-grow-1">              Guardar contraseña            </button>            <button              type="button"              class="btn registro-btn-secondary"              (click)="cancelarCambioPassword()"            >              Cancelar            </button>          </div>        </form>        <div class="d-grid" *ngIf="!editandoPassword">          <button            type="button"            class="btn registro-btn-secondary"            (click)="activarCambioPassword()"          >            Cambiar contraseña          </button>        </div>      </div>      <div class="d-flex gap-2 flex-wrap">        <a routerLink="/carro" class="btn registro-btn-secondary flex-grow-1">Ver mi carro</a>        <a routerLink="/historial" class="btn registro-btn-secondary flex-grow-1"          >Ver historial de compras</a        >        <button type="button" class="btn btn-outline-danger" (click)="cerrarSesion()">          Cerrar sesión        </button>      </div>    </div>  </div></main></div>'
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'HistorialCompras', 'selector': 'app-historial-compras'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'ProductoForm', 'selector': 'app-producto-form'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'},{'name': 'Toast', 'selector': 'app-toast'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Panel'};
 </script>

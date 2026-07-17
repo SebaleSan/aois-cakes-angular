@@ -127,6 +127,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/Footer.html" data-type="entity-link" >Footer</a>
                             </li>
                             <li class="link">
+                                <a href="components/HistorialCompras.html" data-type="entity-link" >HistorialCompras</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/Inicio.html" data-type="entity-link" >Inicio</a>
                             </li>
                             <li class="link">
@@ -147,6 +150,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/Registro.html" data-type="entity-link" >Registro</a>
                             </li>
+                            <li class="link">
+                                <a href="components/Toast.html" data-type="entity-link" >Toast</a>
+                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
@@ -165,6 +171,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/HbsRenderService.html" data-type="entity-link" >HbsRenderService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/NotificacionService.html" data-type="entity-link" >NotificacionService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/Productos.html" data-type="entity-link" >Productos</a>
@@ -193,6 +202,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ItemCarro.html" data-type="entity-link" >ItemCarro</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Notificacion.html" data-type="entity-link" >Notificacion</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Producto.html" data-type="entity-link" >Producto</a>

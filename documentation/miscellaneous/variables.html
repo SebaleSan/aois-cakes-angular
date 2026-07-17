@@ -148,6 +148,12 @@
                             <a href="#CLAVE_USUARIOS" title="src/app/services/auth.ts" ><b>CLAVE_USUARIOS</b>&nbsp;&nbsp;&nbsp;(src/.../auth.ts)</a>
                         </li>
                         <li>
+                            <a href="#DURACION_MS" title="src/app/services/notificacion.ts" ><b>DURACION_MS</b>&nbsp;&nbsp;&nbsp;(src/.../notificacion.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#errorInterceptor" title="src/app/interceptors/error.interceptors.ts" ><b>errorInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../error.interceptors.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Handlebars" title="documentation/template-playground/hbs-render.service.ts" ><b>Handlebars</b>&nbsp;&nbsp;&nbsp;(documentation/.../hbs-render.service.ts)</a>
                         </li>
                         <li>
@@ -235,7 +241,7 @@
                         <i>Default value : </i><code>{
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([errorInterceptor])),
     provideRouter(routes)
   ]
 }</code>
@@ -349,6 +355,74 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>&#x27;aoisCakesUsuarios&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/services/notificacion.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DURACION_MS"></a>
+                    <span class="name">
+                        <span ><b>DURACION_MS</b></span>
+                        <a href="#DURACION_MS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4000</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/interceptors/error.interceptors.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorInterceptor"></a>
+                    <span class="name">
+                        <span ><b>errorInterceptor</b></span>
+                        <a href="#errorInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HttpInterceptorFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  const notificacionService &#x3D; inject(NotificacionService);
+
+  return next(req).pipe(
+    catchError((error: HttpErrorResponse) &#x3D;&gt; {
+      const mensaje &#x3D; obtenerMensajeError(error);
+      notificacionService.mostrarError(mensaje);
+      return throwError(() &#x3D;&gt; new Error(mensaje));
+    })
+  );
+}</code>
                     </td>
                 </tr>
 
@@ -490,6 +564,7 @@
   { path: &#x27;admin/productos/nuevo&#x27;, component: ProductoForm, title: &#x27;Aois Cakes - Nuevo producto&#x27;, canActivate: [adminGuard] },
   { path: &#x27;admin/productos/:id/editar&#x27;, component: ProductoForm, title: &#x27;Aois Cakes - Editar producto&#x27;, canActivate: [adminGuard] },
   {path: &#x27;recuperar&#x27;, component: Recuperar, title: &#x27;Aois Cakes - Recuperar password&#x27; },
+  {path: &#x27;historial&#x27;,loadComponent: () &#x3D;&gt; &quot;import(&#x27;./pages/historial-compras/historial-compras&#x27;).then(m &#x3D;&gt; m.HistorialCompras)&quot;},
   { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; }
 ]</code>
                     </td>

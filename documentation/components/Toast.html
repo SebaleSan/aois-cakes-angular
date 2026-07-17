@@ -107,7 +107,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  App</li>
+  Toast</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -134,7 +134,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/app.ts</code>
+    <code>src/app/components/toast/toast.ts</code>
 </p>
 
 
@@ -160,7 +160,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-root</code></td>
+                <td class="col-md-9"><code>app-toast</code></td>
             </tr>
 
             <tr>
@@ -171,10 +171,7 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                                <code><a href="https://angular.io/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
-                                <code><a href="../components/Navbar.html" target="_self" >Navbar</a></code>
-                                <code><a href="../components/Footer.html" target="_self" >Footer</a></code>
-                                <code><a href="../components/Toast.html" target="_self" >Toast</a></code>
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
                 </td>
             </tr>
 
@@ -183,14 +180,14 @@
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./app.html</code></td>
+                <td class="col-md-9"><code>./toast.html</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./app.css</code></td>
+                <td class="col-md-9"><code>./toast.css</code></td>
             </tr>
 
 
@@ -214,7 +211,23 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#title" >title</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#notificacionService" >notificacionService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#trackById" >trackById</a>
                             </li>
                         </ul>
                     </td>
@@ -224,17 +237,148 @@
 
 
 
-
         </tbody>
     </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(notificacionService: <a href="../injectables/NotificacionService.html" target="_self">NotificacionService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/toast/toast.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>notificacionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificacionService.html" target="_self" >NotificacionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
 
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackById"></a>
+                    <span class="name">
+                        <span ><b>trackById</b></span>
+                        <a href="#trackById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackById(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, notificacion: literal type)</code>
+                </td>
+            </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/components/toast/toast.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>notificacion</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -244,27 +388,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="title"></a>
+                    <a name="notificacionService"></a>
                     <span class="name">
-                        <span ><b>title</b></span>
-                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                        <span ><b>notificacionService</b></span>
+                        <a href="#notificacionService"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../injectables/NotificacionService.html" target="_self" >NotificacionService</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;aois-cakes-angular&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/app.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/toast/toast.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -277,37 +417,45 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, signal } from &#x27;@angular/core&#x27;;
-import { RouterOutlet } from &#x27;@angular/router&#x27;;
-import { Navbar } from &#x27;./components/navbar/navbar&#x27;;
-import { Footer } from &#x27;./components/footer/footer&#x27;;
-import { Toast } from &#x27;./components/toast/toast&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { NotificacionService } from &#x27;../../services/notificacion&#x27;;
 
 @Component({
-  selector: &#x27;app-root&#x27;,
+  selector: &#x27;app-toast&#x27;,
   standalone: true,
-  imports: [
-    RouterOutlet,
-    Navbar,
-    Footer,
-    Toast
-  ],
-  templateUrl: &#x27;./app.html&#x27;,
-  styleUrl: &#x27;./app.css&#x27;
+  imports: [CommonModule],
+  templateUrl: &#x27;./toast.html&#x27;,
+  styleUrl: &#x27;./toast.css&#x27;
 })
-export class App {
-  title &#x3D; &#x27;aois-cakes-angular&#x27;;
+export class Toast {
+  constructor(public notificacionService: NotificacionService) {}
+
+  trackById(index: number, notificacion: { id: number }): number {
+    return notificacion.id;
+  }
 }</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
-&lt;app-toast&gt;&lt;/app-toast&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
-&lt;app-footer&gt;&lt;/app-footer&gt;
-
-
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;toast-container position-fixed top-0 end-0 p-3&quot; style&#x3D;&quot;z-index: 1080;&quot;&gt;
+  &lt;div
+    *ngFor&#x3D;&quot;let notificacion of notificacionService.notificaciones$ | async; trackBy: trackById&quot;
+    class&#x3D;&quot;toast show rounded-3 shadow-sm mb-2&quot;
+    role&#x3D;&quot;alert&quot;
+    aria-live&#x3D;&quot;assertive&quot;
+    aria-atomic&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;toast-body d-flex align-items-center justify-content-between&quot;
+      [class.text-bg-danger]&#x3D;&quot;notificacion.tipo &#x3D;&#x3D;&#x3D; &#x27;error&#x27;&quot;
+      [class.text-bg-success]&#x3D;&quot;notificacion.tipo &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
+      [class.text-bg-info]&#x3D;&quot;notificacion.tipo &#x3D;&#x3D;&#x3D; &#x27;info&#x27;&quot;&gt;
+      &lt;span&gt;{{ notificacion.mensaje }}&lt;/span&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close btn-close-white ms-3&quot;
+        (click)&#x3D;&quot;notificacionService.cerrar(notificacion.id)&quot;
+        aria-label&#x3D;&quot;Cerrar&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
 
@@ -336,10 +484,10 @@ export class App {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><app-toast></app-toast><router-outlet></router-outlet><app-footer></app-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">  <div    *ngFor="let notificacion of notificacionService.notificaciones$ | async; trackBy: trackById"    class="toast show rounded-3 shadow-sm mb-2"    role="alert"    aria-live="assertive"    aria-atomic="true">    <div class="toast-body d-flex align-items-center justify-content-between"      [class.text-bg-danger]="notificacion.tipo === \'error\'"      [class.text-bg-success]="notificacion.tipo === \'success\'"      [class.text-bg-info]="notificacion.tipo === \'info\'">      <span>{{ notificacion.mensaje }}</span>      <button type="button" class="btn-close btn-close-white ms-3"        (click)="notificacionService.cerrar(notificacion.id)"        aria-label="Cerrar"></button>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Buscador', 'selector': 'app-buscador'},{'name': 'Carro', 'selector': 'app-carro'},{'name': 'Catalogo', 'selector': 'app-catalogo'},{'name': 'Detalle', 'selector': 'app-detalle'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'HistorialCompras', 'selector': 'app-historial-compras'},{'name': 'Inicio', 'selector': 'app-inicio'},{'name': 'Login', 'selector': 'app-login'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'Panel', 'selector': 'app-panel'},{'name': 'ProductoForm', 'selector': 'app-producto-form'},{'name': 'Recuperar', 'selector': 'app-recuperar'},{'name': 'Registro', 'selector': 'app-registro'},{'name': 'TemplatePlaygroundComponent', 'selector': 'template-playground-root'},{'name': 'Toast', 'selector': 'app-toast'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'App'};
+    var ACTUAL_COMPONENT = {'name': 'Toast'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -385,7 +533,7 @@ export class App {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'App.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Toast.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

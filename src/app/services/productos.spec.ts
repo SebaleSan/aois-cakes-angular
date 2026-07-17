@@ -133,7 +133,7 @@ describe('Productos', () => {
 
     const req = httpMock.expectOne(PRODUCTOS_URL);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body.id).toBe(8); // maxId (7) + 1
+    expect(req.request.body.id).toBe(8); 
 
     req.flush({ ...req.request.body });
 

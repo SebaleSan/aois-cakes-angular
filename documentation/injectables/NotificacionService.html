@@ -93,7 +93,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-functions">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -107,73 +107,146 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Functions</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >NotificacionService</li>
 </ol>
 
-<section data-compodoc="block-index">
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/notificacion.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio centralizado para mostrar notificaciones tipo toast en toda la
+aplicación, sin acoplar la UI de error a cada componente individual.</p>
+<p>Se suscribe una única vez desde el componente <code>Toast</code> global en <code>app.html</code>.
+Cualquier servicio o interceptor puede llamar a <code>mostrarError</code>,
+<code>mostrarExito</code> o <code>mostrarInfo</code> desde cualquier parte de la app.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <ul class="index-list">
-                        <li>
-                            <a href="#categoriaValida" title="src/app/pages/producto-form/producto-form.ts" ><b>categoriaValida</b>&nbsp;&nbsp;&nbsp;(src/.../producto-form.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#mayorDe13" title="src/app/pages/registro/registro.ts" ><b>mayorDe13</b>&nbsp;&nbsp;&nbsp;(src/.../registro.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#obtenerMensajeError" title="src/app/interceptors/error.interceptors.ts" ><b>obtenerMensajeError</b>&nbsp;&nbsp;&nbsp;(src/.../error.interceptors.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#passwordsIguales" title="src/app/pages/panel/panel.ts" ><b>passwordsIguales</b>&nbsp;&nbsp;&nbsp;(src/.../panel.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#passwordsIguales" title="src/app/pages/registro/registro.ts" ><b>passwordsIguales</b>&nbsp;&nbsp;&nbsp;(src/.../registro.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#precioMinimo" title="src/app/pages/producto-form/producto-form.ts" ><b>precioMinimo</b>&nbsp;&nbsp;&nbsp;(src/.../producto-form.ts)</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#notificaciones$" >notificaciones$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#notificacionesSubject" >notificacionesSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#siguienteId" >siguienteId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#agregar" >agregar</a>
+                            </li>
+                            <li>
+                                <a href="#cerrar" >cerrar</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarError" >mostrarError</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarExito" >mostrarExito</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarInfo" >mostrarInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
         </tbody>
     </table>
 </section>
 
-    <h3>src/app/pages/producto-form/producto-form.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="categoriaValida"></a>
+                    <a name="agregar"></a>
                     <span class="name">
-                        <span ><b>categoriaValida</b></span>
-                        <a href="#categoriaValida"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>agregar</b></span>
+                        <a href="#agregar"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>categoriaValida(group: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>agregar(tipo: <a href="../miscellaneous/typealiases.html#TipoNotificacion" target="_self">TipoNotificacion</a>, mensaje: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/services/notificacion.ts:59</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
@@ -192,9 +265,21 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>group</td>
+                                                <td>tipo</td>
                                             <td>
-                                                            <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#TipoNotificacion" target="_self" >TipoNotificacion</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>mensaje</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -207,7 +292,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -221,20 +306,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="precioMinimo"></a>
+                    <a name="cerrar"></a>
                     <span class="name">
-                        <span ><b>precioMinimo</b></span>
-                        <a href="#precioMinimo"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>cerrar</b></span>
+                        <a href="#cerrar"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>precioMinimo(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+<code>cerrar(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/services/notificacion.ts:53</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
@@ -253,9 +344,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>control</td>
+                                                <td>id</td>
                                             <td>
-                                                            <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -268,70 +359,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>ValidationErrors | null</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>src/app/pages/registro/registro.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mayorDe13"></a>
-                    <span class="name">
-                        <span ><b>mayorDe13</b></span>
-                        <a href="#mayorDe13"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>mayorDe13(control: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>control</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -345,89 +373,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="passwordsIguales"></a>
+                    <a name="mostrarError"></a>
                     <span class="name">
-                        <span ><b>passwordsIguales</b></span>
-                        <a href="#passwordsIguales"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>mostrarError</b></span>
+                        <a href="#mostrarError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>passwordsIguales(form: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+<code>mostrarError(mensaje: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>form</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Grupo reactivo con los campos password y confirmarPassword.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>ValidationErrors | null</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Error <code>noCoinciden</code> cuando los valores difieren; en caso contrario <code>null</code>.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>src/app/interceptors/error.interceptors.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="obtenerMensajeError"></a>
-                    <span class="name">
-                        <span ><b>obtenerMensajeError</b></span>
-                        <a href="#obtenerMensajeError"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>obtenerMensajeError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
-                </td>
-            </tr>
-
-
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/services/notificacion.ts:41</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
@@ -446,9 +411,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>error</td>
+                                                <td>mensaje</td>
                                             <td>
-                                                            <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -461,7 +426,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -471,26 +436,30 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/app/pages/panel/panel.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="passwordsIguales"></a>
+                    <a name="mostrarExito"></a>
                     <span class="name">
-                        <span ><b>passwordsIguales</b></span>
-                        <a href="#passwordsIguales"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>mostrarExito</b></span>
+                        <a href="#mostrarExito"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>passwordsIguales(form: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+<code>mostrarExito(mensaje: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/services/notificacion.ts:45</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
@@ -509,9 +478,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>form</td>
+                                                <td>mensaje</td>
                                             <td>
-                                                            <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -524,7 +493,74 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarInfo"></a>
+                    <span class="name">
+                        <span ><b>mostrarInfo</b></span>
+                        <a href="#mostrarInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mostrarInfo(mensaje: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/services/notificacion.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mensaje</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -535,6 +571,194 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificaciones$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>notificaciones$</b></span>
+                        <a href="#notificaciones$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.notificacionesSubject.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/services/notificacion.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificacionesSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notificacionesSubject</b></span>
+                        <a href="#notificacionesSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;Notificacion[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/services/notificacion.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="siguienteId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>siguienteId</b></span>
+                        <a href="#siguienteId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/services/notificacion.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
+
+/**
+ * @description
+ * Tipos de notificación soportados por el toast global.
+ */
+export type TipoNotificacion &#x3D; &#x27;error&#x27; | &#x27;success&#x27; | &#x27;info&#x27;;
+
+/**
+ * @description
+ * Estructura de una notificación mostrada en el toast global.
+ */
+export interface Notificacion {
+  id: number;
+  tipo: TipoNotificacion;
+  mensaje: string;
+}
+
+const DURACION_MS &#x3D; 4000;
+
+/**
+ * @description
+ * Servicio centralizado para mostrar notificaciones tipo toast en toda la
+ * aplicación, sin acoplar la UI de error a cada componente individual.
+ *
+ * @usageNotes
+ * Se suscribe una única vez desde el componente &#x60;Toast&#x60; global en &#x60;app.html&#x60;.
+ * Cualquier servicio o interceptor puede llamar a &#x60;mostrarError&#x60;,
+ * &#x60;mostrarExito&#x60; o &#x60;mostrarInfo&#x60; desde cualquier parte de la app.
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class NotificacionService {
+  private notificacionesSubject &#x3D; new BehaviorSubject&lt;Notificacion[]&gt;([]);
+  readonly notificaciones$ &#x3D; this.notificacionesSubject.asObservable();
+
+  private siguienteId &#x3D; 1;
+
+  mostrarError(mensaje: string): void {
+    this.agregar(&#x27;error&#x27;, mensaje);
+  }
+
+  mostrarExito(mensaje: string): void {
+    this.agregar(&#x27;success&#x27;, mensaje);
+  }
+
+  mostrarInfo(mensaje: string): void {
+    this.agregar(&#x27;info&#x27;, mensaje);
+  }
+
+  cerrar(id: number): void {
+    this.notificacionesSubject.next(
+      this.notificacionesSubject.value.filter((n) &#x3D;&gt; n.id !&#x3D;&#x3D; id)
+    );
+  }
+
+  private agregar(tipo: TipoNotificacion, mensaje: string): void {
+    const id &#x3D; this.siguienteId++;
+    const notificacion: Notificacion &#x3D; { id, tipo, mensaje };
+
+    this.notificacionesSubject.next([...this.notificacionesSubject.value, notificacion]);
+
+    setTimeout(() &#x3D;&gt; this.cerrar(id), DURACION_MS);
+  }
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 
                    </div><div class="search-results">
@@ -562,8 +786,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
-            var COMPODOC_CURRENT_PAGE_URL = 'functions.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'NotificacionService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

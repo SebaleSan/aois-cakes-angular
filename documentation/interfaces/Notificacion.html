@@ -116,7 +116,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  ItemCarro</li>
+  Notificacion</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -140,7 +140,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/carro.ts</code>
+            <code>src/app/services/notificacion.ts</code>
         </p>
 
 
@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Representa una línea del carrito con el producto seleccionado y su cantidad.</p>
+                <p>Estructura de una notificación mostrada en el toast global.</p>
 
             </p>
 
@@ -166,15 +166,21 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#cantidad" 
+                                        <a href="#id" 
 >
-                                            cantidad
+                                            id
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#producto" 
+                                        <a href="#mensaje" 
 >
-                                            producto
+                                            mensaje
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#tipo" 
+>
+                                            tipo
                                         </a>
                                 </li>
                             </ul>
@@ -192,9 +198,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="cantidad"></a>
-                                        <span class="name "><b>cantidad</b>
-                                            <a href="#cantidad">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -202,7 +208,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>cantidad:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -225,9 +231,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="producto"></a>
-                                        <span class="name "><b>producto</b>
-                                            <a href="#producto">
+                                        <a name="mensaje"></a>
+                                        <span class="name "><b>mensaje</b>
+                                            <a href="#mensaje">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -235,7 +241,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>producto:         <code><a href="../interfaces/Producto.html" target="_self" >Producto</a></code>
+                                        <code>mensaje:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -243,7 +249,40 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/Producto.html" target="_self" >Producto</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="tipo"></a>
+                                        <span class="name "><b>tipo</b>
+                                            <a href="#tipo">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>tipo:         <code><a href="../miscellaneous/typealiases.html#TipoNotificacion" target="_self" >TipoNotificacion</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TipoNotificacion" target="_self" >TipoNotificacion</a></code>
 
                                         </td>
                                     </tr>
@@ -261,345 +300,69 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { BehaviorSubject } from &#x27;rxjs&#x27;;
-import { Producto } from &#x27;../data/productos&#x27;;
-import { AuthService } from &#x27;./auth&#x27;;
 
 /**
  * @description
- * Representa una línea del carrito con el producto seleccionado y su cantidad.
+ * Tipos de notificación soportados por el toast global.
  */
-export interface ItemCarro {
-  producto: Producto;
-  cantidad: number;
-}
+export type TipoNotificacion &#x3D; &#x27;error&#x27; | &#x27;success&#x27; | &#x27;info&#x27;;
 
 /**
  * @description
- * Snapshot de una compra simulada guardada en almacenamiento local y de sesión.
+ * Estructura de una notificación mostrada en el toast global.
  */
-export interface CompraPedido {
+export interface Notificacion {
   id: number;
-  usuarioId: number;
-  fechaISO: string;
-  items: ItemCarro[];
-  totalItems: number;
-  totalPrecio: number;
+  tipo: TipoNotificacion;
+  mensaje: string;
 }
 
-const CLAVE_COMPRA_RECIENTE &#x3D; &#x27;aoisUltimaCompra&#x27;;
-const CLAVE_HISTORIAL_COMPRAS &#x3D; &#x27;aoisHistorialCompras&#x27;;
+const DURACION_MS &#x3D; 4000;
 
 /**
  * @description
- * Servicio responsable de administrar el carrito de compras del usuario autenticado.
+ * Servicio centralizado para mostrar notificaciones tipo toast en toda la
+ * aplicación, sin acoplar la UI de error a cada componente individual.
  *
  * @usageNotes
- * Sincroniza el estado con localStorage usando una clave distinta por usuario para evitar mezclar carritos.
+ * Se suscribe una única vez desde el componente &#x60;Toast&#x60; global en &#x60;app.html&#x60;.
+ * Cualquier servicio o interceptor puede llamar a &#x60;mostrarError&#x60;,
+ * &#x60;mostrarExito&#x60; o &#x60;mostrarInfo&#x60; desde cualquier parte de la app.
  */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
-export class CarroService {
+export class NotificacionService {
+  private notificacionesSubject &#x3D; new BehaviorSubject&lt;Notificacion[]&gt;([]);
+  readonly notificaciones$ &#x3D; this.notificacionesSubject.asObservable();
 
-  private itemsSubject &#x3D; new BehaviorSubject&lt;ItemCarro[]&gt;([]);
-  items$ &#x3D; this.itemsSubject.asObservable();
+  private siguienteId &#x3D; 1;
 
-  /**
-   * @description
-   * Inicializa el carrito reactivo y recarga el estado cuando cambia la sesión.
-   *
-   * @param authService Servicio de autenticación usado para conocer la sesión activa.
-   * @usageNotes
-   * Al cerrar sesión se vacía la vista del carrito; al iniciar sesión se recuperan los items guardados.
-   */
-  constructor(private authService: AuthService) {
-    this.authService.usuarioActual$.subscribe(usuario &#x3D;&gt; {
-      if (usuario) {
-        this.cargarCarro(usuario.id);
-      } else {
-        this.itemsSubject.next([]);
-      }
-    });
+  mostrarError(mensaje: string): void {
+    this.agregar(&#x27;error&#x27;, mensaje);
   }
 
-  get items(): ItemCarro[] {
-    return this.itemsSubject.value;
+  mostrarExito(mensaje: string): void {
+    this.agregar(&#x27;success&#x27;, mensaje);
   }
 
-  get totalItems(): number {
-    return this.items.reduce((acc, item) &#x3D;&gt; acc + item.cantidad, 0);
+  mostrarInfo(mensaje: string): void {
+    this.agregar(&#x27;info&#x27;, mensaje);
   }
 
-  get totalPrecio(): number {
-    return this.items.reduce((acc, item) &#x3D;&gt; acc + item.producto.precio * item.cantidad, 0);
-  }
-
-  /**
-   * @description
-   * Agrega una unidad de producto al carrito o incrementa la cantidad existente.
-   *
-   * @param producto Producto que se quiere sumar al carrito.
-   * @returns No retorna ningún valor.
-   * @example
-   * carroService.agregar(producto);
-   */
-  agregar(producto: Producto): void {
-    const items &#x3D; [...this.items];
-    const index &#x3D; items.findIndex(i &#x3D;&gt; i.producto.id &#x3D;&#x3D;&#x3D; producto.id);
-
-    if (index !&#x3D;&#x3D; -1) {
-      items[index] &#x3D; { ...items[index], cantidad: items[index].cantidad + 1 };
-    } else {
-      items.push({ producto, cantidad: 1 });
-    }
-
-    this.itemsSubject.next(items);
-    this.guardarCarro();
-  }
-
-  /**
-   * @description
-   * Disminuye en una unidad la cantidad de un producto o lo elimina si queda en cero.
-   *
-   * @param productoId Identificador del producto a reducir.
-   * @returns No retorna ningún valor.
-   */
-  reducir(productoId: number): void {
-    const items &#x3D; [...this.items];
-    const index &#x3D; items.findIndex(i &#x3D;&gt; i.producto.id &#x3D;&#x3D;&#x3D; productoId);
-
-    if (index !&#x3D;&#x3D; -1) {
-      if (items[index].cantidad &gt; 1) {
-        items[index] &#x3D; { ...items[index], cantidad: items[index].cantidad - 1 };
-      } else {
-        items.splice(index, 1);
-      }
-    }
-
-    this.itemsSubject.next(items);
-    this.guardarCarro();
-  }
-
-  /**
-   * @description
-   * Elimina por completo un producto del carrito.
-   *
-   * @param productoId Identificador del producto que se eliminará.
-   * @returns No retorna ningún valor.
-   */
-  eliminar(productoId: number): void {
-    const items &#x3D; this.items.filter(i &#x3D;&gt; i.producto.id !&#x3D;&#x3D; productoId);
-    this.itemsSubject.next(items);
-    this.guardarCarro();
-  }
-
-  /**
-   * @description
-   * Vacía todos los productos del carrito activo.
-   *
-   * @returns No retorna ningún valor.
-   */
-  vaciar(): void {
-    this.itemsSubject.next([]);
-    this.guardarCarro();
-  }
-
-  /**
-   * @description
-   * Simula la finalización de un pedido, persiste el resumen en almacenamiento
-   * local y de sesión, y vacía el carrito activo.
-   *
-   * @returns Un snapshot de la compra realizada o &#x60;null&#x60; si no había productos.
-   */
-  finalizarPedido(itemsPedido: ItemCarro[] &#x3D; this.items): CompraPedido | null {
-    const usuario &#x3D; this.authService.usuarioActual;
-
-    if (!usuario || itemsPedido.length &#x3D;&#x3D;&#x3D; 0) {
-      return null;
-    }
-
-    const compra: CompraPedido &#x3D; {
-      id: Date.now(),
-      usuarioId: usuario.id,
-      fechaISO: new Date().toISOString(),
-      items: itemsPedido.map(item &#x3D;&gt; ({
-        producto: { ...item.producto },
-        cantidad: item.cantidad
-      })),
-      totalItems: itemsPedido.reduce((acumulado, item) &#x3D;&gt; acumulado + item.cantidad, 0),
-      totalPrecio: itemsPedido.reduce((acumulado, item) &#x3D;&gt; acumulado + item.producto.precio * item.cantidad, 0)
-    };
-
-    this.guardarCompraReciente(compra);
-    this.guardarHistorialCompras(compra);
-    this.vaciar();
-
-    return compra;
-  }
-
-  /**
-   * @description
-   * Recupera la última compra simulada del usuario activo desde sessionStorage.
-   *
-   * @returns La última compra guardada o &#x60;null&#x60; si no existe.
-   */
-  obtenerUltimaCompra(): CompraPedido | null {
-    const usuario &#x3D; this.authService.usuarioActual;
-
-    if (!usuario) {
-      return null;
-    }
-
-    return this.leerCompraReciente(usuario.id);
-  }
-
-
-  /**
-   * @description
-   * Recupera el historial completo de compras del usuario activo desde
-   * localStorage, ordenado desde la más reciente a la más antigua.
-   *
-   * @returns Un arreglo con todas las compras realizadas por el usuario,
-   * o un arreglo vacío si no hay sesión activa o no existe historial.
-   * @example
-   * const historial &#x3D; carroService.obtenerHistorialCompras();
-   */
-  obtenerHistorialCompras(): CompraPedido[] {
-    const usuario &#x3D; this.authService.usuarioActual;
-
-    if (!usuario) {
-      return [];
-    }
-
-    return this.leerHistorialCompras(usuario.id)
-      .slice()
-      .sort((a, b) &#x3D;&gt; b.id - a.id);
-  }
-
-  /**
-   * @description
-   * Recupera el historial de compras de **todos** los usuarios registrados,
-   * recorriendo las claves de localStorage con el prefijo de historial.
-   * Pensado para uso exclusivo del panel de administración.
-   *
-   * @returns Un arreglo con todas las compras de todos los usuarios,
-   * ordenadas desde la más reciente a la más antigua.
-   * @example
-   * const todasLasCompras &#x3D; carroService.obtenerTodasLasCompras();
-   */
-  obtenerTodasLasCompras(): CompraPedido[] {
-    const compras: CompraPedido[] &#x3D; [];
-
-    for (let i &#x3D; 0; i &lt; localStorage.length; i++) {
-      const clave &#x3D; localStorage.key(i);
-
-      if (!clave || !clave.startsWith(CLAVE_HISTORIAL_COMPRAS)) {
-        continue;
-      }
-
-      const guardado &#x3D; localStorage.getItem(clave);
-
-      if (!guardado) {
-        continue;
-      }
-
-      try {
-        const historialUsuario &#x3D; JSON.parse(guardado) as CompraPedido[];
-        compras.push(...historialUsuario);
-      } catch {
-        localStorage.removeItem(clave);
-      }
-    }
-
-    return compras.sort((a, b) &#x3D;&gt; b.id - a.id);
-  }
-
-  private claveStorage(): string {
-    const usuario &#x3D; this.authService.usuarioActual;
-    return &#x60;aoisCarro_${usuario?.id}&#x60;;
-  }
-
-  private guardarCarro(): void {
-    localStorage.setItem(this.claveStorage(), JSON.stringify(this.items));
-  }
-
-  private guardarCompraReciente(compra: CompraPedido): void {
-    sessionStorage.setItem(
-      this.claveCompraReciente(compra.usuarioId),
-      JSON.stringify(compra)
+  cerrar(id: number): void {
+    this.notificacionesSubject.next(
+      this.notificacionesSubject.value.filter((n) &#x3D;&gt; n.id !&#x3D;&#x3D; id)
     );
   }
 
-  private guardarHistorialCompras(compra: CompraPedido): void {
-    const historial &#x3D; this.leerHistorialCompras(compra.usuarioId);
-    localStorage.setItem(
-      this.claveHistorialCompras(compra.usuarioId),
-      JSON.stringify([...historial, compra])
-    );
-  }
+  private agregar(tipo: TipoNotificacion, mensaje: string): void {
+    const id &#x3D; this.siguienteId++;
+    const notificacion: Notificacion &#x3D; { id, tipo, mensaje };
 
-  private leerCompraReciente(usuarioId: number): CompraPedido | null {
-    const guardada &#x3D; sessionStorage.getItem(this.claveCompraReciente(usuarioId));
+    this.notificacionesSubject.next([...this.notificacionesSubject.value, notificacion]);
 
-    if (!guardada) {
-      return null;
-    }
-
-    try {
-      return JSON.parse(guardada) as CompraPedido;
-    } catch {
-      sessionStorage.removeItem(this.claveCompraReciente(usuarioId));
-      return null;
-    }
-  }
-
-  private leerHistorialCompras(usuarioId: number): CompraPedido[] {
-    const guardado &#x3D; localStorage.getItem(this.claveHistorialCompras(usuarioId));
-
-    if (!guardado) {
-      return [];
-    }
-
-    try {
-      return JSON.parse(guardado) as CompraPedido[];
-    } catch {
-      localStorage.removeItem(this.claveHistorialCompras(usuarioId));
-      return [];
-    }
-  }
-
-  private claveCompraReciente(usuarioId: number): string {
-    return &#x60;${CLAVE_COMPRA_RECIENTE}_${usuarioId}&#x60;;
-  }
-
-  private claveHistorialCompras(usuarioId: number): string {
-    return &#x60;${CLAVE_HISTORIAL_COMPRAS}_${usuarioId}&#x60;;
-  }
-
-  private cargarCarro(usuarioId: number): void {
-    const guardado &#x3D; localStorage.getItem(&#x60;aoisCarro_${usuarioId}&#x60;);
-    if (guardado) {
-      try {
-        this.itemsSubject.next(JSON.parse(guardado) as ItemCarro[]);
-      } catch {
-        this.itemsSubject.next([]);
-      }
-    } else {
-      this.itemsSubject.next([]);
-    }
-  }
-
-  /**
-   * @description
-   * Formatea un valor numérico como moneda chilena.
-   *
-   * @param precio Valor numérico del precio a formatear.
-   * @returns Precio formateado con separador local.
-   * @example
-   * carroService.formatearPrecio(12000);
-   */
-  formatearPrecio(precio: number): string {
-    return &#x27;$&#x27; + precio.toLocaleString(&#x27;es-CL&#x27;);
+    setTimeout(() &#x3D;&gt; this.cerrar(id), DURACION_MS);
   }
 }</code></pre>
     </div>
@@ -638,7 +401,7 @@ export class CarroService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'ItemCarro.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Notificacion.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
