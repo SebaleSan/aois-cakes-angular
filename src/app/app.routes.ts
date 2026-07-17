@@ -26,5 +26,6 @@ export const routes: Routes = [
   { path: 'admin/productos/nuevo', component: ProductoForm, title: 'Aois Cakes - Nuevo producto', canActivate: [adminGuard] },
   { path: 'admin/productos/:id/editar', component: ProductoForm, title: 'Aois Cakes - Editar producto', canActivate: [adminGuard] },
   {path: 'recuperar', component: Recuperar, title: 'Aois Cakes - Recuperar password' },
+  {path: 'historial',loadComponent: () => import('./pages/historial-compras/historial-compras').then(m => m.HistorialCompras)},
   { path: '**', redirectTo: '' }
 ];

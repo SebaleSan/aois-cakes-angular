@@ -1,0 +1,65 @@
+<main class="page-animation container py-5">
+
+  <h1 class="mb-4">Mi historial de compras</h1>
+
+  <div *ngIf="compras.length > 0; else sinCompras">
+
+    <div *ngFor="let compra of compras; trackBy: trackByCompraId" class="card rounded-4 shadow-sm mb-4">
+      <div class="card-body">
+
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-3">
+          <div>
+            <h5 class="mb-1">Pedido #{{ compra.id }}</h5>
+            <p class="text-muted mb-0">{{ compra.fechaISO | date:'short' }}</p>
+          </div>
+          <div class="text-md-end">
+            <div class="fw-bold">{{ carroService.formatearPrecio(compra.totalPrecio) }}</div>
+            <div class="text-muted small">
+              {{ compra.totalItems }} producto{{ compra.totalItems === 1 ? '' : 's' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col" class="text-center">Cantidad</th>
+                <th scope="col" class="text-end">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of compra.items; trackBy: trackByProductoId">
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img [src]="item.producto.imagen" [alt]="item.producto.nombre"
+                      class="rounded-3" style="width: 56px; height: 56px; object-fit: cover;">
+                    <div>
+                      <div class="fw-semibold">{{ item.producto.nombre }}</div>
+                      <div class="text-muted small">{{ item.producto.categoria }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">{{ item.cantidad }}</td>
+                <td class="text-end">
+                  {{ carroService.formatearPrecio(item.producto.precio * item.cantidad) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #sinCompras>
+    <div class="text-center py-5">
+      <p class="lead text-muted">Aún no tienes compras registradas.</p>
+      <a routerLink="/catalogo" class="btn main-btn">Ver catálogo</a>
+    </div>
+  </ng-template>
+
+</main>

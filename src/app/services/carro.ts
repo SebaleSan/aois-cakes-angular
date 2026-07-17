@@ -192,6 +192,29 @@ export class CarroService {
     return this.leerCompraReciente(usuario.id);
   }
 
+
+  /**
+   * @description
+   * Recupera el historial completo de compras del usuario activo desde
+   * localStorage, ordenado desde la más reciente a la más antigua.
+   *
+   * @returns Un arreglo con todas las compras realizadas por el usuario,
+   * o un arreglo vacío si no hay sesión activa o no existe historial.
+   * @example
+   * const historial = carroService.obtenerHistorialCompras();
+   */
+  obtenerHistorialCompras(): CompraPedido[] {
+    const usuario = this.authService.usuarioActual;
+
+    if (!usuario) {
+      return [];
+    }
+
+    return this.leerHistorialCompras(usuario.id)
+      .slice()
+      .sort((a, b) => b.id - a.id);
+  }
+
   private claveStorage(): string {
     const usuario = this.authService.usuarioActual;
     return `aoisCarro_${usuario?.id}`;
